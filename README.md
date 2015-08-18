@@ -36,17 +36,16 @@
 * ARIA 1.0: [role=&quot;heading&quot;]
 
 ## Browser Compatibility
-* osx: Chrome 10.0 C
-* osx: Firefox 3.6 C
-* osx: Opera 11.0 C
-* osx: Safari 5.0 C
-* win: Chrome 10.0 C
-* win: Firefox 3.6 C
-* win: Internet Explorer 8.0 C
-* win: Opera 11.0 C
-* win: Safari 5.0 C
-:
-*[C]: Complete
+* osx: Chrome 10.0+
+* osx: Firefox 3.6+
+* osx: Opera 11.0+
+* osx: Safari 5.0+
+* win: Chrome 10.0+
+* win: Firefox 3.6+
+* win: Internet Explorer 8.0+
+* win: Opera 11.0+
+* win: Safari 5.0+
+
 
 ## Copyright and license
 
