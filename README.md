@@ -1,4 +1,10 @@
-# Accessible Bootstrap datepicker
+# ab-datepicker 
+ab-datepicker is an accessible datepicker based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
+and Inspired by http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-fr.html
+
+## Dependencies
+* [jQuery](https://jquery.com/)
+* [Bootstrap](http://getbootstrap.com/)
 
 ## Demo
 [Online Demo](http://eureka2.github.io/ab-datepicker/)
