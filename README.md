@@ -35,6 +35,19 @@
 * ARIA 1.0: [role=&quot;gridcell&quot;]
 * ARIA 1.0: [role=&quot;heading&quot;]
 
+## Browser Compatibility
+* osx: Chrome 10.0 C
+* osx: Firefox 3.6 C
+* osx: Opera 11.0 C
+* osx: Safari 5.0 C
+* win: Chrome 10.0 C
+* win: Firefox 3.6 C
+* win: Internet Explorer 8.0 C
+* win: Opera 11.0 C
+* win: Safari 5.0 C
+:
+*[C]: Complete
+
 ## Copyright and license
 
 Copyright 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE). 
