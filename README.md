@@ -7,6 +7,7 @@ and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-
 1. [Dependencies](#dependencies)
 1. [Demo](#demo)
 1. [Usage](#usage)
+1. [Theming](#theming)
 1. [Keyboard interaction](#keyboard-interaction)
 1. [ARIA 1.0 Markup](#aria-10-markup)
 1. [Browser Compatibility](#browser-compatibility)
@@ -41,7 +42,7 @@ The datepicker component must be bound to an text input field of your document:
 ```html
 <input class="date form-control" id="date1" type="text" placeholder="d/M/y" title="format: dd/MM/y"/>
 ```
-For better accessibility, define and placeholder attribute and a title with the input format
+For better accessibility, define an placeholder attribute and a title with the input format
 
 Add the bootstrap and datepicker css to you page head
 ```html
@@ -55,7 +56,6 @@ Place the javascript to the end of your document:
 <script type="text/javascript" src="path/to/bootstrap.min.js"></script>
 <script type="text/javascript" src="path/to/datepicker.min.js"></script>
 ```
-Replace "fr.min.js" by the "locales file" you want.
 
 ### Basic usage
 Add the JavaScript to the end of your document:
@@ -66,8 +66,10 @@ Add the JavaScript to the end of your document:
     });
     </script>
 ```
+Display the default calendar (in english with the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
+### 
 **[⬆ back to top](#table-of-contents)**
 
 ## Configuration options
@@ -207,6 +209,9 @@ Add the JavaScript to the end of your document:
 
 **[⬆ back to top](#table-of-contents)**
 
+## Theming
+coming soon
+
 ## Keyboard interaction
 * <kbd>Left</kbd> Move focus to the previous day. Will move to the last day of the previous month, if the current day is the first day of a month.
 * <kbd>Right</kbd> Move focus to the next day. Will move to the first day of the following month, if the current day is the last day of a month.
@@ -258,6 +263,6 @@ Add the JavaScript to the end of your document:
 
 ## Copyright and license
 
-Copyright 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
+&copy; 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
 **[⬆ back to top](#table-of-contents)** 
