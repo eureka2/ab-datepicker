@@ -24,18 +24,18 @@ its corresponding numeric calendar day, and week number if necessary.
 
 The calendar portion can be displayed in a numbers of ways, including as a popup in modal mode.
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Dependencies
 * [jQuery](https://jquery.com/)
 * [Bootstrap](http://getbootstrap.com/)
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Demo
 [Online Demo](http://eureka2.github.io/ab-datepicker/)
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Usage
 
@@ -94,7 +94,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 ```
 ![](https://eureka2.github.io/ab-datepicker/datepicker4.png) ![](https://eureka2.github.io/ab-datepicker/datepicker5.png)
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Configuration options
 <table>
@@ -231,7 +231,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 </table>
 (*) Default value from the locale file
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Theming
 coming soon
@@ -250,7 +250,7 @@ coming soon
 * <kbd>Tab</kbd> / <kbd>Shift+Tab</kbd> If the datepicker is in model mode, navigate between calander grid and close/previous/next selection buttons, otherwise move to the field following/preceding the date textbox associated with the datepicker
 * <kbd>Enter</kbd> / <kbd>Space</kbd> Fill the date textbox with the selected date then close the datepicker widget.
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## ARIA 1.0 Markup
 * ARIA 1.0: [aria-activedescendant]
@@ -270,7 +270,7 @@ coming soon
 * ARIA 1.0: [role=&quot;gridcell&quot;]
 * ARIA 1.0: [role=&quot;heading&quot;]
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Browser Compatibility
 * osx: Chrome 10.0+
@@ -283,10 +283,10 @@ coming soon
 * win: Opera 11.0+
 * win: Safari 5.0+
 
-**[⬆ back to top](#table-of-contents)**
+**[&uparrow; back to top](#table-of-contents)**
 
 ## Copyright and license
 
 &copy; 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
-**[⬆ back to top](#table-of-contents)** 
+**[&uparrow; back to top](#table-of-contents)** 
