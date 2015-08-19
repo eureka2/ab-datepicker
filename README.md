@@ -7,6 +7,7 @@ and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-
 1. [Dependencies](#dependencies)
 1. [Demo](#demo)
 1. [Usage](#usage)
+1. [Configuration options](#configuration-options)
 1. [Theming](#theming)
 1. [Keyboard interaction](#keyboard-interaction)
 1. [ARIA 1.0 Markup](#aria-10-markup)
@@ -69,7 +70,28 @@ Add the JavaScript to the end of your document:
 Display the default calendar (in english with the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
-### 
+### Advanced usage including Internationalization
+First, place your locales file before "dapicker.min.js"
+For example, the French file
+```html
+<script type="text/javascript" src="path/to/locales/fr.min.js"></script>
+```
+and give some options to the datepicker. See [Configuration options](#configuration-options) below.
+```javascript
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	$('.date').datepicker({
+			firstDayOfWeek: 1, // The first day of week is Monday
+			weekDayFormat: 'narrow', // Only first lettr for the weekday names
+			inputFormat: 'd/M/y',
+			outputFormat: 'dd/MM/y',
+			titleFormat: 'EEEE d MMMM y',
+			theme: 'blue',
+			modal: false
+		});	
+    });
+    </script>
+```
 **[⬆ back to top](#table-of-contents)**
 
 ## Configuration options
