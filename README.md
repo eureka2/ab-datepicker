@@ -72,7 +72,7 @@ Display the default calendar (in english with the default theme : no colors)
 
 ### Advanced usage including Internationalization
 First, place your locales file before "dapicker.min.js"
-For example, the French file
+For example, the French file :
 ```html
 <script type="text/javascript" src="path/to/locales/fr.min.js"></script>
 ```
@@ -82,7 +82,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
     $(document).ready(function() {
     	$('.date').datepicker({
 			firstDayOfWeek: 1, // The first day of week is Monday
-			weekDayFormat: 'narrow', // Only first lettr for the weekday names
+			weekDayFormat: 'narrow', // Only first letter for the weekday names
 			inputFormat: 'd/M/y',
 			outputFormat: 'dd/MM/y',
 			titleFormat: 'EEEE d MMMM y',
@@ -92,6 +92,8 @@ and give some options to the datepicker. See [Configuration options](#configurat
     });
     </script>
 ```
+![](https://eureka2.github.io/ab-datepicker/datepicker4.png) ![](https://eureka2.github.io/ab-datepicker/datepicker5.png)
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Configuration options
