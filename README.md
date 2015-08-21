@@ -8,6 +8,8 @@ and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-
 1. [Demo](#demo)
 1. [Usage](#usage)
 1. [Configuration options](#configuration-options)
+1. [Methods](#methods)
+1. [Events](#events)
 1. [Theming](#theming)
 1. [Keyboard interaction](#keyboard-interaction)
 1. [ARIA 1.0 Markup](#aria-10-markup)
@@ -24,18 +26,18 @@ its corresponding numeric calendar day, and week number if necessary.
 
 The calendar portion can be displayed in a numbers of ways, including as a popup in modal mode.
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Dependencies
 * [jQuery](https://jquery.com/)
 * [Bootstrap](http://getbootstrap.com/)
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Demo
 [Online Demo](http://eureka2.github.io/ab-datepicker/)
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Usage
 
@@ -71,7 +73,7 @@ Display the default calendar (in english with the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
 ### Advanced usage including Internationalization
-First, place your locales file before "dapicker.min.js"
+First, place your locales file before "datepicker.min.js"
 For example, the French file :
 ```html
 <script type="text/javascript" src="path/to/locales/fr.min.js"></script>
@@ -94,148 +96,121 @@ and give some options to the datepicker. See [Configuration options](#configurat
 ```
 ![](https://eureka2.github.io/ab-datepicker/datepicker4.png) ![](https://eureka2.github.io/ab-datepicker/datepicker5.png)
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Configuration options
-<table>
-	<thead>
-		<tr>
-			<th>Option</th>
-			<th>Description</th>
-			<th>Default</th>
-			<th>Example</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>firstDayOfWeek</td>
-			<td>Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....</td>
-			<td>Date.dp_locales.firstday_of_week (*)</td>
-			<td>firstDayOfWeek: 1</td>
-		</tr>
-		<tr>
-			<td>weekDayFormat</td> 
-			<td>Display format of the weekday names - values are 'short' (first letter) or 'narrow' (first two letters)</td>
-			<td>short</td>
-			<td>weekDayFormat: 'narrow'</td>
-		</tr>
-		<tr>
-			<td>inputFormat</td>
-			<td>date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)</td>
-			<td>Date.dp_locales.short_format (*)</td>
-			<td>inputFormat: 'd/M/y'</td>
-		</tr>
-		<tr>
-			<td>outputFormat</td>
-			<td>date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)</td>
-			<td>Date.dp_locales.short_format (*)</td>
-			<td>outputFormat: 'dd/MM/y'</td>
-		</tr>
-		<tr>
-			<td>titleFormat</td>
-			<td> Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)</td>
-			<td>Date.dp_locales.full_format (*)</td>
-			<td>titleFormat: 'EEEE d MMMM y'</td>
-		</tr>
-		<tr>
-			<td>buttonTitle</td>
-			<td></td>
-			<td>Date.dp_locales.texts.buttonTitle (*)</td>
-			<td>buttonTitle: "Sélectionner une date ..."</td>
-		</tr>
-		<tr>
-			<td>buttonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.buttonLabel (*)</td>
-			<td>buttonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier"</td>
-		</tr>
-		<tr>
-			<td>prevButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.prevButtonLabel (*)</td>
-			<td>prevButtonLabel: "Aller au mois précédent"</td>
-		</tr>
-		<tr>
-			<td>prevMonthButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.prevMonthButtonLabel (*)</td>
-			<td>prevMonthButtonLabel: "Aller à l'année précédente"</td>
-		</tr>
-		<tr>
-			<td>prevYearButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.prevYearButtonLabel (*)</td>
-			<td>prevYearButtonLabel: "Aller aux vingt années précédentes"</td>
-		</tr>
-		<tr>
-			<td>nextButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.nextButtonLabel (*)</td>
-			<td>nextButtonLabel: "Aller au mois suivant"</td>
-		</tr>
-		<tr>
-			<td>nextMonthButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.nextMonthButtonLabel (*)</td>
-			<td>nextMonthButtonLabel: "Aller à l'année suivante"</td>
-		</tr>
-		<tr>
-			<td>nextYearButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.nextYearButtonLabel (*)</td>
-			<td>nextYearButtonLabel: "Allez aux vingt années suivantes"</td>
-		</tr>
-		<tr>
-			<td>changeMonthButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.changeMonthButtonLabel (*)</td>
-			<td>changeMonthButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer le mois"</td>
-		</tr>
-		<tr>
-			<td>changeYearButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.changeYearButtonLabel (*)</td>
-			<td>"changeYearButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer l'année"</td>
-		</tr>
-		<tr>
-			<td>changeRangeButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.changeRangeButtonLabel (*)</td>
-			<td>changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"</td>
-		</tr>
-		<tr>
-			<td>closeButtonTitle</td>
-			<td></td>
-			<td>Date.dp_locales.texts.closeButtonTitle (*)</td>
-			<td>closeButtonTitle: "Fermer"</td>
-		</tr>
-		<tr>
-			<td>closeButtonLabel</td>
-			<td></td>
-			<td>Date.dp_locales.texts.closeButtonLabel (*)</td>
-			<td>closeButtonLabel: "Fermez le calendrier"</td>
-		</tr>
-		<tr>
-			<td>theme</td>
-			<td></td>
-			<td>default</td>
-			<td>theme: 'green'</td>
-		</tr>
-		<tr>
-			<td>modal</td>
-			<td></td>
-			<td>false</td>		
-			<td>modal: true</td>
-		</tr>
-	</tbody>
-</table>
+
+|Option                |Description                          |Default        |Example|
+|----------------------|-------------------------------------|---------------|-------|
+|firstDayOfWeek        | Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
+|weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
+|inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
+|outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
+|titleFormat           |Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.full_format (*)|titleFormat: 'EEEE d MMMM y'|
+|buttonTitle           |Title attribute for the calendar button|Date.dp_locales.texts.buttonTitle (*)|Sélectionner une date ...|
+|buttonLabel           |Accessibility label : 'aria-labelledby' attribute for the calendar button|Date.dp_locales.texts.buttonLabel (*)|Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier|
+|prevButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the previous month button|Date.dp_locales.texts.prevButtonLabel (*)|prevButtonLabel: "Aller au mois précédent"|
+|prevMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the previous year button|Date.dp_locales.texts.prevMonthButtonLabel (*)|prevMonthButtonLabel: "Aller à l'année précédente"|
+|prevYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the previous years range button|Date.dp_locales.texts.prevYearButtonLabel (*)|prevYearButtonLabel: "Aller aux vingt années précédentes"|
+|nextButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the next month button|Date.dp_locales.texts.nextButtonLabel (*)|nextButtonLabel: "Aller au mois suivant"|
+|nextMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the next year button|Date.dp_locales.texts.nextMonthButtonLabel (*)|nextMonthButtonLabel: "Aller à l'année suivante"|
+|nextYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the next years range button|Date.dp_locales.texts.nextYearButtonLabel (*)|nextYearButtonLabel: "Allez aux vingt années suivantes"|
+|changeMonthButtonLabel|Accessibility label : title attribute for the calendar title when the current month is displayed|Date.dp_locales.texts.changeMonthButtonLabel (*)|changeMonthButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer le mois"|
+|changeYearButtonLabel |Accessibility label : title attribute for the calendar title when the current year is displayed|Date.dp_locales.texts.changeYearButtonLabel (*)|changeYearButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer l'année"|
+|changeRangeButtonLabel|Accessibility label : title attribute for the calendar title when the current years range is displayed|Date.dp_locales.texts.changeRangeButtonLabel (*)|changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"|
+|closeButtonTitle      |Title attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonTitle (*)|closeButtonTitle: "Fermer"|
+|closeButtonLabel      |Accessibility label : 'aria-labelledby' attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonLabel (*)|closeButtonLabel: "Fermez le calendrier"|
+|theme                 |name of the theme|default|theme: 'green'|
+|modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
+
 (*) Default value from the locale file
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
+
+## Methods
+
+**[&uparrow; back to table of contents](#table-of-contents)**
+
+## Events
+
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Theming
-coming soon
-
+1. Give a name to your theme;
+2. Create a CSS file with the styles below, having replaced 'default' by the name of your theme. Use the properties 'color', 'background-color', 'border-color', .....
+```css
+a.datepicker-button.default {
+}
+a.datepicker-button.default:hover,
+a.datepicker-button.default:focus {
+	background-color: #DDD;
+}
+div.datepicker-calendar.default {
+	background-color: #FFF;
+}
+div.datepicker-calendar.default div.datepicker-month-wrap {
+}
+div.datepicker-calendar.default div.datepicker-month-fast-prev:hover,
+div.datepicker-calendar.default div.datepicker-month-fast-prev:focus,
+div.datepicker-calendar.default div.datepicker-month-fast-next:hover,
+div.datepicker-calendar.default div.datepicker-month-fast-next:focus,
+div.datepicker-calendar.default div.datepicker-month-prev:hover,
+div.datepicker-calendar.default div.datepicker-month-prev:focus,
+div.datepicker-calendar.default div.datepicker-month-next:hover,
+div.datepicker-calendar.default div.datepicker-month-next:focus,
+div.datepicker-calendar.default div.datepicker-month:hover,
+div.datepicker-calendar.default div.datepicker-month:focus,
+div.datepicker-calendar.default button.datepicker-close:hover, 
+div.datepicker-calendar.default button.datepicker-close:focus {
+	background-color: #EEE;
+	border-color:  #999;
+}
+div.datepicker-calendar.default table.datepicker-grid:focus {
+	outline: 1px dotted #999;
+}
+div.datepicker-calendar.default tr.datepicker-weekdays {
+	border-top:  1px solid #999;
+	border-bottom:  1px solid #999;
+}
+div.datepicker-calendar.default table.datepicker-grid th {
+	background-color: #EEE;
+	border:  none;
+}
+div.datepicker-calendar.default table.datepicker-grid td {
+	border:  none;
+	color: #000;
+}
+div.datepicker-calendar.default table.datepicker-grid td.curDay,
+div.datepicker-calendar.default table.datepicker-grid td.curMonth,
+div.datepicker-calendar.default table.datepicker-grid td.curYear {
+	background-color: #FFF0C4;
+}
+div.datepicker-calendar.default table.datepicker-grid td.empty {
+	border:  none;
+	background-color: #F9F9F9;
+}
+div.datepicker-calendar.default table.datepicker-grid td:hover,
+div.datepicker-calendar.default table.datepicker-grid td.focus {
+	background-color: #DDD;
+}
+div.datepicker-calendar.default table.datepicker-grid td.empty:hover {
+	background-color: #F9F9F9;
+}
+div.datepicker-calendar.default button.datepicker-close {
+	background-color: #522A3F;
+	color: #FFF;
+	border-color:  #EEE;
+}
+```
+3. Add the CSS file to your page
+4. call the datepicker with the 'theme' option as follows :
+```javascript
+$('your date selector').datepicker({
+	............
+	theme: 'the name of your theme',
+	........
+});	
+```
 ## Keyboard interaction
 * <kbd>Left</kbd> Move focus to the previous day. Will move to the last day of the previous month, if the current day is the first day of a month.
 * <kbd>Right</kbd> Move focus to the next day. Will move to the first day of the following month, if the current day is the last day of a month.
@@ -250,7 +225,7 @@ coming soon
 * <kbd>Tab</kbd> / <kbd>Shift+Tab</kbd> If the datepicker is in model mode, navigate between calander grid and close/previous/next selection buttons, otherwise move to the field following/preceding the date textbox associated with the datepicker
 * <kbd>Enter</kbd> / <kbd>Space</kbd> Fill the date textbox with the selected date then close the datepicker widget.
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## ARIA 1.0 Markup
 * ARIA 1.0: [aria-activedescendant]
@@ -270,7 +245,7 @@ coming soon
 * ARIA 1.0: [role=&quot;gridcell&quot;]
 * ARIA 1.0: [role=&quot;heading&quot;]
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Browser Compatibility
 * osx: Chrome 10.0+
@@ -283,10 +258,10 @@ coming soon
 * win: Opera 11.0+
 * win: Safari 5.0+
 
-**[&uparrow; back to top](#table-of-contents)**
+**[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Copyright and license
 
 &copy; 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
-**[&uparrow; back to top](#table-of-contents)** 
+**[&uparrow; back to table of contents](#table-of-contents)** 
