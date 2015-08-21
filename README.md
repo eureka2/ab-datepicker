@@ -17,7 +17,7 @@ and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-
 1. [Copyright and license](#copyright-and-license)
 
 ##  Description
-This DatePicker widget is a jQuery Plugin which allows the user to select a date and implements the [WAI-ARIA Date Picker design pattern](http://www.w3.org/TR/wai-aria-practices/#datepicker) of W3C. 
+This DatePicker widget is a jQuery Plugin which allows the user to select a date. It implements the [WAI-ARIA Date Picker design pattern](http://www.w3.org/TR/wai-aria-practices/#datepicker) of W3C. 
 	
 The calendar portion of the date picker follows a table structure 
 where days of the week and calendar day numbers are layed out in HTML table cells where WAI-ARIA semantics for a grid are applied. 
