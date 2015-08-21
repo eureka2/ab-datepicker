@@ -45,15 +45,15 @@ The datepicker component must be bound to an text input field of your document:
 ```html
 <input class="date form-control" id="date1" type="text" placeholder="d/M/y" title="format: dd/MM/y"/>
 ```
-For better accessibility, define an placeholder attribute and a title with the input format
+For better accessibility, define an placeholder attribute and a title giving the input format to the screen reader.
 
-Add the bootstrap and datepicker css to you page head
+Add the bootstrap and datepicker css to your page head
 ```html
 <link rel="stylesheet" href="path/to/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="path/to/datepicker.css" type="text/css" />
 ```
 
-Place the javascript to the end of your document:
+Place the javascript files to the end of your document:
 ```html
 <script type="text/javascript" src="path/to/jquery.min.js"></script>
 <script type="text/javascript" src="path/to/bootstrap.min.js"></script>
@@ -61,7 +61,7 @@ Place the javascript to the end of your document:
 ```
 
 ### Basic usage
-Add the JavaScript to the end of your document:
+Add this code to the end of your document:
 ```javascript
     <script type="text/javascript">
     $(document).ready(function() {
@@ -69,11 +69,11 @@ Add the JavaScript to the end of your document:
     });
     </script>
 ```
-Display the default calendar (in english with the default theme : no colors)
+This code displays the default calendar (in english with the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
 ### Advanced usage including Internationalization
-First, place your locales file before "datepicker.min.js"
+First, place your "locales" file before "datepicker.min.js"
 For example, the French file :
 ```html
 <script type="text/javascript" src="path/to/locales/fr.min.js"></script>
@@ -102,7 +102,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 
 |Option                |Description                          |Default        |Example|
 |----------------------|-------------------------------------|---------------|-------|
-|firstDayOfWeek        | Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
+|firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 |inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
 |outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
@@ -202,8 +202,8 @@ div.datepicker-calendar.default button.datepicker-close {
 	border-color:  #EEE;
 }
 ```
-3. Add the CSS file to your page
-4. call the datepicker with the 'theme' option as follows :
+ 3. Add the CSS file to your page
+ 4. call the datepicker with the 'theme' option as follows :
 ```javascript
 $('your date selector').datepicker({
 	............
