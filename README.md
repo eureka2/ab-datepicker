@@ -74,7 +74,7 @@ This code displays the default calendar (in english with the default theme : no 
 
 ### Advanced usage including Internationalization
 First, place your "locales" file before "datepicker.min.js"
-For example, the French file :
+For example, if your language is French, add this line :
 ```html
 <script type="text/javascript" src="path/to/locales/fr.min.js"></script>
 ```
