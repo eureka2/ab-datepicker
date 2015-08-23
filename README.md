@@ -130,24 +130,29 @@ and give some options to the datepicker. See [Configuration options](#configurat
 ## Methods
 ### firstDayOfWeek
 ```javascript
-$('your date selector').datepicker('firstDayOfWeek', );	
+$('your date selector').datepicker('firstDayOfWeek', value);	
 ```
+where value (type: integer) is the day of week (0: Sunday, 1: Monday, 2: Tuesday, ...)
 ### weekDayFormat
 ```javascript
-$('your date selector').datepicker('weekDayFormat', );	
+$('your date selector').datepicker('weekDayFormat', value);	
 ```
+where value (type: string) is one of this value : 'short' (first letter) or 'narrow' (first two letters)
 ### inputFormat
 ```javascript
-$('your date selector').datepicker('inputFormat', );	
+$('your date selector').datepicker('inputFormat', format);	
 ```
+where format (type: string) contains the input format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
 ### outputFormat
 ```javascript
-$('your date selector').datepicker('outputFormat', );	
+$('your date selector').datepicker('outputFormat', format);	
 ```
+where format (type: string) contains the output format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
 ### theme
 ```javascript
-$('your date selector').datepicker('theme', );	
+$('your date selector').datepicker('theme', name);	
 ```
+where name (type: string) contains the name of your theme
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
