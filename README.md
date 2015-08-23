@@ -128,6 +128,16 @@ and give some options to the datepicker. See [Configuration options](#configurat
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Methods
+### show
+```javascript
+$('your date selector').datepicker('show');	
+```
+show the calendar portion of the datepicker
+### hide
+```javascript
+$('your date selector').datepicker('hide');	
+```
+hide the calendar portion of the datepicker
 ### firstDayOfWeek
 ```javascript
 $('your date selector').datepicker('firstDayOfWeek', value);	
