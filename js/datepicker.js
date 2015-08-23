@@ -351,9 +351,7 @@ if (typeof jQuery === 'undefined') {
 		this.$button.click(function(e) {
 			if (self.$calendar.attr('aria-hidden') === 'true') {
 				self.initializeDate();
-				$('.datepicker-calendar').trigger('ab.datepicker.opening', [self.id]);
 				self.show();
-				$('.datepicker-calendar').trigger('ab.datepicker.opened', [self.id]);
 			} else {
 				self.hide();
 			}
@@ -1808,6 +1806,7 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.show = function() {
 		var self = this;
+		$('.datepicker-calendar').trigger('ab.datepicker.opening', [self.id]);
 		if (this.options.modal == true) {
 			// Bind an event listener to the document to capture all mouse events to make dialog modal
 			$(document).bind('click mousedown mouseup', function(e) {
@@ -1866,6 +1865,7 @@ if (typeof jQuery === 'undefined') {
 		// show the dialog
 		this.$calendar.attr('aria-hidden', 'false');
 		this.$calendar.fadeIn();
+		$('.datepicker-calendar').trigger('ab.datepicker.opened', [self.id]);
 	} // end show()
 
 	/** 
