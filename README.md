@@ -168,8 +168,11 @@ where name (type: string) contains the name of your theme
 
 ## Events
 ### ab.datepicker.opening
+This event is triggered, bound for all the datepicker of the page, before the display of the calendar portion of one of the datepicker
 ### ab.datepicker.opened
+This event is triggered, bound for all the datepicker of the page, after the display of the calendar portion of one of the datepicker
 ### ab.datepicker.closed
+This event is triggered, bound for all the datepicker of the page, when the calendar portion of one of the datepicker is closed
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
