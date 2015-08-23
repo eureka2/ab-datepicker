@@ -319,15 +319,7 @@ if (typeof jQuery === 'undefined') {
 		this.$fastnext = this.$calendar.find('.datepicker-month-fast-next');
 		this.$grid = this.$calendar.find('.datepicker-grid');
 		var $days = this.$grid.find('th.datepicker-day abbr');
-		var weekday = this.options.firstDayOfWeek;
-		for (var i = 0; i < 7; i++) {
-			$days.eq(i).attr('title', this.locales.day_names[weekday]).text(
-				this.options.weekDayFormat === 'short' ?
-					this.locales.day_names_short[weekday] :
-					this.locales.day_names_narrow[weekday]
-			);
-			weekday = (weekday + 1) % 7;
-		}
+		this.drawCalendarHeader();
 		if (this.options.modal == true) {
 			this.$close = this.$calendar.find('.datepicker-close');
 			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
@@ -359,9 +351,9 @@ if (typeof jQuery === 'undefined') {
 		this.$button.click(function(e) {
 			if (self.$calendar.attr('aria-hidden') === 'true') {
 				self.initializeDate();
-				$('.datepicker-calendar').trigger('adp.datepicker.opening', [self.id]);
+				$('.datepicker-calendar').trigger('ab.datepicker.opening', [self.id]);
 				self.show();
-				$('.datepicker-calendar').trigger('adp.datepicker.opened', [self.id]);
+				$('.datepicker-calendar').trigger('ab.datepicker.opened', [self.id]);
 			} else {
 				self.hide();
 			}
@@ -433,6 +425,24 @@ if (typeof jQuery === 'undefined') {
 		// update the table's activedescdendant to point to the current day
 		this.$grid.attr('aria-activedescendant', this.$grid.find('.curDay').attr('id'));
 	} // end initializeDate()
+	
+	/** 
+	 *	drawCalendarHeader() is a member function to populate calendar header with the days name. 
+	 *
+	 *	@return N/A
+	 */
+	Datepicker.prototype.drawCalendarHeader = function() {
+		var $days = this.$grid.find('th.datepicker-day abbr');
+		var weekday = this.options.firstDayOfWeek;
+		for (var i = 0; i < 7; i++) {
+			$days.eq(i).attr('title', this.locales.day_names[weekday]).text(
+				this.options.weekDayFormat === 'short' ?
+					this.locales.day_names_short[weekday] :
+					this.locales.day_names_narrow[weekday]
+			);
+			weekday = (weekday + 1) % 7;
+		}
+	} // end drawCalendarHeader()
 
 	/**
 	 *	populateDaysCalendar() is a member function to populate the Datepicker grid with calendar days
@@ -1813,7 +1823,7 @@ if (typeof jQuery === 'undefined') {
 		} else {
 			// Bind an event listener to the document to capture only the mouse click event
 			$(document).bind('click',  $.proxy(this.handleDocumentClick, this));
-			this.$calendar.bind('adp.datepicker.opening', function(e, id) {
+			this.$calendar.bind('ab.datepicker.opening', function(e, id) {
 				if (id != self.id) {
 					self.hide();
 				} else {
@@ -1823,7 +1833,7 @@ if (typeof jQuery === 'undefined') {
 			});
 
 		}
-		this.$calendar.bind('adp.datepicker.opened', function(e, id) {
+		this.$calendar.bind('ab.datepicker.opened', function(e, id) {
 			if (id == self.id) {
 				self.$grid.focus();
 			}
@@ -1889,11 +1899,12 @@ if (typeof jQuery === 'undefined') {
 			this.greyOut(false);
 		} else {
 			$(document).unbind('click', self.handleDocumentClick);
-			this.$calendar.unbind('adp.datepicker.opening');
+			this.$calendar.unbind('ab.datepicker.opening');
 		}
 		// hide the dialog
 		this.$calendar.attr('aria-hidden', 'true');
 		this.$calendar.fadeOut();
+		$('.datepicker-calendar').trigger('ab.datepicker.closed', [self.id]);
 		// set focus on the focus target
 		this.$target.focus();
 	} // end hide()
@@ -2308,7 +2319,7 @@ if (typeof jQuery === 'undefined') {
 	} // end createDateFromFormat()
 	
 	/** 
-	 *	theme() is a public member function wich allow change of datepicker theme. 
+	 *	theme() is a public member function which allow change the datepicker theme. 
 	 *
 	 *	@param (value string) the new theme
 	 *	@return N/A
@@ -2320,7 +2331,53 @@ if (typeof jQuery === 'undefined') {
 		this.$button.addClass(this.options.theme);
 		this.$calendar.addClass(this.options.theme);
 	} // end theme()
-
+	
+	/** 
+	 *	firstDayOfWeek() is a public member function which allow change the first Day Of Week. 
+	 *
+	 *	@param (value integer) the new first Day Of Week
+	 *	@return N/A
+	 */
+	Datepicker.prototype.firstDayOfWeek = function(value) {
+		this.options.firstDayOfWeek = value;
+		this.drawCalendarHeader();
+	} // end firstDayOfWeek()
+	
+	/** 
+	 *	weekDayFormat() is a public member function which allow change the format of weekdays name. 
+	 *
+	 *	@param (value string) the new format. Allowed : 'short' or 'narrow'
+	 *	@return N/A
+	 */
+	Datepicker.prototype.weekDayFormat = function(value) {
+		this.options.weekDayFormat = value;
+		this.drawCalendarHeader();
+	} // end weekDayFormat()
+	
+	/** 
+	 *	inputFormat() is a public member function which allow change the input format. 
+	 *
+	 *	@param (value string) the new format
+	 *	@return N/A
+	 */
+	Datepicker.prototype.inputFormat = function(value) {		
+		if (this.$target.attr('placeholder') == this.options.inputFormat) {
+			this.$target.attr('placeholder', value);
+		}
+		this.options.inputFormat = value;
+	} // end inputFormat()
+	
+	/** 
+	 *	outputFormat() is a public member function which allow change the output format. 
+	 *
+	 *	@param (value string) the new format
+	 *	@return N/A
+	 */
+	Datepicker.prototype.outputFormat = function(value) {		
+		this.options.outputFormat = value;
+	} // end outputFormat()
+		
+	
 	// DATEPICKER PLUGIN DEFINITION
 	// ==========================
 
@@ -2329,10 +2386,10 @@ if (typeof jQuery === 'undefined') {
 	$.fn.datepicker = function (option, value) {
 		return this.each(function () {
 			var $this   = $(this)
-			var data    = $this.data('adp.datepicker')
+			var data    = $this.data('ab.datepicker')
 			var options = $.extend({}, Datepicker.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
-			if (!data) $this.data('adp.datepicker', (data = new Datepicker(this, options)))
+			if (!data) $this.data('ab.datepicker', (data = new Datepicker(this, options)))
 			if (typeof option == 'string') data[option](value)
 		})
 	}

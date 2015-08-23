@@ -128,10 +128,33 @@ and give some options to the datepicker. See [Configuration options](#configurat
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Methods
+### firstDayOfWeek
+```javascript
+$('your date selector').datepicker('firstDayOfWeek', );	
+```
+### weekDayFormat
+```javascript
+$('your date selector').datepicker('weekDayFormat', );	
+```
+### inputFormat
+```javascript
+$('your date selector').datepicker('inputFormat', );	
+```
+### outputFormat
+```javascript
+$('your date selector').datepicker('outputFormat', );	
+```
+### theme
+```javascript
+$('your date selector').datepicker('theme', );	
+```
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Events
+### ab.datepicker.opening
+### ab.datepicker.opened
+### ab.datepicker.closed
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
