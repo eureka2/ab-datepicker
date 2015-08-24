@@ -275,6 +275,16 @@ if (typeof jQuery === 'undefined') {
 		this.$target = $(target); // textbox that will receive the selected date string and focus (if modal)
 		this.options = $.extend({}, Datepicker.DEFAULTS, options)
 		this.locales = Date.dp_locales;
+		if (this.options.min != null) {
+			this.options.min = this.createDateFromFormat(this.options.inputFormat, this.options.min);
+		} else if (this.$target.attr('min')) {
+			this.options.min = this.createDateFromFormat(this.options.inputFormat, this.$target.attr('min'));
+		}
+		if (this.options.max != null) {
+			this.options.max = this.createDateFromFormat(this.options.inputFormat, this.options.max);
+		} else if (this.$target.attr('max')) {
+			this.options.max = this.createDateFromFormat(this.options.inputFormat, this.$target.attr('max'));
+		}
 		this.id = this.$target.attr('id') || 'datepicker-' + Math.floor(Math.random() * 100000);
 		var calendar = datepickerCalendar.join("");
 		calendar = calendar.replace(/CALENDARID/g, this.id + '');
@@ -395,7 +405,9 @@ if (typeof jQuery === 'undefined') {
 		closeButtonTitle: Date.dp_locales.texts.closeButtonTitle,
 		closeButtonLabel: Date.dp_locales.texts.closeButtonLabel,
 		theme: 'default',
-		modal: false
+		modal: false,
+		min: null,
+		max: null
 	}
 
 
@@ -412,6 +424,16 @@ if (typeof jQuery === 'undefined') {
 			this.$target.attr('aria-invalid', true);
 			this.$target.parents('.form-group').addClass('has-error');
 			this.dateObj = new Date();
+			this.dateObj.setHours(0, 0, 0, 0);
+		}
+		if (this.options.min != null && this.dateObj < this.options.min) {
+			this.$target.attr('aria-invalid', true);
+			this.$target.parents('.form-group').addClass('has-error');
+			this.dateObj = this.options.min;
+		} else if (this.options.max != null && this.dateObj > this.options.max) {
+			this.$target.attr('aria-invalid', true);
+			this.$target.parents('.form-group').addClass('has-error');
+			this.dateObj = this.options.max;
 		}
 		this.curYear = this.dateObj.getFullYear();
 		this.year = this.curYear;
@@ -454,11 +476,53 @@ if (typeof jQuery === 'undefined') {
 		this.$calendar.find('.datepicker-bn-next-label').html(this.options.nextButtonLabel);
 		this.$calendar.find('.datepicker-bn-fast-prev-label').html(this.options.prevMonthButtonLabel);
 		this.$calendar.find('.datepicker-bn-fast-next-label').html(this.options.nextMonthButtonLabel);
-		this.$fastprev.attr('title', this.options.prevMonthButtonLabel);
-		this.$prev.attr('title', this.options.prevButtonLabel);
+		if (this.options.min != null && 
+			(	this.year - 1 < this.options.min.getFullYear() || 
+				(this.year - 1 == this.options.min.getFullYear() && this.month < this.options.min.getMonth()))) {
+			this.$fastprev.attr('title', '');
+			this.$fastprev.addClass('disabled');
+			this.$fastprev.removeClass('enabled');
+		} else {
+			this.$fastprev.attr('title', this.options.prevMonthButtonLabel);
+			this.$fastprev.addClass('enabled');
+			this.$fastprev.removeClass('disabled');
+		}
+		var previousMonth = this.previousMonth(this.year, this.month);
+		if (this.options.min != null && 
+			(	previousMonth.year < this.options.min.getFullYear() || 
+				(previousMonth.year == this.options.min.getFullYear() && previousMonth.month < this.options.min.getMonth()))) {
+			this.$prev.attr('title', '');
+			this.$prev.addClass('disabled');
+			this.$prev.removeClass('enabled');
+		} else {
+			this.$prev.attr('title', this.options.prevButtonLabel);
+			this.$prev.addClass('enabled');
+			this.$prev.removeClass('disabled');
+		}
 		this.$monthObj.attr('title', this.options.changeMonthButtonLabel);
-		this.$next.attr('title', this.options.nextButtonLabel);
-		this.$fastnext.attr('title', this.options.nextMonthButtonLabel);
+		var nextMonth = this.nextMonth(this.year, this.month);
+		if (this.options.max != null && 
+			(	nextMonth.year > this.options.max.getFullYear() || 
+				(nextMonth.year == this.options.max.getFullYear() && nextMonth.month > this.options.max.getMonth()))) {
+			this.$next.attr('title', '');
+			this.$next.addClass('disabled');
+			this.$next.removeClass('enabled');
+		} else {
+			this.$next.attr('title', this.options.nextButtonLabel);
+			this.$next.addClass('enabled');
+			this.$next.removeClass('disabled');
+		}
+		if (this.options.max != null && 
+			(	this.year + 1 > this.options.max.getFullYear() || 
+				(this.year + 1 == this.options.max.getFullYear() && this.month > this.options.max.getMonth()))) {
+			this.$fastnext.attr('title', '');
+			this.$fastnext.addClass('disabled');
+			this.$fastnext.removeClass('enabled');
+		} else {
+			this.$fastnext.attr('title', this.options.nextMonthButtonLabel);
+			this.$fastnext.addClass('enabled');
+			this.$fastnext.removeClass('disabled');
+		}
 		this.$fastprev.show();
 		this.$fastnext.show();
 		var numDays = this.getDaysInMonth(this.year, this.month);
@@ -478,12 +542,16 @@ if (typeof jQuery === 'undefined') {
 		}
 		// insert the days of the month.
 		for (curDay = 1; curDay <= numDays; curDay++) {
-			var date = new Date(this.year, this.month, curDay);
+			var date = new Date(this.year, this.month, curDay, 0, 0, 0, 0);
 			var longdate = this.formatDate(date, this.options.titleFormat);
 			if (curDay == this.date && this.month == this.curMonth && this.year == this.curYear) {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day curDay"';
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day curDay selectable"';
+			} else if (this.options.min != null && date < this.options.min) {
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable"'; 
+			} else if (this.options.max != null && date > this.options.max) {
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable"'; 
 			} else {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day"'; 
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day selectable"'; 
 			}
 			gridCells += ' data-value="' + curDay + '"';
 			gridCells += ' title="' + longdate + '"';
@@ -523,9 +591,25 @@ if (typeof jQuery === 'undefined') {
 		this.$calendar.find('.datepicker-bn-next-label').html(this.options.nextMonthButtonLabel);
 		this.$fastprev.hide();
 		this.$fastnext.hide();
-		this.$prev.attr('title', this.options.prevMonthButtonLabel);
+		if (this.options.min != null && this.year - 1 < this.options.min.getFullYear()) {
+			this.$prev.attr('title', '');
+			this.$prev.addClass('disabled');
+			this.$prev.removeClass('enabled');
+		} else {
+			this.$prev.attr('title', this.options.prevMonthButtonLabel);
+			this.$prev.addClass('enabled');
+			this.$prev.removeClass('disabled');
+		}
 		this.$monthObj.attr('title', this.options.changeYearButtonLabel);
-		this.$next.attr('title', this.options.nextMonthButtonLabel);
+		if (this.options.max != null && this.year + 1 > this.options.max.getFullYear()) {
+			this.$next.attr('title', '');
+			this.$next.addClass('disabled');
+			this.$next.removeClass('enabled');
+		} else {
+			this.$next.attr('title', this.options.nextMonthButtonLabel);
+			this.$next.addClass('enabled');
+			this.$next.removeClass('disabled');
+		}
 		var curMonth = 0;
 		var rowCount = 1;
 		var $tbody = this.$grid.find('tbody');
@@ -538,9 +622,13 @@ if (typeof jQuery === 'undefined') {
 		// insert the months of the year.
 		for (curMonth = 0; curMonth < 12; curMonth++) {
 			if (curMonth == this.month && this.year == this.curYear) {
-				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month curMonth"';
+				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month curMonth selectable"';
+			} else if (this.options.min != null && (this.year < this.options.min.getFullYear() || (this.year == this.options.min.getFullYear() && curMonth < this.options.min.getMonth()))) {
+				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month unselectable"'; 
+			} else if (this.options.max != null && (this.year > this.options.max.getFullYear() || (this.year == this.options.max.getFullYear() && curMonth > this.options.max.getMonth()))) {
+				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month unselectable"'; 
 			} else {
-				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month"'; 
+				gridCells += '\t\t<td id="cell' + (curMonth + 1) + '-' + this.id + '" class="month selectable"'; 
 			}
 			gridCells += ' data-value="' + curMonth + '"';
 			gridCells += ' title="' + this.locales.month_names[curMonth] + ' ' + this.year + '"';
@@ -568,9 +656,25 @@ if (typeof jQuery === 'undefined') {
 		this.$calendar.find('.datepicker-bn-next-label').html(this.options.nextYearButtonLabel);
 		this.$fastprev.hide();
 		this.$fastnext.hide();
-		this.$prev.attr('title', this.options.prevYearButtonLabel);
+		if (this.options.min != null && this.year - 20 < this.options.min.getFullYear()) {
+			this.$prev.attr('title', '');
+			this.$prev.addClass('disabled');
+			this.$prev.removeClass('enabled');
+		} else {
+			this.$prev.attr('title', this.options.prevYearButtonLabel);
+			this.$prev.addClass('enabled');
+			this.$prev.removeClass('disabled');
+		}
 		this.$monthObj.attr('title', this.options.changeRangeButtonLabel);
-		this.$next.attr('title', this.options.nextYearButtonLabel);
+		if (this.options.max != null && this.year + 20 > this.options.max.getFullYear()) {
+			this.$next.attr('title', '');
+			this.$next.addClass('disabled');
+			this.$next.removeClass('enabled');
+		} else {
+			this.$next.attr('title', this.options.nextYearButtonLabel);
+			this.$next.addClass('enabled');
+			this.$next.removeClass('disabled');
+		}
 		var startYear = Math.floor(this.year / 10) * 10;
 		var endYear = startYear + 19;
 		var rowCount = 1;
@@ -584,9 +688,13 @@ if (typeof jQuery === 'undefined') {
 		// insert the months of the year.
 		for (var curYear = startYear; curYear <= endYear; curYear++) {
 			if (curYear == this.year) {
-				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year curYear"';
+				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year curYear selectable"';
+			} else if (this.options.min != null && (curYear < this.options.min.getFullYear())) {
+				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year unselectable"'; 
+			} else if (this.options.max != null && (curYear > this.options.max.getFullYear())) {
+				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year unselectable"'; 
 			} else {
-				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year"'; 
+				gridCells += '\t\t<td id="cell' + (curYear - startYear + 1) + '-' + this.id + '" class="year selectable"'; 
 			}
 			gridCells += ' data-value="' + curYear + '"';
 			gridCells += ' title="' + curYear + '"';
@@ -602,15 +710,6 @@ if (typeof jQuery === 'undefined') {
 		$tbody.append(gridCells);
 		this.gridType = 2; // 0 = days grid, 1 = months grid, 2 = years Grid
 	} // end populateYearsCalendar()
-	
-	/** 
-	 *	getDaysInMonth() is a member function to calculate the number of days in a given month
-	 *	
-	 *	@return (integer) number of days
-	 */
-	Datepicker.prototype.getDaysInMonth = function(year, month) {
-		return 32 - new Date(year, month, 32).getDate();
-	} // end getDaysInMonth()
 
 	/** 
 	 *	showDaysOfPrevMonth() is a member function to show the days of the previous month
@@ -621,12 +720,14 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.showDaysOfPrevMonth = function(offset) {
 		// show the previous month
-		if (this.month == 0) {
-			this.month = 11;
-			this.year--;
-		} else {
-			this.month--;
+		var previousMonth = this.previousMonth(this.year, this.month);
+		if (this.options.min != null && 
+			(	previousMonth.year < this.options.min.getFullYear() || 
+				(previousMonth.year == this.options.min.getFullYear() && previousMonth.month < this.options.min.getMonth()))) {
+			return false;
 		}
+		this.month = previousMonth.month;
+		this.year = previousMonth.year;
 		// populate the calendar grid
 		this.populateDaysCalendar();
 
@@ -637,34 +738,48 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', day);
 			$('#' + day).addClass('focus').attr('aria-selected', 'true');
 		}
-
+		return true;
 	} // end showDaysOfPrevMonth()
 
 	/** 
 	 *	showDaysOfMonth() is a member function to show the days of the specified month
 	 *
-	 *	@param	(year int) the month to show.
+	 *	@param	(month int) the month to show.
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showDaysOfMonth = function(month) {
+		if (this.options.min != null && 
+			(	this.year < this.options.min.getFullYear() || 
+				(this.year == this.options.min.getFullYear() && month < this.options.min.getMonth()))) {
+			return false;
+		}
+		if (this.options.max != null && 
+			(	this.year > this.options.max.getFullYear() || 
+				(this.year == this.options.max.getFullYear() && month > this.options.max.getMonth()))) {
+			return false;
+		}
 		this.month = month;
 		this.date = Math.min(this.date, this.getDaysInMonth(this.year, this.month));
 		this.populateDaysCalendar();
-		// update the table's activedescdendant to point to the active day
+		// update the table's activedescendant to point to the active day
 		var $active = this.$grid.find("tbody td[data-value='" + this.date + "']");
 		$active.addClass('focus').attr('aria-selected', 'true');
 		this.$grid.attr('aria-activedescendant', $active.attr('id'));
+		return true;
 	} // end showDaysOfMonth()
 
 
 	/** 
-	 *	showMonthsOfPrevYear() is a member function to show the month of the previous year
+	 *	showMonthsOfPrevYear() is a member function to show the months of the previous year
 	 *
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a month the specified number of months from the end of the year.
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showMonthsOfPrevYear = function(offset) {
+		if (this.options.min != null && this.year - 1 < this.options.min.getFullYear()) {
+			return false;
+		}
 		// show the previous year
 		this.year--;
 		// populate the calendar grid
@@ -676,22 +791,29 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', month);
 			$('#' + month).addClass('focus').attr('aria-selected', 'true');
 		}
-
+		return true;
 	} // end showMonthsOfPrevYear()
 
 	/** 
-	 *	showMonthsOfYear() is a member function to show the month of the specified year
+	 *	showMonthsOfYear() is a member function to show the months of the specified year
 	 *
 	 *	@param	(year int) the year to show.
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showMonthsOfYear = function(year) {
+		if (this.options.min != null && year < this.options.min.getFullYear()) {
+			return false;
+		}
+		if (this.options.max != null && year > this.options.max.getFullYear()) {
+			return false;
+		}
 		this.year = year;
 		this.populateMonthsCalendar();
-		// update the table's activedescdendant to point to the active month
+		// update the table's activedescendant to point to the active month
 		var $active = this.$grid.find("tbody td[data-value='" + this.month + "']");
 		$active.addClass('focus').attr('aria-selected', 'true');
 		this.$grid.attr('aria-activedescendant', $active.attr('id'));
+		return true;
 	} // end showMonthsOfYear()
 
 
@@ -703,6 +825,9 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showYearsOfPrevRange = function(offset) {
+		if (this.options.min != null && this.year - 20 < this.options.min.getFullYear()) {
+			return false;
+		}
 		// show the previous range
 		this.year -= 20;
 		// populate the calendar grid
@@ -714,7 +839,7 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', year);
 			$('#' + year).addClass('focus').attr('aria-selected', 'true');
 		}
-
+		return true;
 	} // end showYearsOfPrevRange()
 
 	/** 
@@ -727,12 +852,14 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.showDaysOfNextMonth = function(offset) {
 		// show the next month
-		if (this.month == 11) {
-			this.month = 0;
-			this.year++;
-		} else {
-			this.month++;
+		var nextMonth = this.nextMonth(this.year, this.month);
+		if (this.options.max != null && 
+			(	nextMonth.year > this.options.max.getFullYear() || 
+				(nextMonth.year == this.options.max.getFullYear() && nextMonth.month > this.options.max.getMonth()))) {
+			return false;
 		}
+		this.month = nextMonth.month;
+		this.year = nextMonth.year;
 		// populate the calendar grid
 		this.populateDaysCalendar();
 
@@ -743,7 +870,7 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', day);
 			$('#' + day).addClass('focus').attr('aria-selected', 'true');
 		}
-
+		return true;
 	} // end showDaysOfNextMonth()
 
 	/** 
@@ -755,6 +882,9 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showMonthsOfNextYear = function(offset) {
+		if (this.options.max != null && this.year + 1 > this.options.max.getFullYear()) {
+			return false;
+		}
 		// show the next year
 		this.year++;
 		// populate the calendar grid
@@ -767,6 +897,7 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', month);
 			$('#' + month).addClass('focus').attr('aria-selected', 'true');
 		}
+		return true;
 	} // end showMonthsOfNextYear()
 
 	/** 
@@ -778,6 +909,9 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showYearsOfNextRange = function(offset) {
+		if (this.options.max != null && this.year + 20 > this.options.max.getFullYear()) {
+			return false;
+		}
 		// show the next year
 		this.year += 20;
 		// populate the calendar grid
@@ -790,6 +924,7 @@ if (typeof jQuery === 'undefined') {
 			this.$grid.attr('aria-activedescendant', year);
 			$('#' + year).addClass('focus').attr('aria-selected', 'true');
 		}
+		return true;
 	} // end showYearsOfNextRange()
 
 	/** 
@@ -798,12 +933,17 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showDaysOfPrevYear = function() {
+		if (this.options.min != null && 
+			(	this.year - 1 < this.options.min.getFullYear() || 
+				(this.year - 1 == this.options.min.getFullYear() && this.month < this.options.min.getMonth()))) {
+			return false;
+		}
 		// decrement the year
 		this.year--;
 
 		// populate the calendar grid
 		this.populateDaysCalendar();
-
+		return true;
 	} // end showDaysOfPrevYear()
 
 	/** 
@@ -812,12 +952,17 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.showDaysOfNextYear = function() {
+		if (this.options.max != null && 
+			(	this.year + 1 > this.options.max.getFullYear() || 
+				(this.year + 1 == this.options.max.getFullYear() && this.month > this.options.max.getMonth()))) {
+			return false;
+		}
 		// increment the year
 		this.year++;
 
 		// populate the calendar grid
 		this.populateDaysCalendar();
-
+		return true;
 	} // end showDaysOfNextYear()
 
 	/**
@@ -894,14 +1039,15 @@ if (typeof jQuery === 'undefined') {
 	 *	@return (boolean) false if consuming event, true if propagating
 	 */
 	Datepicker.prototype.handleFastPrevClick = function(e) {
-		var active = this.$grid.attr('aria-activedescendant');
-		this.showDaysOfPrevYear();
-		if (this.month != this.curMonth || this.year != this.curYear) {
-			this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-		} else {
-			this.$grid.attr('aria-activedescendant', active);
+		if (this.showDaysOfPrevYear()) {
+			var active = this.$grid.attr('aria-activedescendant');
+			if (this.month != this.curMonth || this.year != this.curYear) {
+				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+			} else {
+				this.$grid.attr('aria-activedescendant', active);
+			}
+			this.$grid.focus();
 		}
-		this.$grid.focus();
 		e.stopPropagation();
 		return false;
 	} // end handleFastPrevClick()
@@ -917,31 +1063,36 @@ if (typeof jQuery === 'undefined') {
 		var active = this.$grid.attr('aria-activedescendant');
 		switch (this.gridType) {
 			case 0: // days grid
+				var ok;
 				if (e.ctrlKey) {
-					this.showDaysOfPrevYear();
+					ok = this.showDaysOfPrevYear();
 				} else {
-					this.showDaysOfPrevMonth();
+					ok = this.showDaysOfPrevMonth();
 				}
-				if (this.month != this.curMonth || this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				} else {
-					this.$grid.attr('aria-activedescendant', active);
+				if (ok) {
+					if (this.month != this.curMonth || this.year != this.curYear) {
+						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					} else {
+						this.$grid.attr('aria-activedescendant', active);
+					}
+					this.$grid.focus();
 				}
-				this.$grid.focus();
 				break;
 			case 1: // months grid
-				this.showMonthsOfPrevYear();
-				if (this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				} else {
-					this.$grid.attr('aria-activedescendant', active);
+				if (this.showMonthsOfPrevYear()) {
+					if (this.year != this.curYear) {
+						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					} else {
+						this.$grid.attr('aria-activedescendant', active);
+					}
+					this.$grid.focus();
 				}
-				this.$grid.focus();
 				break;
 			case 2: // years grid
-				this.showYearsOfPrevRange();
-				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				this.$grid.focus();
+				if (this.showYearsOfPrevRange()) {
+					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					this.$grid.focus();
+				}
 				break;
 		}
 		e.stopPropagation();
@@ -973,31 +1124,36 @@ if (typeof jQuery === 'undefined') {
 		var active = this.$grid.attr('aria-activedescendant');
 		switch (this.gridType) {
 			case 0: // days grid
+				var ok;
 				if (e.ctrlKey) {
-					this.showDaysOfNextYear();
+					ok = this.showDaysOfNextYear();
 				} else {
-					this.showDaysOfNextMonth();
+					ok = this.showDaysOfNextMonth();
 				}
-				if (this.month != this.curMonth || this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				} else {
-					this.$grid.attr('aria-activedescendant', active);
+				if (ok) {
+					if (this.month != this.curMonth || this.year != this.curYear) {
+						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					} else {
+						this.$grid.attr('aria-activedescendant', active);
+					}
+					this.$grid.focus();
 				}
-				this.$grid.focus();
 				break;
 			case 1: // months grid
-				this.showMonthsOfNextYear();
-				if (this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				} else {
-					this.$grid.attr('aria-activedescendant', active);
+				if (this.showMonthsOfNextYear()) {
+					if (this.year != this.curYear) {
+						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					} else {
+						this.$grid.attr('aria-activedescendant', active);
+					}
+					this.$grid.focus();
 				}
-				this.$grid.focus();
 				break;
 			case 2: // years grid
-				this.showYearsOfNextRange();
-				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-				this.$grid.focus();
+				if (this.showYearsOfNextRange()) {
+					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					this.$grid.focus();
+				}
 				break;
 		}
 		e.stopPropagation();
@@ -1013,14 +1169,15 @@ if (typeof jQuery === 'undefined') {
 	 *	@return (boolean) false if consuming event, true if propagating
 	 */
 	Datepicker.prototype.handleFastNextClick = function(e) {
-		var active = this.$grid.attr('aria-activedescendant');
-		this.showDaysOfNextYear();
-		if (this.month != this.curMonth || this.year != this.curYear) {
-			this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-		} else {
-			this.$grid.attr('aria-activedescendant', active);
+		if (this.showDaysOfNextYear()) {
+			var active = this.$grid.attr('aria-activedescendant');
+			if (this.month != this.curMonth || this.year != this.curYear) {
+				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+			} else {
+				this.$grid.attr('aria-activedescendant', active);
+			}
+			this.$grid.focus();
 		}
-		this.$grid.focus();
 		e.stopPropagation();
 		return false;
 
@@ -1356,7 +1513,7 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.handleGridKeyDown = function(e) {
 		var $curCell = $('#' + this.$grid.attr('aria-activedescendant'));
-		var $cells = this.$grid.find('td').not('.empty');
+		var $cells = this.$grid.find('td.selectable');
 		var colCount = this.$grid.find('tbody tr').eq(0).find('td').length;
 		if (e.altKey) {
 			return true;
@@ -1539,28 +1696,31 @@ if (typeof jQuery === 'undefined') {
 						return true;
 					}
 					e.preventDefault();
+					var ok = false;
 					switch (this.gridType) {
 						case 0: // days grid
 							if (e.ctrlKey) {
 								e.stopImmediatePropagation();
-								this.showDaysOfPrevYear();
+								ok = this.showDaysOfPrevYear();
 							} else {
-								this.showDaysOfPrevMonth();
+								ok = this.showDaysOfPrevMonth();
 							}
 							break;
 						case 1: // months grid
-							this.showMonthsOfPrevYear();
+							ok = this.showMonthsOfPrevYear();
 							break;
 						case 2: // years grid
-							this.showYearsOfPrevRange();
+							ok = this.showYearsOfPrevRange();
 							break;
 					}
-					if ($('#' + active).attr('id') == undefined) {
-						var lastCell = 'cell' + $cells.length + '-' + this.id;
-						$('#' + lastCell).addClass('focus').attr('aria-selected', 'true');
-						this.$grid.attr('aria-activedescendant', lastCell);
-					} else {
-						$('#' + active).addClass('focus').attr('aria-selected', 'true');
+					if (ok) {
+						if ($('#' + active).attr('id') == undefined) {
+							var $lastCell = $cells.eq($cells.length - 1);
+							$lastCell.addClass('focus').attr('aria-selected', 'true');
+							this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+						} else {
+							$('#' + active).addClass('focus').attr('aria-selected', 'true');
+						}
 					}
 					e.stopPropagation();
 					return false;
@@ -1572,28 +1732,31 @@ if (typeof jQuery === 'undefined') {
 						return true;
 					}
 					e.preventDefault();
+					var ok = false;
 					switch (this.gridType) {
 						case 0: // days grid
 							if (e.ctrlKey) {
 								e.stopImmediatePropagation();
-								this.showDaysOfNextYear();
+								ok = this.showDaysOfNextYear();
 							} else {
-								this.showDaysOfNextMonth();
+								ok = this.showDaysOfNextMonth();
 							}
 							break;
 						case 1: // months grid
-							this.showMonthsOfNextYear();
+							ok = this.showMonthsOfNextYear();
 							break;
 						case 2: // years grid
-							this.showYearsOfNextRange();
+							ok = this.showYearsOfNextRange();
 							break;
 					}
-					if ($('#' + active).attr('id') == undefined) {
-						var lastCell = 'cell' + $cells.length + '-' + this.id;
-						$('#' + lastCell).addClass('focus').attr('aria-selected', 'true');
-						this.$grid.attr('aria-activedescendant', lastCell);
-					} else {
-						$('#' + active).addClass('focus').attr('aria-selected', 'true');
+					if (ok) {
+						if ($('#' + active).attr('id') == undefined) {
+							var $lastCell = $cells.eq($cells.length - 1);
+							$lastCell.addClass('focus').attr('aria-selected', 'true');
+							this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+						} else {
+							$('#' + active).addClass('focus').attr('aria-selected', 'true');
+						}
 					}
 					e.stopPropagation();
 					return false;
@@ -1603,10 +1766,10 @@ if (typeof jQuery === 'undefined') {
 					if (e.ctrlKey || e.shiftKey) {
 						return true;
 					}
-					var firstCell = 'cell1' + '-' + this.id;
+					var $firstCell = $cells.eq(0);
 					$curCell.removeClass('focus').attr('aria-selected', 'false');
-					$('#' + firstCell).addClass('focus').attr('aria-selected', 'true');
-					this.$grid.attr('aria-activedescendant', firstCell);
+					$firstCell.addClass('focus').attr('aria-selected', 'true');
+					this.$grid.attr('aria-activedescendant', $firstCell.attr('id'));
 					e.stopPropagation();
 					return false;
 				}
@@ -1615,10 +1778,10 @@ if (typeof jQuery === 'undefined') {
 					if (e.ctrlKey || e.shiftKey) {
 						return true;
 					}
-					var lastCell = 'cell' + $cells.length + '-' + this.id;
+					var $lastCell = $cells.eq($cells.length - 1);
 					$curCell.removeClass('focus').attr('aria-selected', 'false');
-					$('#' + lastCell).addClass('focus').attr('aria-selected', 'true');
-					this.$grid.attr('aria-activedescendant', lastCell);
+					$lastCell.addClass('focus').attr('aria-selected', 'true');
+					this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
 					e.stopPropagation();
 					return false;
 				}
@@ -1670,7 +1833,7 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.handleGridClick = function(id, e) {
 		var $cell = $(id);
-		if ($cell.is('.empty')) {
+		if ($cell.is('.empty') || $cell.is('.unselectable')) {
 			return true;
 		}
 		this.$grid.find('.focus').removeClass('focus').attr('aria-selected', 'false');
@@ -1702,12 +1865,12 @@ if (typeof jQuery === 'undefined') {
 	 *	@return (boolean) true
 	 */
 	Datepicker.prototype.handleGridFocus = function(e) {
-		var $cells = this.$grid.find('td').not('.empty');
 		var active = this.$grid.attr('aria-activedescendant');
 		if ($('#' + active).attr('id') == undefined) {
-			var lastCell = 'cell' + $cells.length + '-' + this.id;
-			$('#' + lastCell).addClass('focus').attr('aria-selected', 'true');
-			this.$grid.attr('aria-activedescendant', lastCell);
+			var $cells = this.$grid.find('td.selectable');
+			var $lastCell = $cells.eq($cells.length - 1);
+			$lastCell.addClass('focus').attr('aria-selected', 'true');
+			this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
 		} else {
 			$('#' + active).addClass('focus').attr('aria-selected', 'true');
 		}
@@ -1761,7 +1924,8 @@ if (typeof jQuery === 'undefined') {
 			case 0: // days grid
 				this.populateMonthsCalendar();
 				if (this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					var $cells = this.$grid.find('td.selectable');
+					this.$grid.attr('aria-activedescendant', $cells.eq(0).attr('id'));
 				} else {
 					this.$grid.attr('aria-activedescendant', this.$grid.find('.curMonth').attr('id'));
 				}
@@ -1777,12 +1941,14 @@ if (typeof jQuery === 'undefined') {
 			case 1: // months grid
 				this.populateYearsCalendar();
 				if (this.year != this.curYear) {
-					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+					var $cells = this.$grid.find('td.selectable');
+					this.$grid.attr('aria-activedescendant', $cells.eq(0).attr('id'));
 				} else {
 					this.$grid.attr('aria-activedescendant', this.$grid.find('.curYear').attr('id'));
 				}
 				break;
 		}
+		return true;
 	} // end changeGrid()
 	
 	/** 
@@ -1940,7 +2106,7 @@ if (typeof jQuery === 'undefined') {
 	 *	of some element within document. 
 	 *
 	 *	@param (element obj)the element of the document
-	 *	@return N/A
+	 *	@return an object containing the properties top and left.
 	 */
 	Datepicker.prototype.absolutePosition = function (element) {
 		var top = 0, left = 0;
@@ -1963,6 +2129,51 @@ if (typeof jQuery === 'undefined') {
 	    }
 		return {top: top, left: left};
 	} // end absolutePosition()
+	
+	/** 
+	 *	getDaysInMonth() is a member function to calculate the number of days in a given month
+	 *	
+	 *	@return (integer) number of days
+	 */
+	Datepicker.prototype.getDaysInMonth = function(year, month) {
+		return 32 - new Date(year, month, 32).getDate();
+	} // end getDaysInMonth()
+	
+	/** 
+	 *	previousMonth() is a member function that compute the month 
+	 *	preceding a given month. 
+	 *
+	 *	@param (year int) the given year
+	 *	@param (month int) the given month
+	 *	@return an object containing the properties year and month.
+	 */
+	Datepicker.prototype.previousMonth = function (year, month) {
+		if (month == 0) {
+			month = 11;
+			year--;
+		} else {
+			month--;
+		}
+		return {year: year, month: month};
+	} // end previousMonth()
+	
+	/** 
+	 *	nextMonth() is a member function that compute the month 
+	 *	following a given month. 
+	 *
+	 *	@param (year int) the given year
+	 *	@param (month int) the given month
+	 *	@return an object containing the properties year and month.
+	 */
+	Datepicker.prototype.nextMonth = function (year, month) {
+		if (month == 11) {
+			month = 0;
+			year++;
+		} else {
+			month++;
+		}
+		return {year: year, month: month};
+	} // end nextMonth()
 
 	/** 
 	 *	formatDate (date_object, format)
@@ -2120,9 +2331,9 @@ if (typeof jQuery === 'undefined') {
 		var year = now.getYear();
 		var month = now.getMonth() + 1;
 		var date = 1;
-		var hh = now.getHours();
-		var mm = now.getMinutes();
-		var ss = now.getSeconds();
+		var hh = 0;
+		var mm = 0;
+		var ss = 0;
 		var ampm = "";
 		
 		$.each(format.match(/(.).*?\1*/g), function(k, token) {

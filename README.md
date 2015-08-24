@@ -167,6 +167,8 @@ where name (type: string) contains the name of your theme
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Events
+### change
+This event is triggered, bound to target input box, once the date is changed by the datepicker.
 ### ab.datepicker.opening
 This event is triggered, bound for all the datepicker of the page, before the display of the calendar portion of one of the datepicker
 ### ab.datepicker.opened
