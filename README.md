@@ -102,6 +102,8 @@ and give some options to the datepicker. See [Configuration options](#configurat
 
 |Option                |Description                          |Default        |Example|
 |----------------------|-------------------------------------|---------------|-------|
+|min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
+|max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
 |firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 |inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
@@ -193,14 +195,20 @@ div.datepicker-calendar.default {
 }
 div.datepicker-calendar.default div.datepicker-month-wrap {
 }
-div.datepicker-calendar.default div.datepicker-month-fast-prev:hover,
-div.datepicker-calendar.default div.datepicker-month-fast-prev:focus,
-div.datepicker-calendar.default div.datepicker-month-fast-next:hover,
-div.datepicker-calendar.default div.datepicker-month-fast-next:focus,
-div.datepicker-calendar.default div.datepicker-month-prev:hover,
-div.datepicker-calendar.default div.datepicker-month-prev:focus,
-div.datepicker-calendar.default div.datepicker-month-next:hover,
-div.datepicker-calendar.default div.datepicker-month-next:focus,
+div.datepicker-calendar.default div.datepicker-month-fast-prev.disabled,
+div.datepicker-calendar.default div.datepicker-month-fast-next.disabled ,
+div.datepicker-calendar.default div.datepicker-month-prev.disabled,
+div.datepicker-calendar.default div.datepicker-month-next.disabled {
+	color:  #999;
+}
+div.datepicker-calendar.default div.datepicker-month-fast-prev.enabled:hover,
+div.datepicker-calendar.default div.datepicker-month-fast-prev.enabled:focus,
+div.datepicker-calendar.default div.datepicker-month-fast-next.enabled:hover,
+div.datepicker-calendar.default div.datepicker-month-fast-next.enabled:focus,
+div.datepicker-calendar.default div.datepicker-month-prev.enabled:hover,
+div.datepicker-calendar.default div.datepicker-month-prev.enabled:focus,
+div.datepicker-calendar.default div.datepicker-month-next.enabled:hover,
+div.datepicker-calendar.default div.datepicker-month-next.enabled:focus,
 div.datepicker-calendar.default div.datepicker-month:hover,
 div.datepicker-calendar.default div.datepicker-month:focus,
 div.datepicker-calendar.default button.datepicker-close:hover, 
@@ -223,6 +231,9 @@ div.datepicker-calendar.default table.datepicker-grid td {
 	border:  none;
 	color: #000;
 }
+div.datepicker-calendar.default table.datepicker-grid td.unselectable {
+	color: #999;
+}
 div.datepicker-calendar.default table.datepicker-grid td.curDay,
 div.datepicker-calendar.default table.datepicker-grid td.curMonth,
 div.datepicker-calendar.default table.datepicker-grid td.curYear {
@@ -232,8 +243,8 @@ div.datepicker-calendar.default table.datepicker-grid td.empty {
 	border:  none;
 	background-color: #F9F9F9;
 }
-div.datepicker-calendar.default table.datepicker-grid td:hover,
-div.datepicker-calendar.default table.datepicker-grid td.focus {
+div.datepicker-calendar.default table.datepicker-grid td.selectable:hover,
+div.datepicker-calendar.default table.datepicker-grid td.selectable.focus {
 	background-color: #DDD;
 }
 div.datepicker-calendar.default table.datepicker-grid td.empty:hover {
