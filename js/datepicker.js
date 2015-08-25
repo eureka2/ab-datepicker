@@ -2626,6 +2626,7 @@ if (typeof jQuery === 'undefined') {
 	Datepicker.prototype.setLocales = function(value) {		
 		this.locales = value;
 		this.options.outputFormat = this.locales.short_format;
+		this.options.titleFormat = this.locales.full_format,
 		this.options.firstDayOfWeek = this.locales.firstday_of_week;
 		this.options.buttonTitle = this.locales.texts.buttonTitle;
 		this.$button.find('span').attr('title', this.options.buttonTitle);
