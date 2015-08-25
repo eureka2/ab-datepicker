@@ -275,15 +275,18 @@ if (typeof jQuery === 'undefined') {
 		this.$target = $(target); // textbox that will receive the selected date string and focus (if modal)
 		this.options = $.extend({}, Datepicker.DEFAULTS, options)
 		this.locales = Date.dp_locales;
+		if (typeof this.options.inputFormat === 'string') {
+			this.options.inputFormat = [this.options.inputFormat];
+		}
 		if (this.options.min != null) {
-			this.options.min = this.createDateFromFormat(this.options.inputFormat, this.options.min);
+			this.options.min = this.parseDate(this.options.min);
 		} else if (this.$target.attr('min')) {
-			this.options.min = this.createDateFromFormat(this.options.inputFormat, this.$target.attr('min'));
+			this.options.min = this.parseDate(this.$target.attr('min'));
 		}
 		if (this.options.max != null) {
-			this.options.max = this.createDateFromFormat(this.options.inputFormat, this.options.max);
+			this.options.max = this.parseDate(this.options.max);
 		} else if (this.$target.attr('max')) {
-			this.options.max = this.createDateFromFormat(this.options.inputFormat, this.$target.attr('max'));
+			this.options.max = this.parseDate(this.$target.attr('max'));
 		}
 		this.id = this.$target.attr('id') || 'datepicker-' + Math.floor(Math.random() * 100000);
 		var calendar = datepickerCalendar.join("");
@@ -300,7 +303,7 @@ if (typeof jQuery === 'undefined') {
 		this.$target.addClass('form-control');
 		
 		if (! this.$target.attr('placeholder')) {
-			this.$target.attr('placeholder', this.options.inputFormat);
+			this.$target.attr('placeholder', this.options.inputFormat[0]);
 		}
 		
 		var button = datepickerButton.join("");
@@ -388,7 +391,7 @@ if (typeof jQuery === 'undefined') {
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
 		weekDayFormat: 'short', // Display format of the weekday names - values are 'short' or 'narrow'
-		inputFormat: Date.dp_locales.short_format,
+		inputFormat: [Date.dp_locales.short_format],
 		outputFormat: Date.dp_locales.short_format,
 		titleFormat: Date.dp_locales.full_format,
 		buttonTitle: Date.dp_locales.texts.buttonTitle,
@@ -419,7 +422,7 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.initializeDate = function() {
 		var val = this.$target.val();
-		this.dateObj = val === '' ? new Date() :  this.createDateFromFormat(this.options.inputFormat, val);
+		this.dateObj = val === '' ? new Date() :  this.parseDate(val);
 		if (this.dateObj == null) {
 			this.$target.attr('aria-invalid', true);
 			this.$target.parents('.form-group').addClass('has-error');
@@ -2530,6 +2533,28 @@ if (typeof jQuery === 'undefined') {
 	} // end createDateFromFormat()
 	
 	/** 
+	 *	parseDate() is a member function which parse a date string. 
+	 *
+	 *	This function takes a date string and try to parse it with the inout formats.
+	 *	If the date string matches one of the format string, it returns the 
+	 *	the date object. Otherwise, it returns null.
+	 *
+	 *	@param (value string) the date string
+	 *	@return a date objet or null
+	 */
+	Datepicker.prototype.parseDate = function(value) {
+		var date = null;
+		var self = this;
+		$.each(this.options.inputFormat, function (i, format) {
+			date = self.createDateFromFormat(format, value);
+			if (date != null) {
+				return false;
+			}
+		});
+		return date;
+	} // end parseDate()
+
+	/** 
 	 *	theme() is a public member function which allow change the datepicker theme. 
 	 *
 	 *	@param (value string) the new theme
@@ -2572,8 +2597,11 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	Datepicker.prototype.inputFormat = function(value) {		
+		if (typeof value === 'string') {
+			value = [value];
+		}
 		if (this.$target.attr('placeholder') == this.options.inputFormat) {
-			this.$target.attr('placeholder', value);
+			this.$target.attr('placeholder', value[0]);
 		}
 		this.options.inputFormat = value;
 	} // end inputFormat()
@@ -2588,6 +2616,34 @@ if (typeof jQuery === 'undefined') {
 		this.options.outputFormat = value;
 	} // end outputFormat()
 		
+	
+	/** 
+	 *	setLocales() is a public member function which allow change the locales. 
+	 *
+	 *	@param (value obj) the new locales
+	 *	@return N/A
+	 */
+	Datepicker.prototype.setLocales = function(value) {		
+		this.locales = value;
+		this.options.outputFormat = this.locales.short_format;
+		this.options.firstDayOfWeek = this.locales.firstday_of_week;
+		this.options.buttonTitle = this.locales.texts.buttonTitle;
+		this.$button.find('span').attr('title', this.options.buttonTitle);
+		this.options.buttonLabel = this.locales.texts.buttonLabel;
+		this.options.prevButtonLabel = this.locales.texts.prevButtonLabel;
+		this.options.prevMonthButtonLabel = this.locales.texts.prevMonthButtonLabel;
+		this.options.prevYearButtonLabel = this.locales.texts.prevYearButtonLabel;
+		this.options.nextButtonLabel = this.locales.texts.nextButtonLabel;
+		this.options.nextMonthButtonLabel = this.locales.texts.nextMonthButtonLabel;
+		this.options.nextYearButtonLabel = this.locales.texts.nextYearButtonLabel;
+		this.options.changeMonthButtonLabel = this.locales.texts.changeMonthButtonLabel;
+		this.options.changeYearButtonLabel = this.locales.texts.changeYearButtonLabel;
+		this.options.changeRangeButtonLabel = this.locales.texts.changeRangeButtonLabel;
+		this.options.closeButtonTitle = this.locales.texts.closeButtonTitle;
+		this.options.closeButtonLabel = this.locales.texts.closeButtonLabel;
+		this.options.calendarHelp = this.locales.texts.calendarHelp;
+		this.drawCalendarHeader();
+	} // end outputFormat()
 	
 	// DATEPICKER PLUGIN DEFINITION
 	// ==========================
