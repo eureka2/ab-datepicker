@@ -130,6 +130,16 @@ and give some options to the datepicker. See [Configuration options](#configurat
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Methods
+### min
+```javascript
+$('your date selector').datepicker('min', date);	
+```
+Define the smallest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option.
+### max
+```javascript
+$('your date selector').datepicker('max', date);	
+```
+Define the biggest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option
 ### show
 ```javascript
 $('your date selector').datepicker('show');	
@@ -165,6 +175,11 @@ where format (type: string) contains the output format according to [CLDR Date T
 $('your date selector').datepicker('theme', name);	
 ```
 where name (type: string) contains the name of your theme
+### modal
+```javascript
+$('your date selector').datepicker('modal', bool);	
+```
+Defines the opening mode (modal or not) of the calendar portion of the datepicker. bool can be true or false.
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
