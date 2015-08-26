@@ -162,9 +162,9 @@ $('your date selector').datepicker('weekDayFormat', value);
 where value (type: string) is one of this value : 'short' (first letter) or 'narrow' (first two letters)
 ### inputFormat
 ```javascript
-$('your date selector').datepicker('inputFormat', format);	
+$('your date selector').datepicker('inputFormat', formats);	
 ```
-where format (type: string) contains the input format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
+where formats (type: array of string) contains the acceptable input formats according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
 ### outputFormat
 ```javascript
 $('your date selector').datepicker('outputFormat', format);	
