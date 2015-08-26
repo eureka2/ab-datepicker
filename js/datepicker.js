@@ -338,8 +338,8 @@ if (typeof jQuery === 'undefined') {
 			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
 			this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
 		} else {
-			this.$calendar.find('.datepicker-close-wrap').remove();
-			this.$calendar.find('.datepicker-bn-close-label').remove();
+			this.$calendar.find('.datepicker-close-wrap').hide();
+			this.$calendar.find('.datepicker-bn-close-label').hide();
 		}
 		
 		this.keys = {
@@ -2553,6 +2553,40 @@ if (typeof jQuery === 'undefined') {
 		});
 		return date;
 	} // end parseDate()
+	
+	/** 
+	 *	min() is a public member function which allow change the minimum selectable date. 
+	 *
+	 *	@param (value string) the new date
+	 *	@return N/A
+	 */
+	Datepicker.prototype.min = function(value) {
+		if (value != null) {
+			this.options.min = this.parseDate(value);
+			if (this.options.min != null && this.dateObj < this.options.min) {
+				this.$target.attr('aria-invalid', true);
+				this.$target.parents('.form-group').addClass('has-error');
+				this.dateObj = this.options.min;
+			}
+		}
+	} // end min()
+	
+	/** 
+	 *	max() is a public member function which allow change the maximum selectable date. 
+	 *
+	 *	@param (value string) the new date
+	 *	@return N/A
+	 */
+	Datepicker.prototype.max = function(value) {
+		if (value != null) {
+			this.options.max = this.parseDate(value);
+			if (this.options.max != null && this.dateObj > this.options.max) {
+				this.$target.attr('aria-invalid', true);
+				this.$target.parents('.form-group').addClass('has-error');
+				this.dateObj = this.options.max;
+			}
+		}
+	} // end max()
 
 	/** 
 	 *	theme() is a public member function which allow change the datepicker theme. 
@@ -2600,7 +2634,7 @@ if (typeof jQuery === 'undefined') {
 		if (typeof value === 'string') {
 			value = [value];
 		}
-		if (this.$target.attr('placeholder') == this.options.inputFormat) {
+		if (this.$target.attr('placeholder') == this.options.inputFormat[0]) {
 			this.$target.attr('placeholder', value[0]);
 		}
 		this.options.inputFormat = value;
@@ -2615,6 +2649,34 @@ if (typeof jQuery === 'undefined') {
 	Datepicker.prototype.outputFormat = function(value) {		
 		this.options.outputFormat = value;
 	} // end outputFormat()
+	
+	/** 
+	 *	modal() is a public member function which allow to set or unset the modal mode. 
+	 *
+	 *	@param (value boolean) the new modal mode
+	 *	@return N/A
+	 */
+	Datepicker.prototype.modal = function(value) {	
+		this.options.modal = value;
+		if (this.options.modal == true) {
+			this.$calendar.find('.datepicker-close-wrap').show();
+			this.$calendar.find('.datepicker-bn-close-label').show();
+			this.$close = this.$calendar.find('.datepicker-close');
+			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
+			this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
+			var self = this;
+			this.$close.click(function(e) {
+				return self.handleCloseClick(e);
+			});
+			this.$close.keydown(function(e) {
+				return self.handleCloseKeyDown(e);
+			});
+		} else {
+			this.$calendar.find('.datepicker-close-wrap').hide();
+			this.$calendar.find('.datepicker-bn-close-label').hide();
+		}
+	} // end modal()
+		
 		
 	
 	/** 
@@ -2625,6 +2687,7 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.setLocales = function(value) {		
 		this.locales = value;
+		this.options.inputFormat = [this.locales.short_format];
 		this.options.outputFormat = this.locales.short_format;
 		this.options.titleFormat = this.locales.full_format,
 		this.options.firstDayOfWeek = this.locales.firstday_of_week;
