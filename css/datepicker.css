@@ -231,9 +231,9 @@ div.datepicker-calendar.default table.datepicker-grid td.empty:hover {
 	background-color: #F9F9F9;
 }
 div.datepicker-calendar.default button.datepicker-close {
-	background-color: #522A3F;
-	color: #FFF;
-	border-color:  #EEE;
+	background-color: #DDD;
+	border-color:  #999;
+	color: #000;
 }
 
 /**************************** 
@@ -472,7 +472,7 @@ div.datepicker-calendar.green table.datepicker-grid td.empty:hover {
 	border-color:  #999;
 }
 div.datepicker-calendar.green button.datepicker-close {
-	background-color: #063A5B;
+	background-color: #0C5E2F;
 	color: #FFF;
 	border-color:  #EEE;
 }
