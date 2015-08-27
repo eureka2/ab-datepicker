@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kattintson vagy nyomja meg az Enter billentyűt, vagy a szóközt, hogy menjen a következő húsz évben",
 		        "calendarHelp": "- Felfelé és Lefelé - megy az ugyanazon a napon a héten az előző vagy a következő héten volt. Ha a hónap vége elérésekor folytatódik a következő vagy előző hónapban adott esetben.\r\n- Balra és Jobbra - előlegek egyik napról a másikra, szintén folytonosságában. Vizuálisan hangsúly átkerül napról napra, és titokban sorból evezni a rács napok.\r\n- Control + Page Up - költözik az ugyanazon a napon az előző évben.\r\n- Control + Page Down - költözik az ugyanazon a napon a következő évben.\r\n- Otthon - költözik az első nap a hónapot.\r\n- Vége - költözik utolsó napján a hónapot.\r\n- Page Up - költözik az ugyanazon a napon az előző hónapban.\r\n- Page Down - költözik az ugyanazon a napon a következő hónapban.\r\n- Adja meg vagy Espace - zárja a naptár, és a kiválasztott időpont szerepel a kapcsolódó mezőbe.\r\n- Escape - zárja a naptári beavatkozás nélkül."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "január",
 		        "február",

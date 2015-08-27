@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klepněte na nebo stiskněte klávesu Enter nebo mezerníku jít do příštích dvaceti letech",
 		        "calendarHelp": "- Šipka nahoru a šipka dolů - jde na stejný den v týdnu v předchozí nebo následující týden, resp. Pokud je dosaženo konce měsíce, pokračuje do další nebo předchozí měsíc podle potřeby.\r\n- Šipka vlevo a Šipka vpravo - posune o jeden den na další, rovněž v kontinuu. Vizuálně fokus je přesunut ze dne na den a zábaly z řady do řady v rastru dnů.\r\n- Control + Page Up - Přesun ke stejnému datu předchozího roku.\r\n- Control + Page Down - Přesun ke stejnému datu v příštím roce.\r\n- Home - Přesun na první den aktuálního měsíce.\r\n- End - Přesun na poslední den aktuálního měsíce.\r\n- Page Up - Přesun ke stejnému datu v předchozím měsíci.\r\n- Page Down - Přesun na stejné datum v horizontu jednoho měsíce.\r\n- Enter nebo Espace - zavře kalendář, a vybrané datum je zobrazen v přidružené textového pole.\r\n- Escape - zavře kalendář bez jakékoliv akce."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "ledna",
 		        "února",

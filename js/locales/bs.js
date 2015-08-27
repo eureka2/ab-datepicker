@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kliknite ili pritisnite tipku Enter ili razmaknicu da idu u narednih dvadeset godina",
 		        "calendarHelp": "- Strelica prema gore i dolje Arrow - ide na isti dan u tjednu u prethodnoj ili naredne sedmice respektivno. Ako je postignut do kraja mjeseca, nastavlja u sljedeći ili prethodni mjesec, prema potrebi.\r\n- Lijeva strelica i desno - avansa jednog dana u dan, također u kontinuumu. Vizualno fokus preselio iz dana u dan i obavija od reda do reda u mrežu dana.\r\n- Control + Page Up - Prelazak na isti dan prethodne godine.\r\n- Control + Page Down - Prelazi na isti datum u narednoj godini.\r\n- Home - Prelazak na prvi dan u tekućem mjesecu.\r\n- Kraj - Prelazak na zadnji dan u tekućem mjesecu.\r\n- Page Up - Prelazak na isti dan u prethodnom mjesecu.\r\n- Page Down - Prelazak na isti datum u narednih mjesec dana.\r\n- Enter ili Espace - zatvara kalendara, a odabrani datum će se prikazivati ​​u pridruženom okvir za tekst.\r\n- Escape - zatvara kalendar bez bilo kakve akcije."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januar",
 		        "februar",

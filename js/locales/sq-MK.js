@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kliko ose shtypni tastin Enter ose spacebar për të shkuar në njëzet vitet e ardhshme",
 		        "calendarHelp": "- Up Arrow dhe Down Arrow - shkon në të njëjtën ditë të javës në javën e kaluar ose e ardhshme, respektivisht. Në qoftë se në fund të muajit është arritur, vazhdon në muajin e ardhshëm ose të mëparshëm sipas rastit.\r\n- Left Arrow dhe Djathtas Arrow - përparon një ditë në tjetrën, edhe në një vazhdimësi. Fokusi Vizualisht është lëvizur nga dita në ditë dhe përfundon nga rresht për rresht në rrjetin e ditëve.\r\n- Kontrolli + Page Up - Lëviz në të njëjtën datë në vitin e kaluar.\r\n- Kontrolli + Kryesore poshtë - Lëviz në të njëjtën datë në vitin e ardhshëm.\r\n- Fillimi - Lëviz në ditën e parë të muajit aktual.\r\n- End - Lëviz në ditën e fundit të muajit aktual.\r\n- Page Up - Lëviz në të njëjtën datë në muajin e kaluar.\r\n- Page Down - Lëviz në të njëjtën datë në muajin e ardhshëm.\r\n- Shkruani apo Espace - mbyll kalendarin, dhe data e zgjedhur është treguar në kutinë e lidhur teksti.\r\n- Arratisjes - mbyllet kalendar pa ndonjë veprim."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "janar",
 		        "shkurt",

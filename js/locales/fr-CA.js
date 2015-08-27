@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes",
 		        "calendarHelp": "- Flèche haut et Flèche vers le bas - va au même jour de la semaine à la semaine précédente ou suivante respectivement. Si la fin du mois est atteinte, continue dans le mois suivant ou précédent, le cas échéant.\r\n- Flèche Gauche et Droite - avance d'une journée à l'autre, également dans un continuum. Visuellement accent est déplacé au jour le jour et enroule de rangée en rangée dans la grille des jours.\r\n- Ctrl + Page Haut - Passe à la même date l'année précédente.\r\n- Ctrl + Page Down - Passe à la même date l'année suivante.\r\n- Home - Passe au premier jour du mois en cours.\r\n- End - Passe au dernier jour du mois en cours.\r\n- Page Up - Passe au même jour du mois précédent.\r\n- Page Down - Passe à la même date dans le mois prochain.\r\n- Entrée ou Espace - ferme le calendrier et la date sélectionnée apparaît dans la zone de texte associée.\r\n- Escape - ferme le calendrier sans aucune action."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "janvier",
 		        "février",

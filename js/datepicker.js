@@ -91,6 +91,7 @@ if (typeof jQuery === 'undefined') {
 		        "closeButtonLabel": "Close the calendar",
 		        "calendarHelp": "- Up Arrow and Down Arrow - goes to the same day of the week in the previous or next week respectively. If the end of the month is reached, continues into the next or previous month as appropriate.\r\n- Left Arrow and Right Arrow - advances one day to the next, also in a continuum. Visually focus is moved from day to day and wraps from row to row in the grid of days.\r\n- Control+Page Up - Moves to the same date in the previous year.\r\n- Control+Page Down - Moves to the same date in the next year.\r\n- Home - Moves to the first day of the current month.\r\n- End - Moves to the last day of the current month.\r\n- Page Up - Moves to the same date in the previous month.\r\n- Page Down - Moves to the same date in the next month.\r\n- Enter or Espace - closes the calendar, and the selected date is shown in the associated text box.\r\n- Escape - closes the calendar without any action."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "January",
 		        "February",
@@ -331,6 +332,9 @@ if (typeof jQuery === 'undefined') {
 		this.$fastprev = this.$calendar.find('.datepicker-month-fast-prev');
 		this.$fastnext = this.$calendar.find('.datepicker-month-fast-next');
 		this.$grid = this.$calendar.find('.datepicker-grid');
+		if (this.locales.directionality === 'RTL') {
+			this.$grid.addClass('rtl');
+		}
 		var $days = this.$grid.find('th.datepicker-day abbr');
 		this.drawCalendarHeader();
 		if (this.options.modal == true) {
@@ -450,7 +454,7 @@ if (typeof jQuery === 'undefined') {
 	} // end initializeDate()
 	
 	/** 
-	 *	drawCalendarHeader() is a member function to populate calendar header with the days name. 
+	 *	drawCalendarHeader() is a member function to populate the calendar header with the days name. 
 	 *
 	 *	@return N/A
 	 */
@@ -468,7 +472,7 @@ if (typeof jQuery === 'undefined') {
 	} // end drawCalendarHeader()
 
 	/**
-	 *	populateDaysCalendar() is a member function to populate the Datepicker grid with calendar days
+	 *	populateDaysCalendar() is a member function to populate the datepicker grid with calendar days
 	 *	representing the current month
 	 *
 	 *	@return N/A
@@ -583,7 +587,7 @@ if (typeof jQuery === 'undefined') {
 	} // end populateDaysCalendar()
 
 	/**
-	 *	populateMonthsCalendar() is a member function to populate the Datepicker grid with calendar months
+	 *	populateMonthsCalendar() is a member function to populate the datepicker grid with calendar months
 	 *	representing the current year
 	 *
 	 *	@return N/A
@@ -648,7 +652,7 @@ if (typeof jQuery === 'undefined') {
 	} // end populateMonthsCalendar()
 
 	/**
-	 *	populateYearsCalendar() is a member function to populate the Datepicker grid with 20 calendar years
+	 *	populateYearsCalendar() is a member function to populate the datepicker grid with 20 calendar years
 	 *	around the current year
 	 *
 	 *	@return N/A
@@ -719,7 +723,7 @@ if (typeof jQuery === 'undefined') {
 	 *
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a day the specified number of days from the end of the month.
-	 *	@return N/A
+	 *	@return true if the previous month is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showDaysOfPrevMonth = function(offset) {
 		// show the previous month
@@ -748,7 +752,7 @@ if (typeof jQuery === 'undefined') {
 	 *	showDaysOfMonth() is a member function to show the days of the specified month
 	 *
 	 *	@param	(month int) the month to show.
-	 *	@return N/A
+	 *	@return true if the  month is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showDaysOfMonth = function(month) {
 		if (this.options.min != null && 
@@ -777,7 +781,7 @@ if (typeof jQuery === 'undefined') {
 	 *
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a month the specified number of months from the end of the year.
-	 *	@return N/A
+	 *	@return true if the previous year is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showMonthsOfPrevYear = function(offset) {
 		if (this.options.min != null && this.year - 1 < this.options.min.getFullYear()) {
@@ -801,7 +805,7 @@ if (typeof jQuery === 'undefined') {
 	 *	showMonthsOfYear() is a member function to show the months of the specified year
 	 *
 	 *	@param	(year int) the year to show.
-	 *	@return N/A
+	 *	@return true if the year is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showMonthsOfYear = function(year) {
 		if (this.options.min != null && year < this.options.min.getFullYear()) {
@@ -825,7 +829,7 @@ if (typeof jQuery === 'undefined') {
 	 *
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a year the specified number of years from the end of the range.
-	 *	@return N/A
+	 *	@return true if the year - 20 is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showYearsOfPrevRange = function(offset) {
 		if (this.options.min != null && this.year - 20 < this.options.min.getFullYear()) {
@@ -851,7 +855,7 @@ if (typeof jQuery === 'undefined') {
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a day the specified number of days from
 	 *			the beginning of the month.
-	 *	@return N/A
+	 *	@return true if the nextmMonth is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showDaysOfNextMonth = function(offset) {
 		// show the next month
@@ -882,7 +886,7 @@ if (typeof jQuery === 'undefined') {
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a month the specified number of month from
 	 *			the beginning of the year.
-	 *	@return N/A
+	 *	@return true if the next year is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showMonthsOfNextYear = function(offset) {
 		if (this.options.max != null && this.year + 1 > this.options.max.getFullYear()) {
@@ -909,7 +913,7 @@ if (typeof jQuery === 'undefined') {
 	 *	@param	(offset int) offset may be used to specify an offset for setting
 	 *			focus on a year the specified number of years from
 	 *			the beginning of the range.
-	 *	@return N/A
+	 *	@return true if the year + 20 is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showYearsOfNextRange = function(offset) {
 		if (this.options.max != null && this.year + 20 > this.options.max.getFullYear()) {
@@ -933,7 +937,7 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	showDaysOfPrevYear() is a member function to show the previous year
 	 *
-	 *	@return N/A
+	 *	@return true if the previous year is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showDaysOfPrevYear = function() {
 		if (this.options.min != null && 
@@ -952,7 +956,7 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	showDaysOfNextYear() is a member function to show the next year
 	 *
-	 *	@return N/A
+	 *	@return true if the next year is between the minimum and the maximum date otherwise return false 
 	 */
 	Datepicker.prototype.showDaysOfNextYear = function() {
 		if (this.options.max != null && 
@@ -1103,7 +1107,7 @@ if (typeof jQuery === 'undefined') {
 	} // end handlePrevClick()
 
 	/** 	
-	 *	handleMonthClick() is a member function to process click events for the prev month button
+	 *	handleMonthClick() is a member function to process click events for the month header
 	 *
 	 *	@param (e obj) e is the event object associated with the event
 	 *
@@ -1576,61 +1580,62 @@ if (typeof jQuery === 'undefined') {
 					return false;
 				}
 			case this.keys.left:
-				{
-					if (e.ctrlKey || e.shiftKey) {
-						return true;
-					}
-					var cellIndex = $cells.index($curCell) - 1;
-					var $prevCell = null;
-					if (cellIndex >= 0) {
-						$prevCell = $cells.eq(cellIndex);
-						$curCell.removeClass('focus').attr('aria-selected', 'false');
-						$prevCell.addClass('focus').attr('aria-selected', 'true');
-						this.$grid.attr('aria-activedescendant', $prevCell.attr('id'));
-					} else {
-						switch (this.gridType) {
-							case 0: // days grid
-								this.showDaysOfPrevMonth(0);
-								break;
-							case 1: // months grid
-								this.showMonthsOfPrevYear(0);
-								break;
-							case 2: // years grid
-								this.showYearsOfPrevRange(0);
-								break;
-						}
-					}
-					e.stopPropagation();
-					return false;
-				}
 			case this.keys.right:
-				{
-					if (e.ctrlKey || e.shiftKey) {
-						return true;
-					}
-					var cellIndex = $cells.index($curCell) + 1;
-					var $nextCell = null;
-					if (cellIndex < $cells.length) {
-						$nextCell = $cells.eq(cellIndex);
-						$curCell.removeClass('focus').attr('aria-selected', 'false');
-						$nextCell.addClass('focus').attr('aria-selected', 'true');
-						this.$grid.attr('aria-activedescendant', $nextCell.attr('id'));
-					} else {
-						switch (this.gridType) {
-							case 0: // days grid
-								// move to the next month
-								this.showDaysOfNextMonth(1);
-								break;
-							case 1: // months grid
-								this.showMonthsOfNextYear(1);
-								break;
-							case 2: // years grid
-								this.showYearsOfNextRange(1);
-								break;
+				{	
+					if ((e.keyCode == this.keys.left && this.locales.directionality === 'LTR')  || (e.keyCode == this.keys.right && this.locales.directionality === 'RTL')) {
+						if (e.ctrlKey || e.shiftKey) {
+							return true;
 						}
+						var cellIndex = $cells.index($curCell) - 1;
+						var $prevCell = null;
+						if (cellIndex >= 0) {
+							$prevCell = $cells.eq(cellIndex);
+							$curCell.removeClass('focus').attr('aria-selected', 'false');
+							$prevCell.addClass('focus').attr('aria-selected', 'true');
+							this.$grid.attr('aria-activedescendant', $prevCell.attr('id'));
+						} else {
+							switch (this.gridType) {
+								case 0: // days grid
+									this.showDaysOfPrevMonth(0);
+									break;
+								case 1: // months grid
+									this.showMonthsOfPrevYear(0);
+									break;
+								case 2: // years grid
+									this.showYearsOfPrevRange(0);
+									break;
+							}
+						}
+						e.stopPropagation();
+						return false;
+					} else {
+						if (e.ctrlKey || e.shiftKey) {
+							return true;
+						}
+						var cellIndex = $cells.index($curCell) + 1;
+						var $nextCell = null;
+						if (cellIndex < $cells.length) {
+							$nextCell = $cells.eq(cellIndex);
+							$curCell.removeClass('focus').attr('aria-selected', 'false');
+							$nextCell.addClass('focus').attr('aria-selected', 'true');
+							this.$grid.attr('aria-activedescendant', $nextCell.attr('id'));
+						} else {
+							switch (this.gridType) {
+								case 0: // days grid
+									// move to the next month
+									this.showDaysOfNextMonth(1);
+									break;
+								case 1: // months grid
+									this.showMonthsOfNextYear(1);
+									break;
+								case 2: // years grid
+									this.showYearsOfNextRange(1);
+									break;
+							}
+						}
+						e.stopPropagation();
+						return false;
 					}
-					e.stopPropagation();
-					return false;
 				}
 			case this.keys.up:
 				{
@@ -1828,7 +1833,7 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	handleGridClick() is a member function to process mouse click events for the Datepicker grid
 	 *
-	 *	@param (id obj) e is the id of the object triggering the event
+	 *	@param (id string) id is the id of the object triggering the event
 	 *
 	 *	@param (e obj) e is the event object associated with the event
 	 *
@@ -1898,7 +1903,6 @@ if (typeof jQuery === 'undefined') {
 	 * @return (boolean) true
 	 */
 	Datepicker.prototype.handleTabOut = function(e) {
-		// var fields = this.$target.parents('form:eq(0)').find('input:visible,textarea:visible,select:visible');
 		var fields = $('body').find('input:visible,textarea:visible,select:visible');
         var index = fields.index( this.$target );
         if ( index > -1 && index < fields.length ) {
@@ -1920,7 +1924,7 @@ if (typeof jQuery === 'undefined') {
 	 *	changeGrid() is a member function to change the calendar after click or enter into the calendar title
 	 *
 	 *	@param (e obj) e is the event object associated with the event
-	 *	@return N/A
+	 *	@return true
 	 */
 	Datepicker.prototype.changeGrid = function(e) {
 		switch (this.gridType) {
@@ -2040,7 +2044,9 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	handleDocumentClick() is a member function to handle click on document. 
 	 *
-	 *	@return N/A
+	 *	@param (e obj) e is the event object associated with the event
+	 *
+	 *	@return (boolean) false if consuming event, true if propagating
 	 */
 	 Datepicker.prototype.handleDocumentClick = function(e) {
 		if ($(e.target).parents('#datepicker-calendar-' + this.id).length == 0) {
@@ -2108,7 +2114,7 @@ if (typeof jQuery === 'undefined') {
 	 *	absolutePosition() is a member function that compute the absolute position 
 	 *	of some element within document. 
 	 *
-	 *	@param (element obj)the element of the document
+	 *	@param (element obj) the element of the document
 	 *	@return an object containing the properties top and left.
 	 */
 	Datepicker.prototype.absolutePosition = function (element) {
@@ -2136,6 +2142,9 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	getDaysInMonth() is a member function to calculate the number of days in a given month
 	 *	
+	 *	@param (year int) the year
+	 *	@param (month int) the given month
+	 *
 	 *	@return (integer) number of days
 	 */
 	Datepicker.prototype.getDaysInMonth = function(year, month) {
@@ -2180,7 +2189,10 @@ if (typeof jQuery === 'undefined') {
 
 	/** 
 	 *	formatDate (date_object, format)
-	 *	The format string uses the same abbreviations as in getDateFromFormat()
+	 *	The format string uses the same abbreviations as in createDateFromFormat()
+	 *
+	 *	@param (date date object) the given date
+	 *	@param (format string) the given output format
 	 *	@returns a date in the output format specified.
 	 */
 	Datepicker.prototype.formatDate = function (date, format) {
@@ -2535,7 +2547,7 @@ if (typeof jQuery === 'undefined') {
 	/** 
 	 *	parseDate() is a member function which parse a date string. 
 	 *
-	 *	This function takes a date string and try to parse it with the inout formats.
+	 *	This function takes a date string and try to parse it with the input formats.
 	 *	If the date string matches one of the format string, it returns the 
 	 *	the date object. Otherwise, it returns null.
 	 *
@@ -2551,14 +2563,17 @@ if (typeof jQuery === 'undefined') {
 				return false;
 			}
 		});
+		if (date == null) { // last try with the output format 
+			date = self.createDateFromFormat(this.options.outputFormat, value);
+		}
 		return date;
 	} // end parseDate()
 	
 	/** 
-	 *	min() is a public member function which allow change the minimum selectable date. 
+	 *	min() is a public member function which allow change the smallest selectable date. 
 	 *
 	 *	@param (value string) the new date
-	 *	@return N/A
+	 *	@return the smallest selectable date
 	 */
 	Datepicker.prototype.min = function(value) {
 		if (value != null) {
@@ -2569,13 +2584,14 @@ if (typeof jQuery === 'undefined') {
 				this.dateObj = this.options.min;
 			}
 		}
+		return this.options.min;
 	} // end min()
 	
 	/** 
-	 *	max() is a public member function which allow change the maximum selectable date. 
+	 *	max() is a public member function which allow change the biggest selectable date. 
 	 *
 	 *	@param (value string) the new date
-	 *	@return N/A
+	 *	@return the biggest selectable date
 	 */
 	Datepicker.prototype.max = function(value) {
 		if (value != null) {
@@ -2586,99 +2602,126 @@ if (typeof jQuery === 'undefined') {
 				this.dateObj = this.options.max;
 			}
 		}
+		return this.options.max;
 	} // end max()
 
 	/** 
 	 *	theme() is a public member function which allow change the datepicker theme. 
 	 *
 	 *	@param (value string) the new theme
-	 *	@return N/A
+	 *	@return the datepicker theme
 	 */
 	Datepicker.prototype.theme = function(value) {
-		this.$button.removeClass(this.options.theme);
-		this.$calendar.removeClass(this.options.theme);
-		this.options.theme = value;
-		this.$button.addClass(this.options.theme);
-		this.$calendar.addClass(this.options.theme);
+		if (value != null) {
+			this.$button.removeClass(this.options.theme);
+			this.$calendar.removeClass(this.options.theme);
+			this.options.theme = value;
+			this.$button.addClass(this.options.theme);
+			this.$calendar.addClass(this.options.theme);
+		}
+		return this.options.theme;
 	} // end theme()
 	
 	/** 
 	 *	firstDayOfWeek() is a public member function which allow change the first Day Of Week. 
 	 *
 	 *	@param (value integer) the new first Day Of Week
-	 *	@return N/A
+	 *	@return the first Day Of Week
 	 */
 	Datepicker.prototype.firstDayOfWeek = function(value) {
-		this.options.firstDayOfWeek = value;
-		this.drawCalendarHeader();
+		if (value != null) {
+			this.options.firstDayOfWeek = parseInt(value);
+			this.drawCalendarHeader();
+		}
+		return this.options.firstDayOfWeek;
 	} // end firstDayOfWeek()
 	
 	/** 
 	 *	weekDayFormat() is a public member function which allow change the format of weekdays name. 
 	 *
 	 *	@param (value string) the new format. Allowed : 'short' or 'narrow'
-	 *	@return N/A
+	 *	@return the format of weekdays name
 	 */
 	Datepicker.prototype.weekDayFormat = function(value) {
-		this.options.weekDayFormat = value;
-		this.drawCalendarHeader();
+		if (value != null) {
+			this.options.weekDayFormat = value;
+			this.drawCalendarHeader();
+		}
+		return this.options.weekDayFormat;
 	} // end weekDayFormat()
 	
 	/** 
 	 *	inputFormat() is a public member function which allow change the input format. 
 	 *
 	 *	@param (value string) the new format
-	 *	@return N/A
+	 *	@return the input format
 	 */
 	Datepicker.prototype.inputFormat = function(value) {		
-		if (typeof value === 'string') {
-			value = [value];
+		if (value != null) {
+			if (typeof value === 'string') {
+				value = [value];
+			}
+			if (this.$target.attr('placeholder') == this.options.inputFormat[0]) {
+				this.$target.attr('placeholder', value[0]);
+			}
+			this.options.inputFormat = value;
 		}
-		if (this.$target.attr('placeholder') == this.options.inputFormat[0]) {
-			this.$target.attr('placeholder', value[0]);
-		}
-		this.options.inputFormat = value;
+		return this.options.inputFormat;
 	} // end inputFormat()
 	
 	/** 
 	 *	outputFormat() is a public member function which allow change the output format. 
 	 *
 	 *	@param (value string) the new format
-	 *	@return N/A
+	 *	@return the output format
 	 */
 	Datepicker.prototype.outputFormat = function(value) {		
-		this.options.outputFormat = value;
+		if (value != null) {
+			this.options.outputFormat = value;
+		}
+		return this.options.outputFormat;
 	} // end outputFormat()
 	
 	/** 
 	 *	modal() is a public member function which allow to set or unset the modal mode. 
 	 *
 	 *	@param (value boolean) the new modal mode
-	 *	@return N/A
+	 *	@return the modal mode
 	 */
 	Datepicker.prototype.modal = function(value) {	
-		this.options.modal = value;
-		if (this.options.modal == true) {
-			this.$calendar.find('.datepicker-close-wrap').show();
-			this.$calendar.find('.datepicker-bn-close-label').show();
-			this.$close = this.$calendar.find('.datepicker-close');
-			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
-			this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
-			var self = this;
-			this.$close.click(function(e) {
-				return self.handleCloseClick(e);
-			});
-			this.$close.keydown(function(e) {
-				return self.handleCloseKeyDown(e);
-			});
-		} else {
-			this.$calendar.find('.datepicker-close-wrap').hide();
-			this.$calendar.find('.datepicker-bn-close-label').hide();
+		if (value != null) {
+			this.options.modal = value;
+			if (this.options.modal == true) {
+				this.$calendar.find('.datepicker-close-wrap').show();
+				this.$calendar.find('.datepicker-bn-close-label').show();
+				this.$close = this.$calendar.find('.datepicker-close');
+				this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
+				this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
+				var self = this;
+				this.$close.click(function(e) {
+					return self.handleCloseClick(e);
+				});
+				this.$close.keydown(function(e) {
+					return self.handleCloseKeyDown(e);
+				});
+			} else {
+				this.$calendar.find('.datepicker-close-wrap').hide();
+				this.$calendar.find('.datepicker-bn-close-label').hide();
+			}
 		}
+		return this.options.modal;
 	} // end modal()
 		
-		
-	
+	/** 
+	 *	format() is a public member function to format a date according the output format. 
+	 *
+	 *	@param (value date object) the date 
+	 *	@return formatted date string
+	 */
+	Datepicker.prototype.format = function(date) {	
+		return this.formatDate(date, this.options.outputFormat);
+	} // end format()
+
 	/** 
 	 *	setLocales() is a public member function which allow change the locales. 
 	 *
@@ -2707,6 +2750,11 @@ if (typeof jQuery === 'undefined') {
 		this.options.closeButtonLabel = this.locales.texts.closeButtonLabel;
 		this.options.calendarHelp = this.locales.texts.calendarHelp;
 		this.drawCalendarHeader();
+		if (this.locales.directionality === 'RTL') {
+			this.$grid.addClass('rtl');
+		} else {
+			this.$grid.removeClass('rtl');
+		}
 	} // end outputFormat()
 	
 	// DATEPICKER PLUGIN DEFINITION
@@ -2715,14 +2763,18 @@ if (typeof jQuery === 'undefined') {
 	var old = $.fn.datepicker
 
 	$.fn.datepicker = function (option, value) {
-		return this.each(function () {
-			var $this   = $(this)
-			var data    = $this.data('ab.datepicker')
-			var options = $.extend({}, Datepicker.DEFAULTS, $this.data(), typeof option == 'object' && option)
-
-			if (!data) $this.data('ab.datepicker', (data = new Datepicker(this, options)))
-			if (typeof option == 'string') data[option](value)
-		})
+		if (typeof option == 'string' && $(this).length == 1) {
+			var data = $(this).eq(0).data('ab.datepicker');
+			if (data) return data[option](value);
+		} else {
+			return this.each(function () {
+				var $this   = $(this);
+				var data    = $this.data('ab.datepicker');
+				var options = $.extend({}, Datepicker.DEFAULTS, $this.data(), typeof option == 'object' && option);
+				if (!data) $this.data('ab.datepicker', (data = new Datepicker(this, options)));
+				if (typeof option == 'string') data[option](value);
+			});
+		}
 	}
 
 	$.fn.datepicker.Constructor = Datepicker

@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Faceți clic sau apăsați tasta sau bara de spațiu Enter pentru a merge la următorii douăzeci de ani",
 		        "calendarHelp": "- Săgeată sus și Săgeată jos - merge la aceeași zi a săptămânii în săptămâna anterioară sau următoare, respectiv. Dacă se ajunge la sfârșitul lunii, continuă în luna următoare sau anterioară, după caz.\r\n- Săgeată stânga și Săgeată dreapta - avansează o zi la alta, de asemenea, într-un continuum. Accentul vizual este mutat de la o zi la alta și de la wraps rând la rând în grila de zile.\r\n- Control + Page Up - Mută ​​la aceeași dată, în anul precedent.\r\n- Control + Page Down - Mută ​​la aceeași dată în anul următor.\r\n- Acasă - se deplasează în prima zi a lunii curente.\r\n- End - Mută ​​la ultima zi a lunii curente.\r\n- Page Up - Mută ​​la aceeași dată în luna precedentă.\r\n- Page Down - Mută ​​la aceeași dată, în luna următoare.\r\n- Introduceți sau Espace - închide calendarul, iar data selectată este afișată în caseta de text asociat.\r\n- Escape - închide calendarul fără nici o acțiune."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "ianuarie",
 		        "februarie",

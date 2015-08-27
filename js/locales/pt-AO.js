@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Clique ou pressione a tecla ou a barra de espaço Enter para ir para os próximos 20 anos",
 		        "calendarHelp": "- Seta para cima e Seta para baixo - vai para o mesmo dia da semana na semana anterior ou seguinte, respectivamente. Se o fim do mês é atingido, continua para a próxima ou mês anterior, conforme apropriado.\r\n- Seta para a esquerda e seta para a direita - avança um dia para o outro, também em um continuum. Visualmente foco é movido de dia para dia e envolve a partir de uma linha para outra na grade de dias.\r\n- Control + Page Up - Move para a mesma data do ano anterior.\r\n- Control + Page Down - Move para a mesma data no ano que vem.\r\n- Início - Muda-se para o primeiro dia do mês atual.\r\n- Fim - Move para o último dia do mês atual.\r\n- Page Up - Move para a mesma data no mês anterior.\r\n- Page Down - Move para a mesma data no próximo mês.\r\n- Introduzir ou Espace - fecha o calendário ea data selecionada é mostrada na caixa de texto associado.\r\n- Escape - fecha o calendário sem qualquer ação."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "janeiro",
 		        "fevereiro",

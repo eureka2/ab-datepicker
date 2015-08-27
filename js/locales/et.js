@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klõpsa või vajuta klahvi Enter või tühiku minna järgmise kahekümne aasta jooksul",
 		        "calendarHelp": "- Nool ja Nool - läheb sama nädalapäev eelmise või järgmise nädala võrra. Kui kuu lõpus on saavutatud, jätkub järgmise või eelmise kuuga vastavalt vajadusele.\r\n- Nool vasakule ja nool paremale - areneb ühe päevaga, ka jätkamisele. Visuaalselt fookus liikunud päevast päeva ja wrapid reast ritta ruudustik päeva.\r\n- Ctrl + Page Up - Liigub samal päeval eelmisel aastal.\r\n- Ctrl + Page Down - Liigub sama kuupäeva järgmisel aastal.\r\n- Kodu - Liigub esimesel päeval jooksval kuul.\r\n- End - Liigub viimasel päeval jooksval kuul.\r\n- Page Up - Liigub samal kuupäeval eelmisel kuul.\r\n- Page Down - Liigub sama kuupäeva järgmisel kuul.\r\n- Sisesta või Espace - sulgeb kalender ja valitud kuupäev on näidatud seotud teksti kasti.\r\n- Escape - sulgeb kalender ilma mingeid meetmeid."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "jaanuar",
 		        "veebruar",

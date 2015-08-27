@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Tıklayın veya sonraki yirmi yıl gitmek için anahtar veya boşluk Enter tuşuna basın",
 		        "calendarHelp": "- Yukarı Ok ve Aşağı Ok - sırasıyla önceki veya sonraki hafta haftanın aynı gününe gider. Ayın sonuna gelindiğinde ise, uygun şekilde bir sonraki veya bir önceki aya devam eder.\r\n- Sol ve Sağ Ok - aynı zamanda bir süreklilik içinde, sonraki bir gün ilerler. Görme odak günden güne taşındı ve günlerin ızgara satırdan satıra sarar edilir.\r\n- Ctrl + Page Up - bir önceki yılın aynı tarihte gider.\r\n- Ctrl + Page Down - Bir sonraki yıl aynı tarihte gider.\r\n- Ev - Geçerli ayın ilk gününe gider.\r\n- Son - Güncel ayın son gününe gider.\r\n- Page Up - önceki aya aynı tarihte gider.\r\n- Page Down - Bir sonraki ay aynı tarihte gider.\r\n- Enter veya Espace - takvim kapanır ve seçilen tarih ilişkili metin kutusuna gösterilir.\r\n- Kaçış - herhangi bir işlem yapmadan takvimi kapatır."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Ocak",
 		        "Şubat",

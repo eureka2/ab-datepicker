@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kliknite ali pritisnite tipko Enter ali preslednico, da gredo v naslednjih dvajsetih letih",
 		        "calendarHelp": "- Gor in Dol - gre za isti dan v tednu v prejšnji ali naslednji teden oz. Če je dosežen konec meseca, se nadaljuje v naslednji ali prejšnji mesec, kot je primerno.\r\n- Puščica levo in desno Arrow - predujmi en dan naslednji, prav tako v kontinuumu. Vizualno poudarek je preselil iz dneva v dan in obloge od vrstice do vrstice v mreži dni.\r\n- Ctrl + Page Up - Pomakne se na isti dan preteklega leta.\r\n- Ctrl + Page Down - Pomakne se na isti dan v naslednjem letu.\r\n- Home - Pomakne se na prvi dan v tekočem mesecu.\r\n- End - Pomakne se na zadnji dan v tekočem mesecu.\r\n- Page Up - Pomakne se na isti dan v preteklem mesecu.\r\n- Page Down - Pomakne se na isti dan v naslednjem mesecu.\r\n- Enter ali Espace - zapre koledar in izbrani datum je prikazan v polju, povezane z besedilom.\r\n- Escape - zapre koledar brez kakršne koli ukrepanje."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januar",
 		        "februar",

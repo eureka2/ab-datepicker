@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Prema ou prema a tecla ou a barra de espazo Intro para ir para os próximos 20 anos",
 		        "calendarHelp": "- Frecha para arriba e frecha para abaixo - vai para o mesmo día da semana a semana anterior ou seguinte, respectivamente. Se a fin do mes é acadar, segue á seguinte ou mes anterior, segundo corresponda.\r\n- Frecha cara á esquerda e frecha para a dereita - avanza un día para o outro, tamén nun continuum. Visualmente foco é movido día a día e implica a partir dunha liña a outra na reixa de días.\r\n- Control + Page Up - Mover á mesma data do ano anterior.\r\n- Control + Page down - Mover á mesma data o ano que vén.\r\n- Inicio - Múdase para o primeiro día do mes actual.\r\n- Fin - mover o último día do mes actual.\r\n- Page Up - Mover á mesma data no mes anterior.\r\n- Page Down - Mover á mesma data o próximo mes.\r\n- Introducir ou Espace - pecha o calendario ea data seleccionada móstrase na caixa de texto asociado.\r\n- Escape - pecha o calendario sen acción."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "xaneiro",
 		        "febreiro",

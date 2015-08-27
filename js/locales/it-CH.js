@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Fare clic o premere il tasto Invio o la barra spaziatrice per andare ai prossimi 20 anni",
 		        "calendarHelp": "- Freccia e Freccia giù - va allo stesso giorno della settimana in settimana precedente o successiva, rispettivamente. Se viene raggiunta la fine del mese, continua nel mese precedente o successivo a seconda dei casi.\r\n- Freccia Sinistra e Freccia destra - avanza un giorno all'altro, anche in un continuum. Visivamente fuoco viene spostato da un giorno all'altro e avvolge da riga a riga nella griglia di giorni.\r\n- Control + Pagina Su - Passa alla stessa data dell'anno precedente.\r\n- Control + Pagina giù - Passa alla stessa data nel prossimo anno.\r\n- Home - Passa al primo giorno del mese in corso.\r\n- End - Passa l'ultimo giorno del mese corrente.\r\n- Pagina Su - Passa alla stessa data del mese precedente.\r\n- Pagina giù - Passa alla stessa data del mese successivo.\r\n- Invio o Espace - chiude il calendario e la data selezionata viene visualizzata nella casella di testo associato.\r\n- Escape - chiude il calendario senza alcuna azione."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "gennaio",
 		        "febbraio",

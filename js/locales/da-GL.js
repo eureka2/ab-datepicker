@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klik eller tryk på Enter-tasten eller mellemrumstasten til at gå til de næste tyve år",
 		        "calendarHelp": "- Pil op og Pil ned - går til den samme ugedag i den forrige eller næste uge hhv. Hvis slutningen af ​​måneden er nået, fortsætter ind i næste eller foregående måned efter omstændighederne.\r\n- Venstre pil og Højre pil - rykker den ene dag til den næste, også i et kontinuum. Visuelt fokus flyttes fra dag til dag og wraps fra række til række i gitteret dage.\r\n- Kontrol + Page Up - Flytter til samme dato i det foregående år.\r\n- Kontrol + Page Down - Flytter til samme dato i det næste år.\r\n- Hjem - Flytter til den første dag i den aktuelle måned.\r\n- End - Flytter til den sidste dag i den aktuelle måned.\r\n- Page Up - Flytter til samme dato i den foregående måned.\r\n- Side Down - Flytter til samme dato i næste måned.\r\n- Indtast eller Espace - lukker kalenderen, og den valgte dato vises i det tilhørende tekstfelt.\r\n- Escape - lukker kalenderen uden nogen handling."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januar",
 		        "februar",

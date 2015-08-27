@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Egin klik edo sakatu Sartu tekla edo zuriune hurrengo hogei urte joan",
 		        "calendarHelp": "- Arrow Up eta behera gezi - asteko egun bera doa aurreko edo hurrengo astean, hurrenez hurren. Hilaren amaieran iristen bada, hurrengo edo aurreko hilabetean dagokion bezala jarraitzen.\r\n- Ezker gezi eta eskuineko gezi - Egun bat aurreratzen hurrengo, halaber, continuum batean. Ikusmen ikuspegia da egun batetik mugitu eta ilaratik biltzen den egun-sarera arraunean.\r\n- Kontrol + Page Up -, aurreko urtean data berean joaten da.\r\n- Kontrol + Page Down - hurrengo urtean data berean joaten da.\r\n- Hasiera - hilabeteko lehen egunean joaten da.\r\n- Amaiera - hilabeteko azken egunean joaten da.\r\n- Orria - Aurreko hilabetean data berean joaten da.\r\n- Orria behera - hurrengo hilabetean data berean joaten da.\r\n- Idatzi edo Espace - egutegian itxi egiten da eta hautatutako datarekin lotutako testu-koadroan erakusten da.\r\n- Ihes - ekintzarik gabe egutegi ixten."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "urtarrilak",
 		        "otsailak",

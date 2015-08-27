@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Spauskite arba paspauskite klavišą Enter arba tarpo klavišą, norėdami pereiti prie kito dvidešimt metų",
 		        "calendarHelp": "- Rodyklė aukštyn ir rodyklė žemyn - eina į tą pačią savaitės dieną į ankstesnį arba kitą savaitę atitinkamai. Jei mėnesio pabaigoje bus pasiektas, ir toliau į kitą arba ankstesnį mėnesį, kaip tinkama.\r\n- Rodyklė į kairę ir rodyklė į dešinę - avansai vieną dieną į kitą, taip pat kontinuumas. Vizualiai dėmesys persikėlė diena iš dienos ir antklodės iš eilės eilės dienų tinklelį.\r\n- Ctrl + Page Up - Perkelia į tą pačią dieną praėjusiais metais.\r\n- Ctrl + Page Down - Perkelia į tos pačios dienos kitais metais.\r\n- Namai - Perkelia į pirmą dieną einamąjį mėnesį.\r\n- End - Perkelia į paskutinę dieną einamąjį mėnesį.\r\n- Puslapis Up - Perkelia į tą pačią dieną į ankstesnį mėnesį.\r\n- Page Down - Perkelia į tos pačios dienos į kitą mėnesį.\r\n- Įveskite arba Espace - užsidaro kalendorių ir pasirinktos datos rodomas susijęs teksto laukelyje.\r\n- Pabėgti - užsidaro kalendorių be bet kokių veiksmų."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "sausio",
 		        "vasario",

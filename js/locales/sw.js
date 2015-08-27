@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Click au vyombo vya habari Enter muhimu au spacebar kwenda miaka ishirini ijayo",
 		        "calendarHelp": "- Up Arrow na Mshale Chini - huenda kwa siku hiyo hiyo ya wiki katika wiki uliopita au ujao kwa mtiririko huo. Kama mwisho wa mwezi ni kufikiwa, inaendelea katika mwezi ujao au uliopita kama inafaa.\r\n- Arrow kushoto na kulia Arrow - maendeleo siku moja hadi nyingine, pia katika utoaji. Kuibua lengo ni wakiongozwa kutoka siku hadi siku na Wraps kutoka mstari kwa mstari katika gridi ya siku.\r\n- Kudhibiti + Kwanza Up - Hatua kwa tarehe hiyo mwaka uliopita.\r\n- Kudhibiti + wa Kwanza Down - Hatua kwa tarehe hiyo katika mwaka ujao.\r\n- Home - Hatua kwa siku ya kwanza ya mwezi sasa.\r\n- Mwisho - Hatua kwa siku ya mwisho ya mwezi sasa.\r\n- Kwanza Up - Hatua kwa tarehe hiyo katika mwezi uliopita.\r\n- Kwanza Down - Hatua kwa tarehe hiyo katika mwezi ujao.\r\n- Enter au Espace - kufunga kalenda, na tarehe kuchaguliwa ni inavyoonekana katika sanduku Nakala kuhusishwa.\r\n- Kutoroka - kufunga kalenda bila hatua yoyote."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Januari",
 		        "Februari",

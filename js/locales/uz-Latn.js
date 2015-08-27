@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Bosing yoki keyingi yigirma yil borish uchun kalit yoki bo'sh joy Enter ni bosing",
 		        "calendarHelp": "- Up va pastga o'q - mos ravishda oldingi yoki keyingi haftada haftaning shu kuni ketadi. Oyning oxiri erishilgan bo'lsa, tegishli bo'lib, keyingi yoki oldingi oyning kirib davom etmoqda.\r\n- Chap o'q va o'ng o'q - ham bir uzluksiz, keyingi bir kunni yutuqlar. Ingl markazida kundan-kunga ko'chib va ​​kun panjara satırlarının o'rar qilinadi.\r\n- Control + Page Up - avvalgi yilning shu kunga qadar ketadi.\r\n- Control + Page Down - keyingi yilning shu kunga qadar ketadi.\r\n- Bosh sahifa - joriy oyning birinchi kuni uchun ketadi.\r\n- End - joriy oyning oxirgi kuniga qadar ketadi.\r\n- Page Up - avvalgi oyda bir xil sana ketadi.\r\n- Page Down - keyingi oyda bir xil sana ketadi.\r\n- Kiriting yoki Espace - kalendar yopiladi, va tanlangan sana bog'liq matn maydoniga ko'rsatilgan.\r\n- Escape - har qanday harakat qilmasdan taqvim yumadi."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Yanvar",
 		        "Fevral",

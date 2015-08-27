@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Napsauta tai paina Enter-näppäintä tai välilyöntiä siirtyä seuraavan kahdenkymmenen vuoden",
 		        "calendarHelp": "- Nuoli ylös ja nuoli alas - menee samana viikonpäivänä edellisen tai ensi viikolla vastaavasti. Jos kuukauden lopussa on saavutettu, jatkuu seuraavaan tai edelliseen kuukauteen tarvittaessa.\r\n- Vasen ja oikea nuoli - kehitetty yksi yössä, myös jatkumo. Visuaalisesti painopiste siirretään päivittäin ja kääreet rivi riviltä ruudukossa päivää.\r\n- Control + Page Up - Siirtyy samana päivänä edellisvuonna.\r\n- Control + Page Down - Siirtyy samana päivänä ensi vuonna.\r\n- Koti - Siirtää ensimmäisenä päivänä kuluvan kuukauden.\r\n- End - Siirtää viimeisenä päivänä kuluvan kuukauden.\r\n- Page Up - Siirtyy samana päivänä edellisen kuukauden.\r\n- Page Down - Siirtyy samana päivänä ensi kuussa.\r\n- Anna tai Espace - sulkee kalenteri, ja valittu päivämäärä näkyy liittyvän tekstikenttään.\r\n- Escape - sulkee kalenteri ilman toimintaa."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "tammikuuta",
 		        "helmikuuta",

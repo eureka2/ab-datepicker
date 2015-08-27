@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Chofoza noma cindezela Faka ukhiye noma umcibisholo wokwenza ukuya ezayo engamashumi amabili",
 		        "calendarHelp": "- Up Arrow and Down Arrow - uya ngosuku olufanayo kwesonto ngesonto odlule noma ozayo ngokulandelana. Uma ekupheleni kwenyanga kufinyelelwe, eliqhubekela ngenyanga ezayo noma eyedlule njengoba kufanele.\r\n- Left Arrow and Right Arrow - luthuthukisa ngelinye ilanga olandelayo, futhi ngo continuum. Focus ongaboni liyasuswa usuku nosuku futhi ezisonga ireyi nomugqa the grid ka izinsuku.\r\n- Control + Ikhasinkomba Up - Uthuthela kosuku olufanayo ngonyaka odlule.\r\n- Control + Ikhasinkomba Down - Uthuthela kosuku olufanayo ngomnyaka ozayo.\r\n- Home - Uthuthela osukwini lokuqala lwenyanga wamanje.\r\n- End - Uthuthela ukuba usuku lokugcina lwenyanga wamanje.\r\n- Page Up - Uthuthela kosuku olufanayo ngenyanga eyedlule.\r\n- Page Down - Uthuthela kosuku olufanayo ngenyanga ezayo.\r\n- Faka noma Espace - avale ikhalenda, futhi usuku akhethiwe livezwa ezihambisana text box.\r\n- Escape - avale ikhalenda ngaphandle isinyathelo."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Januwari",
 		        "Februwari",

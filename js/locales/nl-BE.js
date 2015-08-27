@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klik of druk op de Enter-toets of de spatiebalk om naar de volgende twintig jaar",
 		        "calendarHelp": "- Pijl omhoog en Pijl omlaag - gaat op dezelfde dag van de week in de vorige of volgende week, respectievelijk. Wanneer het einde van de maand is bereikt, door in het volgende of vorige maand geval.\r\n- Pijl-links en Pijl-rechts - voorschotten ene dag op de andere, eveneens in een continuüm. Visueel focus is verplaatst van dag tot dag en wraps van rij tot rij in het raster dagen.\r\n- Control + Page Up - Gaat naar dezelfde datum in het voorgaande jaar.\r\n- Control + Page Down - Gaat naar dezelfde datum in het volgende jaar.\r\n- Home - Hiermee gaat u naar de eerste dag van de huidige maand.\r\n- Einde - Hiermee gaat u naar de laatste dag van de huidige maand.\r\n- Page Up - Gaat naar dezelfde datum in de voorgaande maand.\r\n- Page Down - Gaat naar dezelfde datum in de komende maand.\r\n- Enter of Espace - sluit de agenda en de geselecteerde datum wordt weergegeven in het bijbehorende tekstvak.\r\n- Escape - sluit de kalender zonder enige actie."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januari",
 		        "februari",

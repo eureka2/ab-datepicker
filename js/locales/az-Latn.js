@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Basın və ya növbəti iyirmi il getmək üçün əsas və ya boşluq Enter düyməsini basın",
 		        "calendarHelp": "- Up Arrow və Down Arrow - müvafiq olaraq əvvəlki və ya sonrakı həftə həftə eyni gün gedir. Ayın sonunda əldə olunarsa, müvafiq olaraq növbəti və ya əvvəlki aya daxil davam edir.\r\n- Sol Arrow və sağ Arrow - də davamlı, növbəti bir gün avanslar. Görmə diqqət gündən günə köçürülüb və gün grid sıra sıra wraps olunur.\r\n- Control + Səhifə Up - əvvəlki ilin eyni günə Moves.\r\n- Control + Page Down - gələn ilin eyni günə Moves.\r\n- Ana səhifə - cari ayın birinci günü üçün hərəkət edir.\r\n- End - Cari ayın son gününə Moves.\r\n- Səhifə Up - bir əvvəlki aya eyni günə Moves.\r\n- Page Down - növbəti ayın eyni günə Moves.\r\n- Daxil edin və ya Espace - təqvim bağlayır, və seçilmiş tarix bağlı, mətn qutusuna göstərilir.\r\n- Escape - Hər hansı bir hərəkət olmadan təqvim bağlayır."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "yanvar",
 		        "fevral",

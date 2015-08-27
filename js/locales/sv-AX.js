@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klicka eller tryck på Enter eller mellanslagstangenten för att gå till de kommande tjugo åren",
 		        "calendarHelp": "- Uppåtpil och nedåtpil - går till samma veckodag i föregående eller nästa vecka respektive. Om slutet av månaden har nåtts, fortsätter till nästa eller föregående månad så är lämpligt.\r\n- Vänsterpil och högerpil - förskott en dag till nästa, även i ett kontinuum. Visuellt fokus flyttas från dag till dag och sveper från rad till rad i rutnätet dagar.\r\n- Kontroll + Page Up - Flyttar till samma tidpunkt föregående år.\r\n- Kontroll + Page Down - Flyttar till samma datum i nästa år.\r\n- Hem - Flyttar till den första dagen i den aktuella månaden.\r\n- End - Flyttar till den sista dagen i den aktuella månaden.\r\n- Page Up - Flyttar till samma tidpunkt föregående månad.\r\n- Page Down - Flyttar till samma datum i nästa månad.\r\n- Ange eller Espace - stänger kalendern, och det valda datumet visas i den tillhörande textrutan.\r\n- Escape - stänger kalendern utan några åtgärder."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januari",
 		        "februari",

@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Smellur eða ýttu á Enter takkann eða rúm til að fara á næstu tuttugu árum",
 		        "calendarHelp": "- Up Arrow og Down Arrow - fer í sama vikudag í fyrri eða næstu viku sig. Ef lok mánaðarins er náð, heldur áfram inn í næsta eða fyrri mánuði sem við á.\r\n- Left Arrow og Right Arrow - framfarir einn daginn í næsta, einnig í samfellu. Sjónrænt áhersla er flutt frá degi til dags og hula úr einni röð til annarrar í rist daga.\r\n- Control + Page Up - Fer á sama degi í fyrra.\r\n- Control + Page Down - Fer á sama degi á næsta ári.\r\n- Heim - Fer fyrsta degi yfirstandandi mánuð.\r\n- End - Fer síðasta degi yfirstandandi mánuð.\r\n- Page Up - Fer frá sama tímabili í fyrra mánuði.\r\n- Page Down - Fer frá sama tímabili í næsta mánuði.\r\n- Sláðu inn eða Espace - lokar dagbók, og valið dagsetningin birtist í tengslum textareitinn.\r\n- Escape - lokar dagbók án aðgerða."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "janúar",
 		        "febrúar",

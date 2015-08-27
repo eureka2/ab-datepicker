@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klik atau tekan kekunci Enter atau bar ruang untuk pergi ke dua puluh tahun akan datang",
 		        "calendarHelp": "- Panah dan Down Arrow - pergi ke hari yang sama dalam minggu masing-masing pada minggu sebelumnya atau seterusnya. Jika hujung bulan tiba, terus ke bulan seterusnya atau sebelumnya yang mana bersesuaian.\r\n- Panah Kiri dan anak panah kanan - pendahuluan satu hari ke depan, juga dalam kontinum. Tumpuan visual digerakkan dari hari ke hari dan wrap dari baris ke baris di grid hari.\r\n- Kawalan + Page Up - Pergerakan ke tarikh yang sama pada tahun sebelumnya.\r\n- Kawalan + Page Down - Pergerakan ke tarikh yang sama pada tahun hadapan.\r\n- Laman Utama - Pergerakan untuk hari pertama bulan semasa.\r\n- Tamat - Pergerakan ke hari terakhir bulan semasa.\r\n- Page Up - Pergerakan ke tarikh yang sama pada bulan sebelumnya.\r\n- Page Down - Pergerakan ke tarikh yang sama pada bulan depan.\r\n- Masukkan atau Espace - menutup kalendar, dan tarikh yang dipilih ditunjukkan di dalam kotak teks yang berkaitan.\r\n- Escape - menutup kalendar tanpa apa-apa tindakan."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Januari",
 		        "Februari",

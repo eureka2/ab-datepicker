@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Feu clic o premeu la tecla Retorn o la barra d'espai per anar als propers vint anys",
 		        "calendarHelp": "- Fletxa Amunt i avall - va per al mateix dia de la setmana en la setmana anterior o següent, respectivament. Si s'arriba al final del mes, continua al mes següent o anterior, segons correspongui.\r\n- Fletxa esquerra i Fletxa dreta - avança un dia al següent, també en un continu. Enfocament Visualment es mou dia a dia i s'embolica de fila en fila a la graella de dies.\r\n- Control + Re Pàg - Es mou a la mateixa data de l'any anterior.\r\n- Control + Page Down - Es mou a la mateixa data en el pròxim any.\r\n- Inici - Es desplaça al primer dia del mes en curs.\r\n- End - Es desplaça a l'últim dia del mes en curs.\r\n- Page Up - Es mou a la mateixa data en el mes anterior.\r\n- Page Down - Es mou a la mateixa data en el pròxim mes.\r\n- Introduir o Espace - tanca el calendari i la data seleccionada es mostra en el quadre de text associat.\r\n- Escape - tanca el calendari sense cap acció."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "de gener",
 		        "de febrer",

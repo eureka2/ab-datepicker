@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "I-click o pindutin ang Enter key o ang spacebar upang pumunta sa susunod na dalawampung taon",
 		        "calendarHelp": "- Pataas na Arrow at Down Arrow - napupunta sa parehong araw ng linggo sa nakaraang o sa susunod na linggo ayon sa pagkakabanggit. Kung ang katapusan ng buwan ay naabot, magpapatuloy sa susunod o nakaraang buwan ayon sa naaangkop.\r\n- Kaliwang Arrow at Kanang Arrow - paglago ng isang araw hanggang sa susunod, pati na rin sa isang continuum. Biswal na pokus ay inilipat sa araw-araw at bumabalot sa bawat hanay sa grid ng mga araw.\r\n- Control Page Up + - Inililipat sa parehong petsa sa nakaraang taon.\r\n- Control + Page Down - Mga Paggalaw sa parehong petsa sa susunod na taon.\r\n- Home - Mga Paggalaw sa unang araw ng kasalukuyang buwan.\r\n- End - Inililipat hanggang sa huling araw ng kasalukuyang buwan.\r\n- Page Up - Mga Paggalaw sa parehong petsa sa nakaraang buwan.\r\n- Page Down - Mga Paggalaw sa parehong petsa sa susunod na buwan.\r\n- Ipasok o Espace - nagsasara ang calendar, at ang mga napiling petsa ay ipinapakita sa mga kaugnay text box.\r\n- Escape - nagsasara ang kalendaryo nang walang anumang aksyon."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Enero",
 		        "Pebrero",

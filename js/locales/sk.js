@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kliknite na alebo stlačte klávesu Enter alebo medzerníka ísť do nasledujúcich dvadsiatich rokoch",
 		        "calendarHelp": "- Šípka hore a šípka dole - ide na rovnaký deň v týždni v predchádzajúcej alebo nasledujúcej týždeň, resp. Ak je dosiahnutá konca mesiaca, pokračuje do ďalšej alebo predchádzajúci mesiac podľa potreby.\r\n- Šipky vľavo alebo vpravo - posunie o jeden deň na ďalší, rovnako v kontinuu. Vizuálne fokus je presunutý zo dňa na deň a zábaly z radu do radu v rastri dní.\r\n- Control + Page Up - Presun k rovnakému dátumu predchádzajúceho roka.\r\n- Control + Page Down - Presun k rovnakému dátumu v budúcom roku.\r\n- Home - Presun na prvý deň aktuálneho mesiaca.\r\n- End - Presun na posledný deň aktuálneho mesiaca.\r\n- Page Up - Presun k rovnakému dátumu v predchádzajúcom mesiaci.\r\n- Page Down - Presun na rovnaký dátum v horizonte jedného mesiaca.\r\n- Enter alebo Espace - zavrie kalendár, a vybraný dátum je zobrazený v pridruženej textového poľa.\r\n- Escape - zatvorí kalendár bez akejkoľvek akcie."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "januára",
 		        "februára",

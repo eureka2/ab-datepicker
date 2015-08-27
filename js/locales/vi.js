@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Nhấn vào đây hoặc bấm phím Enter hoặc phím cách để đi đến hai mươi năm tiếp theo",
 		        "calendarHelp": "- Mũi tên lên và mũi tên xuống - đi vào cùng một ngày trong tuần trong các tuần trước đó hoặc tiếp theo tương ứng. Nếu cuối tháng là đạt, tiếp tục vào các tháng tiếp theo hoặc trước đó cho phù hợp.\r\n- Mũi tên trái và mũi tên bên phải - tiến một ngày đến ngày hôm sau, cũng trong một sự liên tục. Tập trung thị giác được chuyển từ ngày này sang ngày khác và kết thúc tốt đẹp từ hàng cách hàng trong lưới của ngày.\r\n- Control + Page Up - Di chuyển đến cùng một ngày trong năm trước đó.\r\n- Control + Page Down - Di chuyển đến cùng một ngày trong năm tiếp theo.\r\n- Trang chủ - Di chuyển đến ngày đầu tiên của tháng hiện tại.\r\n- End - Di chuyển đến ngày cuối cùng của tháng hiện tại.\r\n- Page Up - Di chuyển đến cùng một ngày trong tháng trước đó.\r\n- Page Down - Di chuyển đến cùng một ngày trong tháng tới.\r\n- Nhập hoặc Espace - đóng lịch, và ngày đã chọn được hiển thị trong hộp văn bản liên quan.\r\n- Escape - đóng lịch mà không có bất kỳ hành động."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "tháng 1",
 		        "tháng 2",

@@ -89,6 +89,9 @@ div.datepicker-calendar table.datepicker-grid {
 	font-size: 1.2em;
 	text-align: center;
 }
+div.datepicker-calendar table.datepicker-grid.rtl {
+	direction: rtl;
+}
 div.datepicker-calendar table.datepicker-grid:focus {
 	outline: none;
 }

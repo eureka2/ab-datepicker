@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Haga clic o pulse la tecla Intro o la barra espaciadora para ir a los próximos veinte años",
 		        "calendarHelp": "- Flecha arriba y Flecha abajo - va para el mismo día de la semana en la semana anterior o siguiente, respectivamente. Si se llega al final del mes, continúa en el mes siguiente o anterior, según corresponda.\r\n- Flecha izquierda y Flecha derecha - avanza un día al siguiente, también en un continuo. Enfoque Visualmente se mueve día a día y se envuelve de fila en fila en la grilla de días.\r\n- Control + Re Pág - Se mueve a la misma fecha del año anterior.\r\n- Control + Page Down - Se mueve a la misma fecha en el próximo año.\r\n- Inicio - Se desplaza al primer día del mes en curso.\r\n- End - Se desplaza al último día del mes en curso.\r\n- Page Up - Se mueve a la misma fecha en el mes anterior.\r\n- Page Down - Se mueve a la misma fecha en el próximo mes.\r\n- Introducir o Espace - cierra el calendario y la fecha seleccionada se muestra en el cuadro de texto asociado.\r\n- Escape - cierra el calendario sin ninguna acción."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "enero",
 		        "febrero",

@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Klicken Sie auf oder drücken Sie die Eingabetaste oder die Leertaste, um zu den nächsten zwanzig Jahren gehen",
 		        "calendarHelp": "- Pfeil nach oben und Pfeil nach unten - geht auf den gleichen Tag in der Woche in der vorherigen oder nächsten Woche auf. Wenn das Ende des Monats erreicht ist, setzt sich in der vorherigen oder nächsten Monat nach Bedarf.\r\n- Pfeil nach links und Pfeil nach rechts - rückt einem Tag zum nächsten, auch in einem Kontinuum. Visuell Fokus von Tag zu Tag verschoben und wickelt von Reihe zu im Raster von Tagen zu rudern.\r\n- Strg + Page Up - Wechselt zum gleichen Zeitpunkt im Vorjahr.\r\n- Steuerung + Bild ab - Wechselt zum gleichen Zeitpunkt im nächsten Jahr.\r\n- Startseite - Wechselt zum ersten Tag des aktuellen Monats.\r\n- Ende - Moves auf den letzten Tag des laufenden Monats.\r\n- Page Up - Wechselt zum gleichen Zeitpunkt im Vormonat.\r\n- Page Down - Wechselt zum gleichen Zeitpunkt in den nächsten Monat.\r\n- Geben Sie oder Espace - schließt den Kalender, und das ausgewählte Datum wird in das entsprechende Textfeld angezeigt.\r\n- Escape - schließt den Kalender ohne Aktion."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "Januar",
 		        "Februar",

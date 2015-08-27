@@ -19,6 +19,7 @@
 		        "changeRangeButtonLabel": "Kliknij lub naciśnij klawisz lub klawisz spacji, Enter, aby przejść do następnych dwudziestu lat",
 		        "calendarHelp": "- Strzałka w górę i Strzałka w dół - idzie do tego samego dnia tygodnia w poprzednim lub następnym tygodniu odpowiednio. Jeśli dojdzie do końca miesiąca, trwa do następnego lub poprzedniego miesiąca odpowiednio.\r\n- Strzałka w lewo i Strzałka w prawo - przesuwa jeden dzień następny, również w kontinuum. Wizualnie nacisk zostanie przeniesiony z dnia na dzień i zawija z rzędu do rzędu w siatce dni.\r\n- Ctrl + Page Up - Przenosi do tego samego dnia w roku poprzednim.\r\n- Control + Page Down - Przejście do tego samego dnia w następnym roku.\r\n- Strona główna - Przechodzi do pierwszego dnia bieżącego miesiąca.\r\n- Koniec - Przechodzi do ostatniego dnia bieżącego miesiąca.\r\n- Page Up - Przenosi do tego samego dnia w poprzednim miesiącu.\r\n- Page Down - Przejście do tego samego dnia w następnym miesiącu.\r\n- Wprowadź lub Espace - zamyka kalendarz, a wybrana data jest wyświetlany w polu tekstowym powiązanym.\r\n- Ucieczka - zamyka kalendarz bez jakiegokolwiek działania."
 		    },
+		    "directionality": "LTR",
 		    "month_names": [
 		        "stycznia",
 		        "lutego",
