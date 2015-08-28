@@ -65,10 +65,6 @@
  *	The grid container set aria-activedescendant to the id of the currently focused gridcell. 
  *	 
  */
- 
-if (typeof jQuery === 'undefined') {
-  throw new Error('Datepicker\'s JavaScript requires jQuery')
-}
 
 (function () {
 	"use strict";
@@ -224,7 +220,18 @@ if (typeof jQuery === 'undefined') {
 	}
 })();
 
-+function ($) {
+(function(factory){
+    if (typeof define === "function" && define.amd) {
+        define(["jquery"], factory);
+    } else if (typeof exports === 'object') {
+        factory(require('jquery'));
+    } else {
+		if (typeof jQuery === 'undefined') {
+			throw new Error('Datepicker\'s JavaScript requires jQuery')
+		}
+        factory(jQuery);
+    }
+}(function($, undefined){
 	'use strict';
 
 	var datepickerButton = [
@@ -397,7 +404,7 @@ if (typeof jQuery === 'undefined') {
 		}
 	}
 	
-	Datepicker.VERSION  = '1.0.0'
+	Datepicker.VERSION  = '2.0.0'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -2866,4 +2873,4 @@ if (typeof jQuery === 'undefined') {
 		return this
 	}
   
-}(jQuery);
+}));
