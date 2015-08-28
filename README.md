@@ -124,6 +124,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |closeButtonLabel      |Accessibility label : 'aria-labelledby' attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonLabel (*)|closeButtonLabel: "Fermez le calendrier"|
 |theme                 |name of the theme|default|theme: 'green'|
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
+|inline                |Display the datepicker inline inside a given div|false|inline: $('#inline-div')|
 
 (*) Default value from the locale file
 
@@ -180,6 +181,11 @@ where name (type: string) contains the name of your theme
 $('your date selector').datepicker('modal', bool);	
 ```
 Defines the opening mode (modal or not) of the calendar portion of the datepicker. bool can be true or false.
+### inline
+```javascript
+$('your date selector').datepicker('inline', value);	
+```
+Display the datepicker inline inside a given div. value can be the id of a div, a jQuery object of a div or false.
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
