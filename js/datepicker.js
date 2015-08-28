@@ -314,7 +314,6 @@ if (typeof jQuery === 'undefined') {
 		this.$calendar = $(calendar);
 		this.$calendar.addClass(this.options.theme);
 		this.$target.after(this.$button);
-		this.$target.parent().after(this.$calendar);
 		
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
 		if (this.$calendar.parent().css('position') === 'static') {
@@ -337,7 +336,7 @@ if (typeof jQuery === 'undefined') {
 		}
 		var $days = this.$grid.find('th.datepicker-day abbr');
 		this.drawCalendarHeader();
-		if (this.options.modal == true) {
+		if (this.options.inline == false && this.options.modal == true) {
 			this.$close = this.$calendar.find('.datepicker-close');
 			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
 			this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
@@ -362,9 +361,6 @@ if (typeof jQuery === 'undefined') {
 		};
 	
 		this.bindHandlers();
-	
-		this.$calendar.attr('aria-hidden', 'true');
-		this.$calendar.hide();
 		this.$button.click(function(e) {
 			if (self.$calendar.attr('aria-hidden') === 'true') {
 				self.initializeDate();
@@ -388,6 +384,17 @@ if (typeof jQuery === 'undefined') {
 			}
 			
 		});
+		
+		if (this.options.inline != false) {
+			this.$button.hide();
+			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
+			$container.append(this.$calendar);
+			this.$calendar.css({position: 'relative', left: '0px'});
+			this.initializeDate();
+		} else {
+			this.$target.parent().after(this.$calendar);
+			this.hide();
+		}
 	}
 	
 	Datepicker.VERSION  = '1.0.0'
@@ -413,6 +420,7 @@ if (typeof jQuery === 'undefined') {
 		closeButtonLabel: Date.dp_locales.texts.closeButtonLabel,
 		theme: 'default',
 		modal: false,
+		inline: false,
 		min: null,
 		max: null
 	}
@@ -2023,12 +2031,14 @@ if (typeof jQuery === 'undefined') {
 		var roomAfter = Math.floor($(window).height() - (groupTop + groupHeight - $(window).scrollTop()));
 		if (roomAfter < calendarHeight && roomAfter < roomBefore) {
 			// show calendar above group
+			this.$calendar.addClass('above');
 			this.$calendar.css({
 				top: (groupOffsetTop - calendarHeight) + 'px',
 				left: (groupOffsetLeft + parentPaddingLeft) + 'px'
 			}); 
 		} else {
 			  // show calendar below group
+			this.$calendar.addClass('below');
 			this.$calendar.css({
 				top: (groupHeight + groupOffsetTop) + 'px',
 				left: (groupOffsetLeft + parentPaddingLeft) + 'px'
@@ -2040,6 +2050,26 @@ if (typeof jQuery === 'undefined') {
 		this.$calendar.fadeIn();
 		$('.datepicker-calendar').trigger('ab.datepicker.opened', [self.id]);
 	} // end show()
+	
+	/** 
+	 *	refresh() is a member function to refesh the datepicker content when an option change. 
+	 *
+	 *	@return N/A
+	 */
+	Datepicker.prototype.refresh = function() {
+		this.drawCalendarHeader();
+		switch	(this.gridType) {
+			case 0:
+				this.populateDaysCalendar();
+				break;
+			case 1:
+				this.populateMonthsCalendar();
+				break;
+			case 2:
+				this.populateYearsCalendar();
+				break;
+		}
+	} // end refresh()
 
 	/** 
 	 *	handleDocumentClick() is a member function to handle click on document. 
@@ -2067,21 +2097,24 @@ if (typeof jQuery === 'undefined') {
 	 *	@return N/A
 	 */
 	 Datepicker.prototype.hide = function() {
-		var self = this;
-		// unbind the modal event sinks
-		if (this.options.modal == true) {
-			$(document).unbind('click mousedown mouseup');
-			this.greyOut(false);
-		} else {
-			$(document).unbind('click', self.handleDocumentClick);
-			this.$calendar.unbind('ab.datepicker.opening');
+		if (this.options.inline == false) {
+			var self = this;
+			// unbind the modal event sinks
+			if (this.options.modal == true) {
+				$(document).unbind('click mousedown mouseup');
+				this.greyOut(false);
+			} else {
+				$(document).unbind('click', self.handleDocumentClick);
+				this.$calendar.unbind('ab.datepicker.opening');
+			}
+			// hide the dialog
+			this.$calendar.removeClass('above below');
+			this.$calendar.attr('aria-hidden', 'true');
+			this.$calendar.fadeOut();
+			$('.datepicker-calendar').trigger('ab.datepicker.closed', [self.id]);
+			// set focus on the focus target
+			this.$target.focus();
 		}
-		// hide the dialog
-		this.$calendar.attr('aria-hidden', 'true');
-		this.$calendar.fadeOut();
-		$('.datepicker-calendar').trigger('ab.datepicker.closed', [self.id]);
-		// set focus on the focus target
-		this.$target.focus();
 	} // end hide()
 	
 	/** 
@@ -2577,11 +2610,14 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.min = function(value) {
 		if (value != null) {
-			this.options.min = this.parseDate(value);
+			this.options.min = value instanceof Date ? value : this.parseDate(value);
 			if (this.options.min != null && this.dateObj < this.options.min) {
 				this.$target.attr('aria-invalid', true);
 				this.$target.parents('.form-group').addClass('has-error');
 				this.dateObj = this.options.min;
+			}
+			if (this.options.inline != false) {
+				this.refresh();
 			}
 		}
 		return this.options.min;
@@ -2595,11 +2631,14 @@ if (typeof jQuery === 'undefined') {
 	 */
 	Datepicker.prototype.max = function(value) {
 		if (value != null) {
-			this.options.max = this.parseDate(value);
+			this.options.max = value instanceof Date ? value : this.parseDate(value);
 			if (this.options.max != null && this.dateObj > this.options.max) {
 				this.$target.attr('aria-invalid', true);
 				this.$target.parents('.form-group').addClass('has-error');
 				this.dateObj = this.options.max;
+			}
+			if (this.options.inline != false) {
+				this.refresh();
 			}
 		}
 		return this.options.max;
@@ -2631,7 +2670,11 @@ if (typeof jQuery === 'undefined') {
 	Datepicker.prototype.firstDayOfWeek = function(value) {
 		if (value != null) {
 			this.options.firstDayOfWeek = parseInt(value);
-			this.drawCalendarHeader();
+			if (this.options.inline == false) {
+				this.drawCalendarHeader();
+			} else {
+				this.refresh();
+			}
 		}
 		return this.options.firstDayOfWeek;
 	} // end firstDayOfWeek()
@@ -2692,8 +2735,10 @@ if (typeof jQuery === 'undefined') {
 		if (value != null) {
 			this.options.modal = value;
 			if (this.options.modal == true) {
-				this.$calendar.find('.datepicker-close-wrap').show();
-				this.$calendar.find('.datepicker-bn-close-label').show();
+				if (this.options.inline == false) {
+					this.$calendar.find('.datepicker-close-wrap').show();
+					this.$calendar.find('.datepicker-bn-close-label').show();
+				}
 				this.$close = this.$calendar.find('.datepicker-close');
 				this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
 				this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
@@ -2711,7 +2756,41 @@ if (typeof jQuery === 'undefined') {
 		}
 		return this.options.modal;
 	} // end modal()
-		
+
+	/** 
+	 *	inline() is a public member function which allow to set or unset the inline mode. 
+	 *
+	 *	@param (value string or false) the id or jquery object of the datepicker container, false otherwise (not inline)
+	 *	@return the given value
+	 */
+	Datepicker.prototype.inline = function(value) {	
+		if (value != null) {
+			if (value != false) {
+				this.$button.hide();
+				this.$calendar.find('.datepicker-close-wrap').hide();
+				this.$calendar.find('.datepicker-bn-close-label').hide();
+				var $container = typeof value === 'string' ? $('#' + value) : value;
+				$container.append(this.$calendar);
+				this.$calendar.css({position: 'relative', left: '0px', top: '0px'});
+				this.options.inline = value;
+				this.initializeDate();
+				this.$calendar.show();
+			} else {
+				this.$target.parent().after(this.$calendar);
+				this.$button.show();
+				if (this.options.modal == true) {
+					this.$calendar.find('.datepicker-close-wrap').show();
+					this.$calendar.find('.datepicker-bn-close-label').show();
+				}
+				this.$calendar.css({position: 'absolute'});
+				this.options.inline = value;
+				this.hide();
+			}
+		}
+		return this.options.inline;
+	} // end inline()
+	
+	
 	/** 
 	 *	format() is a public member function to format a date according the output format. 
 	 *
