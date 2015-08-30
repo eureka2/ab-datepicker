@@ -224,7 +224,7 @@ div.datepicker-calendar.default table.datepicker-grid td.curYear {
 }
 div.datepicker-calendar.default table.datepicker-grid td.empty {
 	border:  none;
-	background-color: #F9F9F9;
+	color: #CCC;
 }
 div.datepicker-calendar.default table.datepicker-grid td.selectable:hover,
 div.datepicker-calendar.default table.datepicker-grid td.selectable.focus {
@@ -249,6 +249,11 @@ a.datepicker-button.bootstrap:focus {
 	background-color: #DDD;
 }
 div.datepicker-calendar.bootstrap {
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+	width: 80%;
+	min-width: 160px;
+	font-size: .8em;
+	background-clip: padding-box;
 	background-color: #FFF;
 	border-radius: 4px;
 	line-height: 20px;
@@ -345,7 +350,7 @@ div.datepicker-calendar.bootstrap table.datepicker-grid td.curYear {
 }
 div.datepicker-calendar.bootstrap table.datepicker-grid td.empty {
 	border:  none;
-	background-color: #F9F9F9;
+	color: #CCC;
 }
 div.datepicker-calendar.bootstrap table.datepicker-grid td.selectable:hover,
 div.datepicker-calendar.bootstrap table.datepicker-grid td.selectable.focus {
@@ -424,6 +429,7 @@ div.datepicker-calendar.maroon table.datepicker-grid td.curYear {
 }
 div.datepicker-calendar.maroon table.datepicker-grid td.empty {
 	background-color: #F9F9F9;
+	color: #AAA;
 }
 div.datepicker-calendar.maroon table.datepicker-grid td.selectable:hover,
 div.datepicker-calendar.maroon table.datepicker-grid td.selectable.focus {
@@ -504,6 +510,7 @@ div.datepicker-calendar.blue table.datepicker-grid td.curYear {
 }
 div.datepicker-calendar.blue table.datepicker-grid td.empty {
 	background-color: #F9F9F9;
+	color: #AAA;
 }
 div.datepicker-calendar.blue table.datepicker-grid td.selectable:hover,
 div.datepicker-calendar.blue table.datepicker-grid td.selectable.focus {
@@ -584,6 +591,7 @@ div.datepicker-calendar.green table.datepicker-grid td.curYear {
 }
 div.datepicker-calendar.green table.datepicker-grid td.empty {
 	background-color: #F9F9F9;
+	color: #AAA;
 }
 div.datepicker-calendar.green table.datepicker-grid td.selectable:hover,
 div.datepicker-calendar.green table.datepicker-grid td.selectable.focus {

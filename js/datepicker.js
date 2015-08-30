@@ -348,8 +348,8 @@
 			this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
 			this.$calendar.find('.datepicker-bn-close-label').html(this.options.closeButtonLabel);
 		} else {
-			this.$calendar.find('.datepicker-close-wrap').hide();
-			this.$calendar.find('.datepicker-bn-close-label').hide();
+			this.hideObject(this.$calendar.find('.datepicker-close-wrap'));
+			this.hideObject(this.$calendar.find('.datepicker-bn-close-label'));
 		}
 		
 		this.keys = {
@@ -393,7 +393,7 @@
 		});
 		
 		if (this.options.inline != false) {
-			this.$button.hide();
+			this.hideObject(this.$button);
 			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
 			$container.append(this.$calendar);
 			this.$calendar.css({position: 'relative', left: '0px'});
@@ -409,6 +409,7 @@
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
 		weekDayFormat: 'short', // Display format of the weekday names - values are 'short' or 'narrow'
+		daysOfWeekDisabled: [],
 		inputFormat: [Date.dp_locales.short_format],
 		outputFormat: Date.dp_locales.short_format,
 		titleFormat: Date.dp_locales.full_format,
@@ -545,35 +546,41 @@
 			this.$fastnext.addClass('enabled');
 			this.$fastnext.removeClass('disabled');
 		}
-		this.$fastprev.show();
-		this.$fastnext.show();
+		this.showObject(this.$fastprev);
+		this.showObject(this.$fastnext);
 		var numDays = this.getDaysInMonth(this.year, this.month);
+		var numPrevDays = this.getDaysInMonth(previousMonth.year, previousMonth.month);
 		var startWeekday = new Date(this.year, this.month, 1).getDay();
 		var lastDayOfWeek = (this.options.firstDayOfWeek + 6) % 7;
 		var curDay = 1;
 		var rowCount = 1;
 		this.$monthObj.html(this.locales.month_names[this.month] + ' ' + this.year);
-		this.$grid.find('thead').show();
+		this.showObject(this.$grid.find('thead'));
 		// clear the grid
 		var gridCells = '\t<tr id="row0-'+this.id+'" role="row">\n';
 		// Insert the leading empty cells
+		var numEmpties = 0;
 		var weekday = this.options.firstDayOfWeek;
 		while (weekday != startWeekday) {
-			gridCells += '\t\t<td class="empty">&nbsp;</td>\n';
+			numEmpties++;
 			weekday = (weekday + 1) % 7;
+		}
+		for ( ; numEmpties > 0; numEmpties--) {
+			gridCells += '\t\t<td class="empty">' + (numPrevDays - numEmpties + 1) + '</td>\n';
 		}
 		// insert the days of the month.
 		for (curDay = 1; curDay <= numDays; curDay++) {
 			var date = new Date(this.year, this.month, curDay, 0, 0, 0, 0);
 			var longdate = this.formatDate(date, this.options.titleFormat);
-			if (curDay == this.date && this.month == this.curMonth && this.year == this.curYear) {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day curDay selectable"';
+			var curDayClass = curDay == this.date && this.month == this.curMonth && this.year == this.curYear ? ' curDay' : '';
+			if ($.inArray(weekday, this.options.daysOfWeekDisabled) > -1) {
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"'; 
 			} else if (this.options.min != null && date < this.options.min) {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable"'; 
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"'; 
 			} else if (this.options.max != null && date > this.options.max) {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable"'; 
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"'; 
 			} else {
-				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day selectable"'; 
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day selectable' + curDayClass + '"'; 
 			}
 			gridCells += ' data-value="' + curDay + '"';
 			gridCells += ' title="' + longdate + '"';
@@ -591,7 +598,7 @@
 		}
 		// Insert any trailing empty cells
 		while (weekday != lastDayOfWeek) {
-			gridCells += '\t\t<td class="empty">&nbsp;</td>\n';
+			gridCells += '\t\t<td class="empty">' + (++numEmpties) + '</td>\n';
 			weekday = (weekday + 1) % 7;
 		}
 		gridCells += '\t</tr>';
@@ -611,8 +618,8 @@
 	Datepicker.prototype.populateMonthsCalendar = function() {
 		this.$calendar.find('.datepicker-bn-prev-label').html(this.options.prevMonthButtonLabel);
 		this.$calendar.find('.datepicker-bn-next-label').html(this.options.nextMonthButtonLabel);
-		this.$fastprev.hide();
-		this.$fastnext.hide();
+		this.hideObject(this.$fastprev);
+		this.hideObject(this.$fastnext);
 		if (this.options.min != null && this.year - 1 < this.options.min.getFullYear()) {
 			this.$prev.attr('title', '');
 			this.$prev.addClass('disabled');
@@ -637,7 +644,7 @@
 		var $tbody = this.$grid.find('tbody');
 		this.$monthObj.html(this.year);
 		// clear the grid
-		this.$grid.find('thead').hide();
+		this.hideObject(this.$grid.find('thead'));
 		$tbody.empty();
 		$('#datepicker-err-msg-' + this.id).empty();
 		var gridCells = '\t<tr id="row0-'+this.id+'" role="row">\n';
@@ -676,8 +683,8 @@
 	Datepicker.prototype.populateYearsCalendar = function() {
 		this.$calendar.find('.datepicker-bn-prev-label').html(this.options.prevYearButtonLabel);
 		this.$calendar.find('.datepicker-bn-next-label').html(this.options.nextYearButtonLabel);
-		this.$fastprev.hide();
-		this.$fastnext.hide();
+		this.hideObject(this.$fastprev);
+		this.hideObject(this.$fastnext);
 		if (this.options.min != null && this.year - 20 < this.options.min.getFullYear()) {
 			this.$prev.attr('title', '');
 			this.$prev.addClass('disabled');
@@ -703,7 +710,7 @@
 		var $tbody = this.$grid.find('tbody');
 		this.$monthObj.html(startYear + '-' + endYear);
 		// clear the grid
-		this.$grid.find('thead').hide();
+		this.hideObject(this.$grid.find('thead'));
 		$tbody.empty();
 		$('#datepicker-err-msg-' + this.id).empty();
 		var gridCells = '\t<tr id="row0-'+this.id+'" role="row">\n';
@@ -1988,6 +1995,28 @@
 	} // end update()
 	
 	/** 
+	 *	hideObject() is a member function to hide an element of the datepicker. 
+	 *
+	 *	@param ($element jQuery object) the element to hide
+	 *	@return N/A
+	 */
+	Datepicker.prototype.hideObject = function($element) {
+		$element.attr('aria-hidden', true);
+		$element.hide();
+	} // end hideObject()
+	
+	/** 
+	 *	showObject() is a member function to show an element of the datepicker. 
+	 *
+	 *	@param ($element jQuery object) the element to show
+	 *	@return N/A
+	 */
+	Datepicker.prototype.showObject = function($element) {
+		$element.attr('aria-hidden', false);
+		$element.show();
+	} // end showObject()
+	
+	/** 
 	 *	show() is a member function to show the Datepicker and give it focus. 
 	 *
 	 *	@return N/A
@@ -2687,6 +2716,30 @@
 	} // end firstDayOfWeek()
 	
 	/** 
+	 *	daysOfWeekDisabled() is a public member function which allow disabling of some weekdays. 
+	 *
+	 *	@param (value string) the new disabled week days
+	 *	@return the disabled week days
+	 */
+	Datepicker.prototype.daysOfWeekDisabled = function(value) {		
+		if (value != null) {
+			this.options.daysOfWeekDisabled = [];
+			if (! $.isArray(value)) {
+				value = [value];
+			}
+			var self = this;
+			$.each(value, function(i, val) {
+				if (typeof val === 'number') {
+					self.options.daysOfWeekDisabled.push(val);
+				} else if (typeof val === 'string') {
+					self.options.daysOfWeekDisabled.push(parseInt(val));
+				}				
+			});
+		}
+		return this.options.daysOfWeekDisabled;
+	} // end daysOfWeekDisabled()
+	
+	/** 
 	 *	weekDayFormat() is a public member function which allow change the format of weekdays name. 
 	 *
 	 *	@param (value string) the new format. Allowed : 'short' or 'narrow'
@@ -2708,7 +2761,7 @@
 	 */
 	Datepicker.prototype.inputFormat = function(value) {		
 		if (value != null) {
-			if (typeof value === 'string') {
+			if (! $.isArray(value)) {
 				value = [value];
 			}
 			if (this.$target.attr('placeholder') == this.options.inputFormat[0]) {
@@ -2743,8 +2796,8 @@
 			this.options.modal = value;
 			if (this.options.modal == true) {
 				if (this.options.inline == false) {
-					this.$calendar.find('.datepicker-close-wrap').show();
-					this.$calendar.find('.datepicker-bn-close-label').show();
+					this.showObject(this.$calendar.find('.datepicker-close-wrap'));
+					this.showObject(this.$calendar.find('.datepicker-bn-close-label'));
 				}
 				this.$close = this.$calendar.find('.datepicker-close');
 				this.$close.html(this.options.closeButtonTitle).attr('title', this.options.closeButtonLabel);
@@ -2757,8 +2810,8 @@
 					return self.handleCloseKeyDown(e);
 				});
 			} else {
-				this.$calendar.find('.datepicker-close-wrap').hide();
-				this.$calendar.find('.datepicker-bn-close-label').hide();
+				this.hideObject(this.$calendar.find('.datepicker-close-wrap'));
+				this.hideObject(this.$calendar.find('.datepicker-bn-close-label'));
 			}
 		}
 		return this.options.modal;
@@ -2773,21 +2826,21 @@
 	Datepicker.prototype.inline = function(value) {	
 		if (value != null) {
 			if (value != false) {
-				this.$button.hide();
-				this.$calendar.find('.datepicker-close-wrap').hide();
-				this.$calendar.find('.datepicker-bn-close-label').hide();
+				this.hideObject(this.$button);
+				this.hideObject(this.$calendar.find('.datepicker-close-wrap'));
+				this.hideObject(this.$calendar.find('.datepicker-bn-close-label'));
 				var $container = typeof value === 'string' ? $('#' + value) : value;
 				$container.append(this.$calendar);
 				this.$calendar.css({position: 'relative', left: '0px', top: '0px'});
 				this.options.inline = value;
 				this.initializeDate();
-				this.$calendar.show();
+				this.showObject(this.$calendar);
 			} else {
 				this.$target.parent().after(this.$calendar);
-				this.$button.show();
+				this.showObject(this.$button);
 				if (this.options.modal == true) {
-					this.$calendar.find('.datepicker-close-wrap').show();
-					this.$calendar.find('.datepicker-bn-close-label').show();
+					this.showObject(this.$calendar.find('.datepicker-close-wrap'));
+					this.showObject(this.$calendar.find('.datepicker-bn-close-label'));
 				}
 				this.$calendar.css({position: 'absolute'});
 				this.options.inline = value;
