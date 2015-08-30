@@ -105,7 +105,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
 |max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
 |firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
-|daysOfWeekDisabled    |Array of the week days number to disable|daysOfWeekDisabled: [0, 6]|
+|daysOfWeekDisabled    |Array of the week days number to disable|[]|daysOfWeekDisabled: [0, 6]|
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 |inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
 |outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
