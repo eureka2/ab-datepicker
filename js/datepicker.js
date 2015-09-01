@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.0 
+ * Accessible Datepicker v2.1.1 
  * Copyright 2015 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -322,6 +322,17 @@
 		this.$calendar.addClass(this.options.theme);
 		this.$target.after(this.$button);
 		
+		if (this.options.inline != false) {
+			this.hideObject(this.$button);
+			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
+			$container.append(this.$calendar);
+			this.$calendar.css({position: 'relative', left: '0px'});
+			this.initializeDate();
+		} else {
+			this.$target.parent().after(this.$calendar);
+			this.hide();
+		}
+		
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
 		if (this.$calendar.parent().css('position') === 'static') {
 			this.$calendar.parent().css('position', 'relative');
@@ -391,20 +402,9 @@
 			}
 			
 		});
-		
-		if (this.options.inline != false) {
-			this.hideObject(this.$button);
-			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
-			$container.append(this.$calendar);
-			this.$calendar.css({position: 'relative', left: '0px'});
-			this.initializeDate();
-		} else {
-			this.$target.parent().after(this.$calendar);
-			this.hide();
-		}
 	}
 	
-	Datepicker.VERSION  = '2.1.0'
+	Datepicker.VERSION  = '2.1.1'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -2841,6 +2841,9 @@
 				if (this.options.modal == true) {
 					this.showObject(this.$calendar.find('.datepicker-close-wrap'));
 					this.showObject(this.$calendar.find('.datepicker-bn-close-label'));
+				}
+				if (this.$calendar.parent().css('position') === 'static') {
+					this.$calendar.parent().css('position', 'relative');
 				}
 				this.$calendar.css({position: 'absolute'});
 				this.options.inline = value;
