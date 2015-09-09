@@ -664,6 +664,7 @@
 			}
 			gridCells += ' data-value="' + curMonth + '"';
 			gridCells += ' title="' + this.locales.month_names[curMonth] + ' ' + this.year + '"';
+			gridCells += ' aria-label="' + this.locales.month_names[curMonth] + ' ' + this.year + '"';
 			gridCells += ' role="gridcell" tabindex="-1" aria-selected="false">' + this.locales.month_names_abbreviated[curMonth];
 			gridCells +=  '</td>';
 			if (curMonth == 3 || curMonth == 7) {
