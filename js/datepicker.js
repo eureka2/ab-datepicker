@@ -249,18 +249,18 @@
 		'		<div id="datepicker-month-CALENDARID" class="datepicker-month" tabindex="0" role="heading" aria-live="assertive" aria-atomic="true" title="Click or press the Enter key or the spacebar to change the month">July 2015</div>',
 		'	</div>',
 		'	<table class="datepicker-grid" role="grid" aria-readonly="true" aria-activedescendant="datepicker-err-msg-CALENDARID" aria-labelledby="datepicker-month-CALENDARID" tabindex="0">',
-		'		<thead>',
+		'		<thead role="presentation">',
 		'			<tr class="datepicker-weekdays" role="row">',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Sunday">Su</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Monday">Mo</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Tuesday">Tu</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Wednesday">We</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Thursday">Th</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Friday">Fr</abbr></th>',
-		'				<th class="datepicker-day" role="columnheader"><abbr title="Saturday">Sa</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Sunday"><abbr title="Sunday">Su</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Monday"><abbr title="Monday">Mo</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Tuesday"><abbr title="Tuesday">Tu</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Wednesday"><abbr title="Wednesday">We</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Thursday"><abbr title="Thursday">Th</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Friday"><abbr title="Friday">Fr</abbr></th>',
+		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Saturday"><abbr title="Saturday">Sa</abbr></th>',
 		'			</tr>',
 		'		</thead>',
-		'		<tbody>',
+		'		<tbody role="presentation">',
 		'			<tr>',
 		'				<td id="datepicker-err-msg-CALENDARID" colspan="7">Javascript must be enabled</td>',
 		'			</tr>',
@@ -386,6 +386,7 @@
 			} else {
 				self.hide();
 			}
+			self.selectGridCell(self.$grid.attr('aria-activedescendant'));
 			e.stopPropagation();
 			return false;
 		});
@@ -475,10 +476,11 @@
 	 *	@return N/A
 	 */
 	Datepicker.prototype.drawCalendarHeader = function() {
-		var $days = this.$grid.find('th.datepicker-day abbr');
+		var $days = this.$grid.find('th.datepicker-day');
 		var weekday = this.options.firstDayOfWeek;
 		for (var i = 0; i < 7; i++) {
-			$days.eq(i).attr('title', this.locales.day_names[weekday]).text(
+			$days.eq(i).attr('aria-label', this.locales.day_names[weekday])
+			$days.children('abbr').eq(i).attr('title', this.locales.day_names[weekday]).text(
 				this.options.weekDayFormat === 'short' ?
 					this.locales.day_names_short[weekday] :
 					this.locales.day_names_narrow[weekday]
@@ -584,7 +586,8 @@
 			}
 			gridCells += ' data-value="' + curDay + '"';
 			gridCells += ' title="' + longdate + '"';
-			gridCells += ' headers="row' + rowCount + '-' + this.id + ' ' + this.locales.day_names[weekday] + '" role="gridcell" aria-selected="false">' + curDay;
+			gridCells += ' aria-label="' + longdate + '"';
+			gridCells += ' headers="row' + rowCount + '-' + this.id + ' ' + this.locales.day_names[weekday] + '" role="gridcell" tabindex="-1" aria-selected="false">' + curDay;
 			gridCells +=  '</td>';
 			if (weekday == lastDayOfWeek && curDay < numDays) {
 				// This was the last day of the week, close it out
@@ -661,7 +664,7 @@
 			}
 			gridCells += ' data-value="' + curMonth + '"';
 			gridCells += ' title="' + this.locales.month_names[curMonth] + ' ' + this.year + '"';
-			gridCells += ' role="gridcell" aria-selected="false">' + this.locales.month_names_abbreviated[curMonth];
+			gridCells += ' role="gridcell" tabindex="-1" aria-selected="false">' + this.locales.month_names_abbreviated[curMonth];
 			gridCells +=  '</td>';
 			if (curMonth == 3 || curMonth == 7) {
 				gridCells += '\t</tr>\n\t<tr id="row' + rowCount + '-' + this.id + '" role="row">\n';
@@ -727,7 +730,7 @@
 			}
 			gridCells += ' data-value="' + curYear + '"';
 			gridCells += ' title="' + curYear + '"';
-			gridCells += ' role="gridcell" aria-selected="false">' + curYear;
+			gridCells += ' role="gridcell" tabindex="-1" aria-selected="false">' + curYear;
 			gridCells +=  '</td>';
 			var curPos = curYear - startYear;
 			if (curPos == 4 || curPos == 9 || curPos == 14) {
@@ -765,7 +768,7 @@
 			var numDays = this.getDaysInMonth(this.year, this.month);
 			var day = 'cell' + (numDays - offset)  + '-' + this.id;
 			this.$grid.attr('aria-activedescendant', day);
-			$('#' + day).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(day);
 		}
 		return true;
 	} // end showDaysOfPrevMonth()
@@ -792,8 +795,7 @@
 		this.populateDaysCalendar();
 		// update the table's activedescendant to point to the active day
 		var $active = this.$grid.find("tbody td[data-value='" + this.date + "']");
-		$active.addClass('focus').attr('aria-selected', 'true');
-		this.$grid.attr('aria-activedescendant', $active.attr('id'));
+		this.selectGridCell($active.attr('id'));
 		return true;
 	} // end showDaysOfMonth()
 
@@ -818,7 +820,7 @@
 		if (offset != null) {
 			var month = 'cell' + (12 - offset)  + '-' + this.id;
 			this.$grid.attr('aria-activedescendant', month);
-			$('#' + month).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(month);
 		}
 		return true;
 	} // end showMonthsOfPrevYear()
@@ -840,8 +842,8 @@
 		this.populateMonthsCalendar();
 		// update the table's activedescendant to point to the active month
 		var $active = this.$grid.find("tbody td[data-value='" + this.month + "']");
-		$active.addClass('focus').attr('aria-selected', 'true');
 		this.$grid.attr('aria-activedescendant', $active.attr('id'));
+		this.selectGridCell($active.attr('id'));
 		return true;
 	} // end showMonthsOfYear()
 
@@ -866,7 +868,7 @@
 		if (offset != null) {
 			var year = 'cell' + (20 - offset)  + '-' + this.id;
 			this.$grid.attr('aria-activedescendant', year);
-			$('#' + year).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(year);
 		}
 		return true;
 	} // end showYearsOfPrevRange()
@@ -895,9 +897,8 @@
 		// if offset was specified, set focus on the first day + specified offset
 		if (offset != null) {
 			var day = 'cell' + offset + '-' + this.id;
-
 			this.$grid.attr('aria-activedescendant', day);
-			$('#' + day).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(day);
 		}
 		return true;
 	} // end showDaysOfNextMonth()
@@ -922,9 +923,8 @@
 		// if offset was specified, set focus on the first day + specified offset
 		if (offset != null) {
 			var month = 'cell' + offset + '-' + this.id;
-
 			this.$grid.attr('aria-activedescendant', month);
-			$('#' + month).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(month);
 		}
 		return true;
 	} // end showMonthsOfNextYear()
@@ -949,9 +949,8 @@
 		// if offset was specified, set focus on the first day + specified offset
 		if (offset != null) {
 			var year = 'cell' + offset + '-' + this.id;
-
 			this.$grid.attr('aria-activedescendant', year);
-			$('#' + year).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(year);
 		}
 		return true;
 	} // end showYearsOfNextRange()
@@ -1072,10 +1071,11 @@
 			var active = this.$grid.attr('aria-activedescendant');
 			if (this.month != this.curMonth || this.year != this.curYear) {
 				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+				this.selectGridCell('cell1' + '-' + this.id);
 			} else {
 				this.$grid.attr('aria-activedescendant', active);
+				this.selectGridCell(active);
 			}
-			this.$grid.focus();
 		}
 		e.stopPropagation();
 		return false;
@@ -1101,26 +1101,28 @@
 				if (ok) {
 					if (this.month != this.curMonth || this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+						this.selectGridCell('cell1' + '-' + this.id);
 					} else {
 						this.$grid.attr('aria-activedescendant', active);
+						this.selectGridCell(active);
 					}
-					this.$grid.focus();
 				}
 				break;
 			case 1: // months grid
 				if (this.showMonthsOfPrevYear()) {
 					if (this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+						this.selectGridCell('cell1' + '-' + this.id);
 					} else {
 						this.$grid.attr('aria-activedescendant', active);
+						this.selectGridCell(active);
 					}
-					this.$grid.focus();
 				}
 				break;
 			case 2: // years grid
 				if (this.showYearsOfPrevRange()) {
 					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-					this.$grid.focus();
+					this.selectGridCell('cell1' + '-' + this.id);
 				}
 				break;
 		}
@@ -1137,7 +1139,6 @@
 	 */
 	Datepicker.prototype.handleMonthClick = function(e) {
 		this.changeGrid(e);
-		this.$grid.focus();
 		e.stopPropagation();
 		return false;
 	} // end handleMonthClick()
@@ -1162,26 +1163,28 @@
 				if (ok) {
 					if (this.month != this.curMonth || this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+						this.selectGridCell('cell1' + '-' + this.id);
 					} else {
 						this.$grid.attr('aria-activedescendant', active);
+						this.selectGridCell(active);
 					}
-					this.$grid.focus();
 				}
 				break;
 			case 1: // months grid
 				if (this.showMonthsOfNextYear()) {
 					if (this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+						this.selectGridCell('cell1' + '-' + this.id);
 					} else {
 						this.$grid.attr('aria-activedescendant', active);
+						this.selectGridCell(active);
 					}
-					this.$grid.focus();
 				}
 				break;
 			case 2: // years grid
 				if (this.showYearsOfNextRange()) {
 					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
-					this.$grid.focus();
+					this.selectGridCell('cell1' + '-' + this.id);
 				}
 				break;
 		}
@@ -1202,10 +1205,11 @@
 			var active = this.$grid.attr('aria-activedescendant');
 			if (this.month != this.curMonth || this.year != this.curYear) {
 				this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
+				this.selectGridCell('cell1' + '-' + this.id);
 			} else {
 				this.$grid.attr('aria-activedescendant', active);
+				this.selectGridCell(active);
 			}
-			this.$grid.focus();
 		}
 		e.stopPropagation();
 		return false;
@@ -1612,9 +1616,9 @@
 						var $prevCell = null;
 						if (cellIndex >= 0) {
 							$prevCell = $cells.eq(cellIndex);
-							$curCell.removeClass('focus').attr('aria-selected', 'false');
-							$prevCell.addClass('focus').attr('aria-selected', 'true');
+							this.unSelectGridCell($curCell.attr('id'));
 							this.$grid.attr('aria-activedescendant', $prevCell.attr('id'));
+							this.selectGridCell($prevCell.attr('id'));
 						} else {
 							switch (this.gridType) {
 								case 0: // days grid
@@ -1638,9 +1642,9 @@
 						var $nextCell = null;
 						if (cellIndex < $cells.length) {
 							$nextCell = $cells.eq(cellIndex);
-							$curCell.removeClass('focus').attr('aria-selected', 'false');
-							$nextCell.addClass('focus').attr('aria-selected', 'true');
+							this.unSelectGridCell($curCell.attr('id'));
 							this.$grid.attr('aria-activedescendant', $nextCell.attr('id'));
+							this.selectGridCell($nextCell.attr('id'));
 						} else {
 							switch (this.gridType) {
 								case 0: // days grid
@@ -1668,9 +1672,9 @@
 					var $prevCell = null;
 					if (cellIndex >= 0) {
 						$prevCell = $cells.eq(cellIndex);
-						$curCell.removeClass('focus').attr('aria-selected', 'false');
-						$prevCell.addClass('focus').attr('aria-selected', 'true');
+						this.unSelectGridCell($curCell.attr('id'));
 						this.$grid.attr('aria-activedescendant', $prevCell.attr('id'));
+						this.selectGridCell($prevCell.attr('id'));
 					} else {
 						// move to appropriate day in previous month
 						cellIndex = colCount - 1 - $cells.index($curCell);
@@ -1698,9 +1702,9 @@
 					var $nextCell = null;
 					if (cellIndex < $cells.length) {
 						$nextCell = $cells.eq(cellIndex);
-						$curCell.removeClass('focus').attr('aria-selected', 'false');
-						$nextCell.addClass('focus').attr('aria-selected', 'true');
+						this.unSelectGridCell($curCell.attr('id'));
 						this.$grid.attr('aria-activedescendant', $nextCell.attr('id'));
+						this.selectGridCell($nextCell.attr('id'));
 					} else {
 						// move to appropriate day in next month
 						cellIndex = colCount + 1 - ($cells.length - $cells.index($curCell));
@@ -1746,10 +1750,10 @@
 					if (ok) {
 						if ($('#' + active).attr('id') == undefined) {
 							var $lastCell = $cells.eq($cells.length - 1);
-							$lastCell.addClass('focus').attr('aria-selected', 'true');
 							this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+							this.selectGridCell($lastCell.attr('id'));
 						} else {
-							$('#' + active).addClass('focus').attr('aria-selected', 'true');
+							this.selectGridCell(active);
 						}
 					}
 					e.stopPropagation();
@@ -1782,10 +1786,10 @@
 					if (ok) {
 						if ($('#' + active).attr('id') == undefined) {
 							var $lastCell = $cells.eq($cells.length - 1);
-							$lastCell.addClass('focus').attr('aria-selected', 'true');
 							this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+							this.selectGridCell($lastCell.attr('id'));
 						} else {
-							$('#' + active).addClass('focus').attr('aria-selected', 'true');
+							this.selectGridCell(active);
 						}
 					}
 					e.stopPropagation();
@@ -1797,9 +1801,9 @@
 						return true;
 					}
 					var $firstCell = $cells.eq(0);
-					$curCell.removeClass('focus').attr('aria-selected', 'false');
-					$firstCell.addClass('focus').attr('aria-selected', 'true');
+					this.unSelectGridCell($curCell.attr('id'));
 					this.$grid.attr('aria-activedescendant', $firstCell.attr('id'));
+					this.selectGridCell($firstCell.attr('id'));
 					e.stopPropagation();
 					return false;
 				}
@@ -1809,9 +1813,9 @@
 						return true;
 					}
 					var $lastCell = $cells.eq($cells.length - 1);
-					$curCell.removeClass('focus').attr('aria-selected', 'false');
-					$lastCell.addClass('focus').attr('aria-selected', 'true');
+					this.unSelectGridCell($curCell.attr('id'));
 					this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+					this.selectGridCell($lastCell.attr('id'));
 					e.stopPropagation();
 					return false;
 				}
@@ -1866,11 +1870,11 @@
 		if ($cell.is('.empty') || $cell.is('.unselectable')) {
 			return true;
 		}
-		this.$grid.find('.focus').removeClass('focus').attr('aria-selected', 'false');
+		this.$grid.find('.focus').removeClass('focus').attr('aria-selected', 'false').attr('tabindex', -1);
 		switch (this.gridType) {
 			case 0: // days grid
-				$cell.addClass('focus').attr('aria-selected', 'true');
 				this.$grid.attr('aria-activedescendant', $cell.attr('id'));
+				this.selectGridCell($cell.attr('id'));
 				// update the target box
 				this.update();
 				// dismiss the dialog box
@@ -1899,10 +1903,10 @@
 		if ($('#' + active).attr('id') == undefined) {
 			var $cells = this.$grid.find('td.selectable');
 			var $lastCell = $cells.eq($cells.length - 1);
-			$lastCell.addClass('focus').attr('aria-selected', 'true');
 			this.$grid.attr('aria-activedescendant', $lastCell.attr('id'));
+			this.selectGridCell($lastCell.attr('id'));
 		} else {
-			$('#' + active).addClass('focus').attr('aria-selected', 'true');
+			this.selectGridCell(active);
 		}
 		return true;
 	} // end handleGridFocus()
@@ -1914,7 +1918,7 @@
 	 *	@return (boolean) true
 	 */
 	Datepicker.prototype.handleGridBlur = function(e) {
-		$('#' + this.$grid.attr('aria-activedescendant')).removeClass('focus').attr('aria-selected', 'false');
+		this.unSelectGridCell(this.$grid.attr('aria-activedescendant'));
 		return true;
 	} // end handleGridBlur()
 
@@ -1958,6 +1962,7 @@
 				} else {
 					this.$grid.attr('aria-activedescendant', this.$grid.find('.curMonth').attr('id'));
 				}
+				this.selectGridCell(this.$grid.attr('aria-activedescendant'));
 				break;
 			case 2: // years grid
 				if (e.shiftKey) {
@@ -1975,10 +1980,29 @@
 				} else {
 					this.$grid.attr('aria-activedescendant', this.$grid.find('.curYear').attr('id'));
 				}
+				this.selectGridCell(this.$grid.attr('aria-activedescendant'));
 				break;
 		}
 		return true;
 	} // end changeGrid()
+	
+	/** 
+	 *	selectGridCell() is a member function to put focus on the current cell of the grid. 
+	 *
+	 *	@return N/A
+	 */
+	Datepicker.prototype.selectGridCell = function(cellId) {
+		$('#' + cellId).addClass('focus').attr('aria-selected', 'true').attr('tabindex', 0).focus();
+	} // end focusCurrentDay()
+	
+	/** 
+	 *	selectGridCell() is a member function to put focus on the current cell of the grid. 
+	 *
+	 *	@return N/A
+	 */
+	Datepicker.prototype.unSelectGridCell = function(cellId) {
+		$('#' + cellId).removeClass('focus').attr('aria-selected', 'false').attr('tabindex', -1);
+	} // end focusCurrentDay()
 	
 	/** 
 	 *	update() is a member function to update the target textbox. 
