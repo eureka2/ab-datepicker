@@ -251,13 +251,13 @@
 		'	<table class="datepicker-grid" role="grid" aria-readonly="true" aria-activedescendant="datepicker-err-msg-CALENDARID" aria-labelledby="datepicker-month-CALENDARID" tabindex="0">',
 		'		<thead role="presentation">',
 		'			<tr class="datepicker-weekdays" role="row">',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Sunday"><abbr title="Sunday">Su</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Monday"><abbr title="Monday">Mo</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Tuesday"><abbr title="Tuesday">Tu</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Wednesday"><abbr title="Wednesday">We</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Thursday"><abbr title="Thursday">Th</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Friday"><abbr title="Friday">Fr</abbr></th>',
-		'				<th scope="col" class="datepicker-day" role="columnheader" aria-label="Saturday"><abbr title="Saturday">Sa</abbr></th>',
+		'				<th scope="col" id="day0-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Sunday"><abbr title="Sunday">Su</abbr></th>',
+		'				<th scope="col" id="day1-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Monday"><abbr title="Monday">Mo</abbr></th>',
+		'				<th scope="col" id="day2-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Tuesday"><abbr title="Tuesday">Tu</abbr></th>',
+		'				<th scope="col" id="day3-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Wednesday"><abbr title="Wednesday">We</abbr></th>',
+		'				<th scope="col" id="day4-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Thursday"><abbr title="Thursday">Th</abbr></th>',
+		'				<th scope="col" id="day5-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Friday"><abbr title="Friday">Fr</abbr></th>',
+		'				<th scope="col" id="day6-header-CALENDARID" class="datepicker-day" role="columnheader" aria-label="Saturday"><abbr title="Saturday">Sa</abbr></th>',
 		'			</tr>',
 		'		</thead>',
 		'		<tbody role="presentation">',
@@ -427,6 +427,7 @@
 		changeRangeButtonLabel: Date.dp_locales.texts.changeRangeButtonLabel,
 		closeButtonTitle: Date.dp_locales.texts.closeButtonTitle,
 		closeButtonLabel: Date.dp_locales.texts.closeButtonLabel,
+		onUpdate: function (value) {},
 		theme: 'default',
 		modal: false,
 		inline: false,
@@ -587,7 +588,7 @@
 			gridCells += ' data-value="' + curDay + '"';
 			gridCells += ' title="' + longdate + '"';
 			gridCells += ' aria-label="' + longdate + '"';
-			gridCells += ' headers="row' + rowCount + '-' + this.id + ' ' + this.locales.day_names[weekday] + '" role="gridcell" tabindex="-1" aria-selected="false">' + curDay;
+			gridCells += ' headers="day' + weekday + '-header-' + this.id + '" role="gridcell" tabindex="-1" aria-selected="false">' + curDay;
 			gridCells +=  '</td>';
 			if (weekday == lastDayOfWeek && curDay < numDays) {
 				// This was the last day of the week, close it out
@@ -1590,10 +1591,10 @@
 							this.hide();
 							break;
 						case 1: // months grid
-							this.showDaysOfMonth(parseInt($curCell.attr('data-value')));
+							this.showDaysOfMonth(parseInt($curCell.attr('data-value'), 10));
 							break;
 						case 2: // years grid
-							this.showMonthsOfYear(parseInt($curCell.attr('data-value')));
+							this.showMonthsOfYear(parseInt($curCell.attr('data-value'), 10));
 							break;
 					}
 					e.stopPropagation();
@@ -1882,10 +1883,10 @@
 				this.hide();
 				break;
 			case 1: // months grid
-				this.showDaysOfMonth(parseInt($cell.attr('data-value')));
+				this.showDaysOfMonth(parseInt($cell.attr('data-value'), 10));
 				break;
 			case 2: // years grid
-				this.showMonthsOfYear(parseInt($cell.attr('data-value')));
+				this.showMonthsOfYear(parseInt($cell.attr('data-value'), 10));
 				break;
 		}
 		e.stopPropagation();
@@ -2012,11 +2013,15 @@
 	 */
 	Datepicker.prototype.update = function() {
 		var $curDay = $('#' + this.$grid.attr('aria-activedescendant'));
-		var date = new Date(this.year, this.month, parseInt($curDay.attr('data-value')));
-		this.$target.val(this.formatDate(date, this.options.outputFormat));
+		var date = new Date(this.year, this.month, parseInt($curDay.attr('data-value'), 10));
+		var val = this.formatDate(date, this.options.outputFormat);
+		this.$target.val(val);
 		this.$target.removeAttr('aria-invalid');
 		this.$target.parents('.form-group').removeClass('has-error');
 		this.$target.trigger('change');
+		if (this.options.onUpdate) {
+			this.options.onUpdate(val);
+		}
 	} // end update()
 	
 	/** 
@@ -2059,7 +2064,7 @@
 				return false;
 			});
 			this.greyOut(true);
-			var zIndex = parseInt($('#datepicker-overlay').css('z-index')) || 40;
+			var zIndex = parseInt($('#datepicker-overlay').css('z-index'), 10) || 40;
 			this.$calendar.css('z-index', zIndex + 1);
 		} else {
 			// Bind an event listener to the document to capture only the mouse click event
@@ -2083,7 +2088,7 @@
 		// adjust position of the calendar
 		var groupOffsetTop = Math.max(0, Math.floor(this.$group.offset().top - this.$label.offset().top));
 		var groupOffsetLeft = Math.max(0, Math.floor(this.$group.offset().left - this.$label.offset().left));
-		var parentPaddingLeft = parseInt(this.$calendar.parent().css('padding-left'));
+		var parentPaddingLeft = parseInt(this.$calendar.parent().css('padding-left'), 10);
 		var calendarHeight = this.$calendar.outerHeight();
 		var groupTop = this.$group.offset().top;
 		var groupLeft = this.$group.offset().left;
@@ -2225,8 +2230,8 @@
 		    left = Math.round(box.left + scrollLeft - clientLeft);
 	    } else {
 			while(element) {
-				top = top + parseInt(element.offsetTop);
-				left = left + parseInt(element.offsetLeft);
+				top = top + parseInt(element.offsetTop, 10);
+				left = left + parseInt(element.offsetLeft, 10);
 				element = element.offsetParent;       
 			}   
 	    }
@@ -2730,7 +2735,7 @@
 	 */
 	Datepicker.prototype.firstDayOfWeek = function(value) {
 		if (value != null) {
-			this.options.firstDayOfWeek = parseInt(value);
+			this.options.firstDayOfWeek = parseInt(value, 10);
 			if (this.options.inline == false) {
 				this.drawCalendarHeader();
 			} else {
@@ -2757,7 +2762,7 @@
 				if (typeof val === 'number') {
 					self.options.daysOfWeekDisabled.push(val);
 				} else if (typeof val === 'string') {
-					self.options.daysOfWeekDisabled.push(parseInt(val));
+					self.options.daysOfWeekDisabled.push(parseInt(val, 10));
 				}				
 			});
 		}
