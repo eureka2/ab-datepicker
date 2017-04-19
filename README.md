@@ -123,7 +123,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |changeRangeButtonLabel|Accessibility label : title attribute for the calendar title when the current years range is displayed|Date.dp_locales.texts.changeRangeButtonLabel (*)|changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"|
 |closeButtonTitle      |Title attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonTitle (*)|closeButtonTitle: "Fermer"|
 |closeButtonLabel      |Accessibility label : 'aria-labelledby' attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonLabel (*)|closeButtonLabel: "Fermez le calendrier"|
-|onUpdate              |A function that is called when the input box has been updated by the datepicker|
+|onUpdate              |A function that is called when the input box has been updated by the datepicker|function (value) {}|function (value) { console.log("date updated : " + value); }
 |theme                 |name of the theme|default|theme: 'green'|
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
 |inline                |Display the datepicker inline inside a given div|false|inline: $('#inline-div')|
