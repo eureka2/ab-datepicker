@@ -133,6 +133,14 @@ and give some options to the datepicker. See [Configuration options](#configurat
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Methods
+### getDate
+```javascript
+$('your date selector').datepicker('getDate');
+```
+### setDate
+```javascript
+$('your date selector').datepicker('setDate', new Date());
+```
 ### min
 ```javascript
 $('your date selector').datepicker('min', date);	

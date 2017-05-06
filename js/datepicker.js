@@ -442,34 +442,57 @@
 	 *	@return N/A
 	 *
 	 */
-	Datepicker.prototype.initializeDate = function() {
-		var val = this.$target.val();
-		this.dateObj = val === '' ? new Date() :  this.parseDate(val);
-		if (this.dateObj == null) {
-			this.$target.attr('aria-invalid', true);
-			this.$target.parents('.form-group').addClass('has-error');
-			this.dateObj = new Date();
-			this.dateObj.setHours(0, 0, 0, 0);
-		}
-		if (this.options.min != null && this.dateObj < this.options.min) {
-			this.$target.attr('aria-invalid', true);
-			this.$target.parents('.form-group').addClass('has-error');
-			this.dateObj = this.options.min;
-		} else if (this.options.max != null && this.dateObj > this.options.max) {
-			this.$target.attr('aria-invalid', true);
-			this.$target.parents('.form-group').addClass('has-error');
-			this.dateObj = this.options.max;
-		}
-		this.curYear = this.dateObj.getFullYear();
-		this.year = this.curYear;
-		this.curMonth = this.dateObj.getMonth();
-		this.month = this.curMonth;
-		this.date = this.dateObj.getDate();
-		// populate the calendar grid
-		this.populateDaysCalendar();
-		// update the table's activedescdendant to point to the current day
-		this.$grid.attr('aria-activedescendant', this.$grid.find('.curDay').attr('id'));
-	} // end initializeDate()
+    Datepicker.prototype.initializeDate = function() {
+        var val = this.$target.val();
+        this.dateObj = val === '' ? new Date() :  this.parseDate(val);
+        this.setDate(this.dateObj);
+    } // end initializeDate()
+
+    /**
+     * getDate() is a member function to retrieve the current Datepicker date.
+     * @return the Date object
+     */
+    Datepicker.prototype.getDate = function () {
+        var val = this.$target.val();
+        this.dateObj = val === '' ? new Date() :  this.parseDate(val);
+        return this.dateObj;
+    };
+
+    /**
+     *	setDate() is a member function to set the Datepicker date with the content of newDate
+     *
+     *	@return N/A
+     *
+     */
+    Datepicker.prototype.setDate = function(newDate) {
+        var stringDate = this.format(newDate);
+        this.$target.val(stringDate);
+        this.dateObj = newDate;
+        if (this.dateObj == null) {
+            this.$target.attr('aria-invalid', true);
+            this.$target.parents('.form-group').addClass('has-error');
+            this.dateObj = new Date();
+            this.dateObj.setHours(0, 0, 0, 0);
+        }
+        if (this.options.min != null && this.dateObj < this.options.min) {
+            this.$target.attr('aria-invalid', true);
+            this.$target.parents('.form-group').addClass('has-error');
+            this.dateObj = this.options.min;
+        } else if (this.options.max != null && this.dateObj > this.options.max) {
+            this.$target.attr('aria-invalid', true);
+            this.$target.parents('.form-group').addClass('has-error');
+            this.dateObj = this.options.max;
+        }
+        this.curYear = this.dateObj.getFullYear();
+        this.year = this.curYear;
+        this.curMonth = this.dateObj.getMonth();
+        this.month = this.curMonth;
+        this.date = this.dateObj.getDate();
+        // populate the calendar grid
+        this.populateDaysCalendar();
+        // update the table's activedescdendant to point to the current day
+        this.$grid.attr('aria-activedescendant', this.$grid.find('.curDay').attr('id'));
+    };
 	
 	/** 
 	 *	drawCalendarHeader() is a member function to populate the calendar header with the days name. 
