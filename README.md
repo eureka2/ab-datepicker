@@ -137,10 +137,12 @@ and give some options to the datepicker. See [Configuration options](#configurat
 ```javascript
 $('your date selector').datepicker('getDate');
 ```
+Get the current Datepicker date object
 ### setDate
 ```javascript
-$('your date selector').datepicker('setDate', new Date());
+$('your date selector').datepicker('setDate', date);
 ```
+Returns the internal date object of the datepicker
 ### min
 ```javascript
 $('your date selector').datepicker('min', date);	
