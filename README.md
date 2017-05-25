@@ -104,6 +104,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |----------------------|-------------------------------------|---------------|-------|
 |min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
 |max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
+|startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
 |firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
 |daysOfWeekDisabled    |Array of the week days number to disable|[]|daysOfWeekDisabled: [0, 6]|
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|

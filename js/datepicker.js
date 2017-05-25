@@ -283,6 +283,18 @@
 		this.$target = $(target); // textbox that will receive the selected date string and focus (if modal)
 		this.options = $.extend({}, Datepicker.DEFAULTS, options)
 		this.locales = Date.dp_locales;
+		switch (this.options.startView) {
+			case 1: 
+			case 'months':
+				this.options.startView = 1;
+				break;
+			case 2:
+			case 'years':
+				this.options.startView = 2;
+				break;
+			default:
+				this.options.startView = 0;
+		}
 		if (typeof this.options.inputFormat === 'string') {
 			this.options.inputFormat = [this.options.inputFormat];
 		}
@@ -410,6 +422,7 @@
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
 		weekDayFormat: 'short', // Display format of the weekday names - values are 'short' or 'narrow'
+		startView: 0, // Initial calendar - values are 0 or 'days', 1 or 'months', 2 or 'years'
 		daysOfWeekDisabled: [],
 		inputFormat: [Date.dp_locales.short_format],
 		outputFormat: Date.dp_locales.short_format,
@@ -488,9 +501,22 @@
 		this.month = this.curMonth;
 		this.date = this.dateObj.getDate();
 		// populate the calendar grid
-		this.populateDaysCalendar();
-		// update the table's activedescdendant to point to the current day
-		this.$grid.attr('aria-activedescendant', this.$grid.find('.curDay').attr('id'));
+		switch (this.options.startView) {
+			case 1: // months
+				this.populateMonthsCalendar();
+				// update the table's activedescdendant to point to the current month
+				this.$grid.attr('aria-activedescendant', this.$grid.find('.curMonth').attr('id'));
+				break;
+			case 2: // years
+				this.populateYearsCalendar();
+				// update the table's activedescdendant to point to the current year
+				this.$grid.attr('aria-activedescendant', this.$grid.find('.curYear').attr('id'));
+				break;
+			default:
+				this.populateDaysCalendar();
+				// update the table's activedescdendant to point to the current day
+				this.$grid.attr('aria-activedescendant', this.$grid.find('.curDay').attr('id'));
+		}
 	} // end setDate()
 
 	/** 
