@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.1 
+ * Accessible Datepicker v2.1.5 
  * Copyright 2015 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -342,7 +342,7 @@
 			this.initializeDate();
 		} else {
 			this.$target.parent().after(this.$calendar);
-			this.hide();
+			this.hide(!this.options.gainFocusOnConstruction);
 		}
 		
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
@@ -444,6 +444,7 @@
 		theme: 'default',
 		modal: false,
 		inline: false,
+		gainFocusOnConstruction: true,
 		min: null,
 		max: null
 	}
@@ -2210,7 +2211,7 @@
 	 *
 	 *	@return N/A
 	 */
-	 Datepicker.prototype.hide = function() {
+	 Datepicker.prototype.hide = function(omitSettingFocus) {
 		if (this.options.inline == false) {
 			var self = this;
 			// unbind the modal event sinks
@@ -2227,7 +2228,9 @@
 			this.$calendar.fadeOut();
 			$('.datepicker-calendar').trigger('ab.datepicker.closed', [self.id]);
 			// set focus on the focus target
-			this.$target.focus();
+			if (!omitSettingFocus) {
+				this.$target.focus();
+			}
 		}
 	} // end hide()
 	

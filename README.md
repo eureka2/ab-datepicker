@@ -128,6 +128,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |theme                 |name of the theme|default|theme: 'green'|
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
 |inline                |Display the datepicker inline inside a given div|false|inline: $('#inline-div')|
+|gainFocusOnConstruction | Indicates if the datepicker should gain focus when it is constructed|true|gainFocusOnConstruction: false |
 
 (*) Default value from the locale file
 
