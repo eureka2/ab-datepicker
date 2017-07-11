@@ -2500,6 +2500,7 @@
 		var mm = 0;
 		var ss = 0;
 		var ampm = "";
+		var self = this;
 		
 		$.each(format.match(/(.).*?\1*/g), function(k, token) {
 			// Extract contents of value based on format token
@@ -2525,8 +2526,8 @@
 				case 'MMM':
 				case 'LLL':
 					month = 0;
-					for (var i = 0; i < this.locales.month_names_abbreviated.length; i++) {
-						var month_name = this.locales.month_names_abbreviated[i];
+					for (var i = 0; i < self.locales.month_names_abbreviated.length; i++) {
+						var month_name = self.locales.month_names_abbreviated[i];
 						if (value.substring(pos, pos + month_name.length).toLowerCase() == month_name.toLowerCase()) {
 							month = i + 1;
 							pos += month_name.length;
@@ -2537,8 +2538,8 @@
 				case 'MMMM':
 				case 'LLLL':
 					month = 0;
-					for (var i = 0; i < this.locales.month_names.length; i++) {
-						var month_name = this.locales.month_names[i];
+					for (var i = 0; i < self.locales.month_names.length; i++) {
+						var month_name = self.locales.month_names[i];
 						if (value.substring(pos, pos + month_name.length).toLowerCase() == month_name.toLowerCase()) {
 							month = i + 1;
 							pos += month_name.length;
@@ -2550,17 +2551,17 @@
 				case 'EE':
 				case 'E':
 				case 'eee':
-					pos += skipName(this.locales.day_names_abbreviated, pos);
+					pos += skipName(self.locales.day_names_abbreviated, pos);
 					break;
 				case 'EEEE':
 				case 'eeee':
 				case 'cccc':
-					pos += skipName(this.locales.day_names, pos);
+					pos += skipName(self.locales.day_names, pos);
 					break;
 				case 'EEEEEE':
 				case 'eeeeee':
 				case 'cccccc':
-					pos += skipName(this.locales.day_names_short, pos);
+					pos += skipName(self.locales.day_names_short, pos);
 					break;
 				case 'MM':
 				case 'M':
@@ -2630,12 +2631,12 @@
 					pos += ss.length;
 					break;
 				case 'a':
-					var amlength = this.locales.day_periods.am.length;
-					var pmlength = this.locales.day_periods.pm.length;
-					if (value.substring(pos, pos + amlength) == this.locales.day_periods.am) {
+					var amlength = self.locales.day_periods.am.length;
+					var pmlength = self.locales.day_periods.pm.length;
+					if (value.substring(pos, pos + amlength) == self.locales.day_periods.am) {
 						ampm = "AM";
 						pos += amlength;
-					} else if (value.substring(pos, pos + pmlength) == this.locales.day_periods.pm) {
+					} else if (value.substring(pos, pos + pmlength) == self.locales.day_periods.pm) {
 						ampm = "PM";
 						pos += pmlength;
 					} else {
