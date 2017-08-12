@@ -1352,7 +1352,6 @@
 							this.$close.focus();
 						}
 					} else {
-						// @TODO : do not work with FF, Chrome, Safari but work with IE, why ?
 						this.$monthObj.focus();
 					}
 					e.stopPropagation();
