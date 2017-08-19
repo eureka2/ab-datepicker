@@ -2093,14 +2093,6 @@
 		$element.attr('aria-hidden', false);
 		$element.show();
 	} // end showObject()
-	
-	var modalEventHandler = function(e) {
-		//ensure focus remains on the dialog
-		self.$grid.focus();
-		// Consume all mouse events and do nothing
-		e.stopPropagation;
-		return false;
-	};
 
 	/** 
 	 *	show() is a member function to show the Datepicker and give it focus. 
@@ -2111,8 +2103,17 @@
 		var self = this;
 		$('.datepicker-calendar').trigger('ab.datepicker.opening', [self.id]);
 		if (this.options.modal == true) {
+			if (!this.modalEventHandler) {
+				this.modalEventHandler = function(e) {
+					//ensure focus remains on the dialog
+					self.$grid.focus();
+					// Consume all mouse events and do nothing
+					e.stopPropagation;
+					return false;
+				};
+			}
 			// Bind an event listener to the document to capture all mouse events to make dialog modal
-			$(document).bind('click mousedown mouseup', modalEventHandler);
+			$(document).bind('click mousedown mouseup', this.modalEventHandler);
 			this.greyOut(true);
 			var zIndex = parseInt($('#datepicker-overlay').css('z-index'), 10) || 40;
 			this.$calendar.css('z-index', zIndex + 1);
@@ -2217,7 +2218,9 @@
 			var self = this;
 			// unbind the modal event sinks
 			if (this.options.modal == true) {
-				$(document).unbind('click mousedown mouseup', modalEventHandler);
+				if (this.modalEventHandler) {
+					$(document).unbind('click mousedown mouseup', this.modalEventHandler);
+				}
 				this.greyOut(false);
 			} else {
 				$(document).unbind('click', self.handleDocumentClick);
