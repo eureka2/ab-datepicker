@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.5 
+ * Accessible Datepicker v2.1.6 
  * Copyright 2015 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -417,7 +417,7 @@
 		});
 	}
 	
-	Datepicker.VERSION  = '2.1.1'
+	Datepicker.VERSION  = '2.1.6'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -458,7 +458,7 @@
 	Datepicker.prototype.initializeDate = function() {
 		var val = this.$target.val();
 		var date = val === '' ? new Date() :  this.parseDate(val);
-		this.setDate(date);
+		this.setDate(date, true);
 	} // end initializeDate()
 
 	/**
@@ -478,8 +478,9 @@
 	 *	@return N/A
 	 *
 	 */
-	Datepicker.prototype.setDate = function(newDate) {
+	Datepicker.prototype.setDate = function(newDate, init) {
 		this.dateObj = newDate;
+		init = (typeof init === 'undefined') ? false : init;
 		if (this.dateObj == null) {
 			this.$target.attr('aria-invalid', true);
 			this.$target.parents('.form-group').addClass('has-error');
@@ -495,7 +496,9 @@
 			this.$target.parents('.form-group').addClass('has-error');
 			this.dateObj = this.options.max;
 		}
-		this.$target.val(this.format(this.dateObj));
+		if (!init || this.$target.val() != '') {
+			this.$target.val(this.format(this.dateObj));
+		}
 		this.curYear = this.dateObj.getFullYear();
 		this.year = this.curYear;
 		this.curMonth = this.dateObj.getMonth();
