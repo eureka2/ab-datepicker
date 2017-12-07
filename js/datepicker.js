@@ -2116,14 +2116,14 @@
 				};
 			}
 			// Bind an event listener to the document to capture all mouse events to make dialog modal
-			$(document).bind('click mousedown mouseup', this.modalEventHandler);
+			$(document).on('click mousedown mouseup', this.modalEventHandler);
 			this.greyOut(true);
 			var zIndex = parseInt($('#datepicker-overlay').css('z-index'), 10) || 40;
 			this.$calendar.css('z-index', zIndex + 1);
 		} else {
 			// Bind an event listener to the document to capture only the mouse click event
-			$(document).bind('click',  $.proxy(this.handleDocumentClick, this));
-			this.$calendar.bind('ab.datepicker.opening', function(e, id) {
+			$(document).on('click',  $.proxy(this.handleDocumentClick, this));
+			this.$calendar.on('ab.datepicker.opening', function(e, id) {
 				if (id != self.id) {
 					self.hide();
 				} else {
@@ -2133,7 +2133,7 @@
 			});
 
 		}
-		this.$calendar.bind('ab.datepicker.opened', function(e, id) {
+		this.$calendar.on('ab.datepicker.opened', function(e, id) {
 			if (id == self.id) {
 				self.$grid.focus();
 			}
@@ -2222,12 +2222,12 @@
 			// unbind the modal event sinks
 			if (this.options.modal == true) {
 				if (this.modalEventHandler) {
-					$(document).unbind('click mousedown mouseup', this.modalEventHandler);
+					$(document).off('click mousedown mouseup', this.modalEventHandler);
 				}
 				this.greyOut(false);
 			} else {
-				$(document).unbind('click', self.handleDocumentClick);
-				this.$calendar.unbind('ab.datepicker.opening');
+				$(document).off('click', self.handleDocumentClick);
+				this.$calendar.off('ab.datepicker.opening');
 			}
 			// hide the dialog
 			this.$calendar.removeClass('above below');
