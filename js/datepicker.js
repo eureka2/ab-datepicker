@@ -33,8 +33,8 @@
  *	    - Shift+Tab - reverses the direction of the tab order. Once in the widget, a Shift+Tab will take the user to the previous focusable element in the tab order.
  *	    - Up Arrow and Down Arrow - goes to the same day of the week in the previous or next week respectively. If the user advances past the end of the month they continue into the next or previous month as appropriate.
  *	    - Left Arrow and Right Arrow - advances one day to the next, also in a continuum. Visually focus is moved from day to day and wraps from row to row in a grid of days and weeks.
- *	    - Control+Page Up - Moves to the same date in the previous year.
- *	    - Control+Page Down - Moves to the same date in the next year.
+ *	    - Alt+Page Up - Moves to the same date in the previous year.
+ *	    - Alt+Page Down - Moves to the same date in the next year.
  *	    - Space -
  *	        Singleton Mode: acts as a toggle either selecting or deselecting the date.
  *	        Contiguous Mode: Similar to selecting a range of text. Space selects the first date. Shift+Arrows add to the selection. Pressing Space again deselects the previous selections and selects the current focused date.
@@ -1601,7 +1601,7 @@
 		var $curCell = $('#' + this.$grid.attr('aria-activedescendant'));
 		var $cells = this.$grid.find('td.selectable');
 		var colCount = this.$grid.find('tbody tr').eq(0).find('td').length;
-		if (e.altKey) {
+		if (e.altKey && e.keyCode != this.keys.pageup && e.keyCode != this.keys.pagedown) {
 			return true;
 		}
 		switch (e.keyCode) {
@@ -1779,14 +1779,14 @@
 			case this.keys.pageup:
 				{
 					var active = this.$grid.attr('aria-activedescendant');
-					if (e.shiftKey) {
+					if (e.shiftKey || e.ctrlKey) {
 						return true;
 					}
 					e.preventDefault();
 					var ok = false;
 					switch (this.gridType) {
 						case 0: // days grid
-							if (e.ctrlKey) {
+							if (e.altKey) {
 								e.stopImmediatePropagation();
 								ok = this.showDaysOfPrevYear();
 							} else {
@@ -1815,14 +1815,14 @@
 			case this.keys.pagedown:
 				{
 					var active = this.$grid.attr('aria-activedescendant');
-					if (e.shiftKey) {
+					if (e.shiftKey || e.ctrlKey) {
 						return true;
 					}
 					e.preventDefault();
 					var ok = false;
 					switch (this.gridType) {
 						case 0: // days grid
-							if (e.ctrlKey) {
+							if (e.altKey) {
 								e.stopImmediatePropagation();
 								ok = this.showDaysOfNextYear();
 							} else {

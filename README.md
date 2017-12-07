@@ -312,8 +312,8 @@ $('your date selector').datepicker({
 * <kbd>Down</kbd> Move focus to the same day of the following week. Will wrap to the appropriate day in the following month.
 * <kbd>PgUp</kbd> Move focus to the same date of the previous month. If that date does not exist, focus is placed on the last day of the month.
 * <kbd>PgDn</kbd> Move focus to the same date of the following month. If that date does not exist, focus is placed on the last day of the month.
-* <kbd>Ctrl+PgUp</kbd> Move focus to the same date of the previous year. If that date does not exist (e.g leap year), focus is placed on the last day of the month.
-* <kbd>Ctrl+PgDn</kbd> Move focus to the same date of the following year. If that date does not exist (e.g leap year), focus is placed on the last day of the month.
+* <kbd>Alt+PgUp</kbd> Move focus to the same date of the previous year. If that date does not exist (e.g leap year), focus is placed on the last day of the month.
+* <kbd>Alt+PgDn</kbd> Move focus to the same date of the following year. If that date does not exist (e.g leap year), focus is placed on the last day of the month.
 * <kbd>Home</kbd> Move to the first day of the month.
 * <kbd>End</kbd> Move to the last day of the month
 * <kbd>Tab</kbd> / <kbd>Shift+Tab</kbd> If the datepicker is in modal mode, navigate between calander grid and close/previous/next selection buttons, otherwise move to the field following/preceding the date textbox associated with the datepicker
