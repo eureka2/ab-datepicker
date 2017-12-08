@@ -333,17 +333,6 @@
 		this.$calendar.addClass(this.options.theme);
 		this.$target.after(this.$button);
 
-		if (this.options.inline != false) {
-			this.hideObject(this.$button);
-			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
-			$container.append(this.$calendar);
-			this.$calendar.css({position: 'relative', left: '0px'});
-			this.initializeDate();
-		} else {
-			this.$target.parent().after(this.$calendar);
-			this.hide(!this.options.gainFocusOnConstruction);
-		}
-
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
 		if (this.$calendar.parent().css('position') === 'static') {
 			this.$calendar.parent().css('position', 'relative');
@@ -372,6 +361,17 @@
 		} else {
 			this.hideObject(this.$calendar.find('.datepicker-close-wrap'));
 			this.hideObject(this.$calendar.find('.datepicker-bn-close-label'));
+		}
+
+		if (this.options.inline != false) {
+			this.hideObject(this.$button);
+			var $container = typeof this.options.inline === 'string' ? $('#' + this.options.inline) : this.options.inline;
+			$container.append(this.$calendar);
+			this.$calendar.css({position: 'relative', left: '0px'});
+			this.initializeDate();
+		} else {
+			this.$target.parent().after(this.$calendar);
+			this.hide(!this.options.gainFocusOnConstruction);
 		}
 
 		this.keys = {
