@@ -1,4 +1,4 @@
-# ab-datepicker 
+# ab-datepicker
 ab-datepicker is an accessible datepicker based on the example of the Open AJAX Alliance Accessibility Tools Task Force : [http://www.oaa-accessibility.org/examplep/datepicker1/](http://www.oaa-accessibility.org/examplep/datepicker1/)
 and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-en.html](http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-en.html)
 
@@ -17,12 +17,12 @@ and Inspired by [http://wet-boew.github.io/wet-boew/demos/datepicker/datepicker-
 1. [Copyright and license](#copyright-and-license)
 
 ##  Description
-This DatePicker widget is a jQuery Plugin which allows the user to select a date. It implements the [WAI-ARIA Date Picker design pattern](http://www.w3.org/TR/wai-aria-practices/#datepicker) of W3C. 
-	
-The calendar portion of the date picker follows a table structure 
-where days of the week and calendar day numbers are layed out in HTML table cells where WAI-ARIA semantics for a grid are applied. 
-This provides context so an assistive technology can render the day of the week; 
-its corresponding numeric calendar day, and week number if necessary. 
+This DatePicker widget is a jQuery Plugin which allows the user to select a date. It implements the [WAI-ARIA Date Picker design pattern](http://www.w3.org/TR/wai-aria-practices/#datepicker) of W3C.
+
+The calendar portion of the date picker follows a table structure
+where days of the week and calendar day numbers are layed out in HTML table cells where WAI-ARIA semantics for a grid are applied.
+This provides context so an assistive technology can render the day of the week;
+its corresponding numeric calendar day, and week number if necessary.
 
 The calendar portion can be displayed in a numbers of ways, including as a popup in modal mode.
 
@@ -65,7 +65,7 @@ Add this code to the end of your document:
 ```javascript
     <script type="text/javascript">
     $(document).ready(function() {
-    	$('.date').datepicker();	
+    	$('.date').datepicker();
     });
     </script>
 ```
@@ -90,7 +90,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 			titleFormat: 'EEEE d MMMM y',
 			theme: 'blue',
 			modal: false
-		});	
+		});
     });
     </script>
 ```
@@ -147,64 +147,74 @@ $('your date selector').datepicker('setDate', date);
 Returns the internal date object of the datepicker
 ### min
 ```javascript
-$('your date selector').datepicker('min', date);	
+$('your date selector').datepicker('min', date);
 ```
 Define the smallest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option.
 ### max
 ```javascript
-$('your date selector').datepicker('max', date);	
+$('your date selector').datepicker('max', date);
 ```
 Define the biggest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option
 ### show
 ```javascript
-$('your date selector').datepicker('show');	
+$('your date selector').datepicker('show');
 ```
 show the calendar portion of the datepicker
 ### hide
 ```javascript
-$('your date selector').datepicker('hide');	
+$('your date selector').datepicker('hide');
 ```
 hide the calendar portion of the datepicker
 ### firstDayOfWeek
 ```javascript
-$('your date selector').datepicker('firstDayOfWeek', value);	
+$('your date selector').datepicker('firstDayOfWeek', value);
 ```
 where value (type: integer) is the day of week (0: Sunday, 1: Monday, 2: Tuesday, ...)
 ### daysOfWeekDisabled
 ```javascript
-$('your date selector').datepicker('daysOfWeekDisabled', value);	
+$('your date selector').datepicker('daysOfWeekDisabled', value);
 ```
 where value (type: array of number) is the list of days of the week that should be disabled.
 ### weekDayFormat
 ```javascript
-$('your date selector').datepicker('weekDayFormat', value);	
+$('your date selector').datepicker('weekDayFormat', value);
 ```
 where value (type: string) is one of this value : 'short' (first letter) or 'narrow' (first two letters)
 ### inputFormat
 ```javascript
-$('your date selector').datepicker('inputFormat', formats);	
+$('your date selector').datepicker('inputFormat', formats);
 ```
 where formats (type: array of string) contains the acceptable input formats according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
 ### outputFormat
 ```javascript
-$('your date selector').datepicker('outputFormat', format);	
+$('your date selector').datepicker('outputFormat', format);
 ```
 where format (type: string) contains the output format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
 ### theme
 ```javascript
-$('your date selector').datepicker('theme', name);	
+$('your date selector').datepicker('theme', name);
 ```
 where name (type: string) contains the name of your theme
 ### modal
 ```javascript
-$('your date selector').datepicker('modal', bool);	
+$('your date selector').datepicker('modal', bool);
 ```
 Defines the opening mode (modal or not) of the calendar portion of the datepicker. bool can be true or false.
 ### inline
 ```javascript
-$('your date selector').datepicker('inline', value);	
+$('your date selector').datepicker('inline', value);
 ```
 Display the datepicker inline inside a given div. value can be the id of a div, a jQuery object of a div or false.
+### enable
+```javascript
+$('your date selector').datepicker('enable');
+```
+Enable the datepicker.
+### disable
+```javascript
+$('your date selector').datepicker('disable');
+```
+Disable the datepicker. This method has no effect on an inline datepicker. 
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
@@ -251,7 +261,7 @@ div.datepicker-calendar.default div.datepicker-month-next.enabled:hover,
 div.datepicker-calendar.default div.datepicker-month-next.enabled:focus,
 div.datepicker-calendar.default div.datepicker-month:hover,
 div.datepicker-calendar.default div.datepicker-month:focus,
-div.datepicker-calendar.default button.datepicker-close:hover, 
+div.datepicker-calendar.default button.datepicker-close:hover,
 div.datepicker-calendar.default button.datepicker-close:focus {
 	background-color: #EEE;
 	border-color:  #999;
@@ -303,7 +313,7 @@ $('your date selector').datepicker({
 	............
 	theme: 'the name of your theme',
 	........
-});	
+});
 ```
 ## Keyboard interaction
 * <kbd>Left</kbd> Move focus to the previous day. Will move to the last day of the previous month, if the current day is the first day of a month.
@@ -358,4 +368,4 @@ $('your date selector').datepicker({
 
 &copy; 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
-**[&uparrow; back to table of contents](#table-of-contents)** 
+**[&uparrow; back to table of contents](#table-of-contents)**
