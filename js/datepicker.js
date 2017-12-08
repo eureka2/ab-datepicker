@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.7
+ * Accessible Datepicker v2.1.8
  * Copyright 2015-2017 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -370,6 +370,7 @@
 			this.$calendar.css({position: 'relative', left: '0px'});
 			this.initializeDate();
 		} else {
+			this.$calendar.css({display: 'none'});
 			this.$target.parent().after(this.$calendar);
 			this.hide(!this.options.gainFocusOnConstruction);
 		}
@@ -418,7 +419,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.7'
+	Datepicker.VERSION  = '2.1.8'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
