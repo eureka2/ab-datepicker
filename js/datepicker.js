@@ -297,6 +297,23 @@
 		if (typeof this.options.inputFormat === 'string') {
 			this.options.inputFormat = [this.options.inputFormat];
 		}
+		if (! $.isArray(this.options.datesDisabled)) {
+			this.options.datesDisabled = [this.options.datesDisabled];
+		}
+		$.each(this.options.datesDisabled, function(i, v) {
+			if (typeof v === 'string') {
+				var date = self.parseDate(v);
+				if (date === null ) {
+					self.options.datesDisabled[i] = null;
+				} else {
+					self.options.datesDisabled[i] = self.format(date);
+				}
+			} else if (v instanceof Date && !isNaN(v.valueOf())) {
+				self.options.datesDisabled[i] = self.format(v);
+			} else {
+				self.options.datesDisabled[i] = null;
+			}
+		});
 		if (this.options.min != null) {
 			this.options.min = this.parseDate(this.options.min);
 		} else if (this.$target.attr('min')) {
@@ -426,6 +443,8 @@
 		weekDayFormat: 'short', // Display format of the weekday names - values are 'short' or 'narrow'
 		startView: 0, // Initial calendar - values are 0 or 'days', 1 or 'months', 2 or 'years'
 		daysOfWeekDisabled: [],
+		datesDisabled: [],
+		isDateDisabled: null,
 		inputFormat: [Date.dp_locales.short_format],
 		outputFormat: Date.dp_locales.short_format,
 		titleFormat: Date.dp_locales.full_format,
@@ -635,6 +654,10 @@
 			} else if (this.options.min != null && date < this.options.min) {
 				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"';
 			} else if (this.options.max != null && date > this.options.max) {
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"';
+			} else if ($.inArray(this.format(date), this.options.datesDisabled) > -1) {
+				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"';
+			} else if (this.options.isDateDisabled && this.options.isDateDisabled(date)) {
 				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day unselectable' + curDayClass + '"';
 			} else {
 				gridCells += '\t\t<td id="cell' + curDay + '-' + this.id + '" class="day selectable' + curDayClass + '"';
@@ -2253,14 +2276,6 @@
 		if ($overlay.length == 0 && on) {
 			$('body').append('<div id="datepicker-overlay" class="datepicker-overlay"></div>');
 			$overlay = $('#datepicker-overlay');
-
-/* 			// compute z-index for overlay
-			var zmax = 0;
-			$('*').each(function() {
-				var cur = parseInt($(this).css('z-index'), 10);
-				if (! isNaN(cur)) zmax = Math.max(zmax, cur);
-			});
-			$overlay.attr('z-index', zmax + 10); */
 		}
 		if (on) {
 			$overlay.fadeIn(500);
@@ -2972,6 +2987,27 @@
 		this.$button.attr('aria-disabled', true);
 		this.$button.attr('tabindex', -1);
 	} // end enable()
+
+	/**
+	 *	datesDisabled() is a public member function to set dates to be disabled.
+	 */
+	Datepicker.prototype.datesDisabled = function(dates) {
+		this.options.datesDisabled = [];
+		if (! $.isArray(dates)) {
+			dates = [dates];
+		}
+		var self = this;
+		$.each(dates, function(i, v) {
+			if (typeof v === 'string') {
+				var date = self.parseDate(v);
+				if (date !== null ) {
+					self.options.datesDisabled.push(self.format(date));
+				}
+			} else if (v instanceof Date && !isNaN(v.valueOf())) {
+				self.options.datesDisabled.push(self.format(v));
+			}
+		});
+	} // end datesDisabled()
 
 	/**
 	 *	setLocales() is a public member function which allow change the locales.

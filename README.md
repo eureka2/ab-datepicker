@@ -107,6 +107,8 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
 |firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
 |daysOfWeekDisabled    |Array of the week days number to disable|[]|daysOfWeekDisabled: [0, 6]|
+|datesDisabled         |Array of dates to disable. array items are Date object or string|[]|datesDisabled: [new Date(2017, 12, 11), '12/12/2017']|
+|isDateDisabled        |A function that is called for each date of the days calendar. Must return true if the date provided as argument must be disabled, false otherwise.|null|function (date) { return date < new Date(); }|
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 |inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
 |outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
@@ -215,6 +217,12 @@ Enable the datepicker.
 $('your date selector').datepicker('disable');
 ```
 Disable the datepicker. This method has no effect on an inline datepicker. 
+### datesDisabled
+```javascript
+$('your date selector').datepicker('datesDisabled', dates);
+```
+Sets a specific date or an array of dates to be disabled. The dates are Date objects or strings.
+
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
@@ -366,6 +374,6 @@ $('your date selector').datepicker({
 
 ## Copyright and license
 
-&copy; 2015 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
+&copy; 2015-2017 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
 **[&uparrow; back to table of contents](#table-of-contents)**
