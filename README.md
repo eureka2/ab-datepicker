@@ -102,128 +102,128 @@ and give some options to the datepicker. See [Configuration options](#configurat
 
 |Option                |Description                          |Default        |Example|
 |----------------------|-------------------------------------|---------------|-------|
-|min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
-|max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
-|startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
-|firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
-|daysOfWeekDisabled    |Array of the week days number to disable|[]|daysOfWeekDisabled: [0, 6]|
+|buttonLabel           |Accessibility label : 'aria-labelledby' attribute for the calendar button|Date.dp_locales.texts.buttonLabel (*)|Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier|
+|buttonTitle           |Title attribute for the calendar button|Date.dp_locales.texts.buttonTitle (*)|Sélectionner une date ...|
+|changeMonthButtonLabel|Accessibility label : title attribute for the calendar title when the current month is displayed|Date.dp_locales.texts.changeMonthButtonLabel (*)|changeMonthButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer le mois"|
+|changeRangeButtonLabel|Accessibility label : title attribute for the calendar title when the current years range is displayed|Date.dp_locales.texts.changeRangeButtonLabel (*)|changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"|
+|changeYearButtonLabel |Accessibility label : title attribute for the calendar title when the current year is displayed|Date.dp_locales.texts.changeYearButtonLabel (*)|changeYearButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer l'année"|
+|closeButtonLabel      |Accessibility label : 'aria-labelledby' attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonLabel (*)|closeButtonLabel: "Fermez le calendrier"|
+|closeButtonTitle      |Title attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonTitle (*)|closeButtonTitle: "Fermer"|
 |datesDisabled         |Array of dates to disable. array items are Date object or string|[]|datesDisabled: [new Date(2017, 12, 11), '12/12/2017']|
+|daysOfWeekDisabled    |Array of the week days number to disable|[]|daysOfWeekDisabled: [0, 6]|
+|firstDayOfWeek        |Determines the first column of the calendar grid<br>0 = Sunday, 1 = Monday, ....|Date.dp_locales.firstday_of_week (*)|firstDayOfWeek: 1 |
+|gainFocusOnConstruction | Indicates if the datepicker should gain focus when it is constructed|true|gainFocusOnConstruction: false |
+|inline                |Display the datepicker inline inside a given div|false|inline: $('#inline-div')|
+|inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
 |isDateDisabled        |A function that is called for each date of the days calendar. Must return true if the date provided as argument must be disabled, false otherwise.|null|function (date) { return date < new Date(); }|
 |isMonthDisabled       |A function that is called for each date of the days calendar and each month of the months calendar. Must return true if the month provided as arguments (year and month number - 1 to 12) must be disabled, false otherwise.|null|function (year, month) { return year < 2000 || (year = 2000 && month < 7); }|
 |isYearDisabled        |A function that is called for each date of the days calendar, each month of the months calendar and each year of the year calendar. Must return true if the year provided as argument must be disabled, false otherwise.|null|function (year) { return year < 2000; }|
-|weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
-|inputFormat           |date input format by the user. Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|inputFormat: 'd/M/y'|
-|outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
-|titleFormat           |Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.full_format (*)|titleFormat: 'EEEE d MMMM y'|
-|buttonTitle           |Title attribute for the calendar button|Date.dp_locales.texts.buttonTitle (*)|Sélectionner une date ...|
-|buttonLabel           |Accessibility label : 'aria-labelledby' attribute for the calendar button|Date.dp_locales.texts.buttonLabel (*)|Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier|
-|prevButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the previous month button|Date.dp_locales.texts.prevButtonLabel (*)|prevButtonLabel: "Aller au mois précédent"|
-|prevMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the previous year button|Date.dp_locales.texts.prevMonthButtonLabel (*)|prevMonthButtonLabel: "Aller à l'année précédente"|
-|prevYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the previous years range button|Date.dp_locales.texts.prevYearButtonLabel (*)|prevYearButtonLabel: "Aller aux vingt années précédentes"|
+|max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
+|min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
+|modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
 |nextButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the next month button|Date.dp_locales.texts.nextButtonLabel (*)|nextButtonLabel: "Aller au mois suivant"|
 |nextMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the next year button|Date.dp_locales.texts.nextMonthButtonLabel (*)|nextMonthButtonLabel: "Aller à l'année suivante"|
 |nextYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the next years range button|Date.dp_locales.texts.nextYearButtonLabel (*)|nextYearButtonLabel: "Allez aux vingt années suivantes"|
-|changeMonthButtonLabel|Accessibility label : title attribute for the calendar title when the current month is displayed|Date.dp_locales.texts.changeMonthButtonLabel (*)|changeMonthButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer le mois"|
-|changeYearButtonLabel |Accessibility label : title attribute for the calendar title when the current year is displayed|Date.dp_locales.texts.changeYearButtonLabel (*)|changeYearButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer l'année"|
-|changeRangeButtonLabel|Accessibility label : title attribute for the calendar title when the current years range is displayed|Date.dp_locales.texts.changeRangeButtonLabel (*)|changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"|
-|closeButtonTitle      |Title attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonTitle (*)|closeButtonTitle: "Fermer"|
-|closeButtonLabel      |Accessibility label : 'aria-labelledby' attribute for the close button when the calendar is displayed in modal mode|Date.dp_locales.texts.closeButtonLabel (*)|closeButtonLabel: "Fermez le calendrier"|
 |onUpdate              |A function that is called when the input box has been updated by the datepicker|function (value) {}|function (value) { console.log("date updated : " + value); }
+|outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
+|prevButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the previous month button|Date.dp_locales.texts.prevButtonLabel (*)|prevButtonLabel: "Aller au mois précédent"|
+|prevMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the previous year button|Date.dp_locales.texts.prevMonthButtonLabel (*)|prevMonthButtonLabel: "Aller à l'année précédente"|
+|prevYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the previous years range button|Date.dp_locales.texts.prevYearButtonLabel (*)|prevYearButtonLabel: "Aller aux vingt années précédentes"|
+|startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
 |theme                 |name of the theme|default|theme: 'green'|
-|modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
-|inline                |Display the datepicker inline inside a given div|false|inline: $('#inline-div')|
-|gainFocusOnConstruction | Indicates if the datepicker should gain focus when it is constructed|true|gainFocusOnConstruction: false |
+|titleFormat           |Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.full_format (*)|titleFormat: 'EEEE d MMMM y'|
+|weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 
 (*) Default value from the locale file
 
 **[&uparrow; back to table of contents](#table-of-contents)**
 
 ## Methods
-### getDate
-```javascript
-$('your date selector').datepicker('getDate');
-```
-Get the current Datepicker date object
-### setDate
-```javascript
-$('your date selector').datepicker('setDate', date);
-```
-Returns the internal date object of the datepicker
-### min
-```javascript
-$('your date selector').datepicker('min', date);
-```
-Define the smallest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option.
-### max
-```javascript
-$('your date selector').datepicker('max', date);
-```
-Define the biggest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option
-### show
-```javascript
-$('your date selector').datepicker('show');
-```
-show the calendar portion of the datepicker
-### hide
-```javascript
-$('your date selector').datepicker('hide');
-```
-hide the calendar portion of the datepicker
-### firstDayOfWeek
-```javascript
-$('your date selector').datepicker('firstDayOfWeek', value);
-```
-where value (type: integer) is the day of week (0: Sunday, 1: Monday, 2: Tuesday, ...)
-### daysOfWeekDisabled
-```javascript
-$('your date selector').datepicker('daysOfWeekDisabled', value);
-```
-where value (type: array of number) is the list of days of the week that should be disabled.
-### weekDayFormat
-```javascript
-$('your date selector').datepicker('weekDayFormat', value);
-```
-where value (type: string) is one of this value : 'short' (first letter) or 'narrow' (first two letters)
-### inputFormat
-```javascript
-$('your date selector').datepicker('inputFormat', formats);
-```
-where formats (type: array of string) contains the acceptable input formats according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
-### outputFormat
-```javascript
-$('your date selector').datepicker('outputFormat', format);
-```
-where format (type: string) contains the output format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
-### theme
-```javascript
-$('your date selector').datepicker('theme', name);
-```
-where name (type: string) contains the name of your theme
-### modal
-```javascript
-$('your date selector').datepicker('modal', bool);
-```
-Defines the opening mode (modal or not) of the calendar portion of the datepicker. bool can be true or false.
-### inline
-```javascript
-$('your date selector').datepicker('inline', value);
-```
-Display the datepicker inline inside a given div. value can be the id of a div, a jQuery object of a div or false.
-### enable
-```javascript
-$('your date selector').datepicker('enable');
-```
-Enable the datepicker.
-### disable
-```javascript
-$('your date selector').datepicker('disable');
-```
-Disable the datepicker. This method has no effect on an inline datepicker. 
 ### datesDisabled
 ```javascript
 $('your date selector').datepicker('datesDisabled', dates);
 ```
 Sets a specific date or an array of dates to be disabled. The dates are Date objects or strings.
+### daysOfWeekDisabled
+```javascript
+$('your date selector').datepicker('daysOfWeekDisabled', value);
+```
+where value (type: array of number) is the list of days of the week that should be disabled.
+### disable
+```javascript
+$('your date selector').datepicker('disable');
+```
+Disable the datepicker. This method has no effect on an inline datepicker. 
+### enable
+```javascript
+$('your date selector').datepicker('enable');
+```
+Enable the datepicker.
+### firstDayOfWeek
+```javascript
+$('your date selector').datepicker('firstDayOfWeek', value);
+```
+where value (type: integer) is the day of week (0: Sunday, 1: Monday, 2: Tuesday, ...)
+### getDate
+```javascript
+$('your date selector').datepicker('getDate');
+```
+Get the current Datepicker date object
+### hide
+```javascript
+$('your date selector').datepicker('hide');
+```
+hide the calendar portion of the datepicker
+### inline
+```javascript
+$('your date selector').datepicker('inline', value);
+```
+Display the datepicker inline inside a given div. value can be the id of a div, a jQuery object of a div or false.
+### inputFormat
+```javascript
+$('your date selector').datepicker('inputFormat', formats);
+```
+where formats (type: array of string) contains the acceptable input formats according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
+### max
+```javascript
+$('your date selector').datepicker('max', date);
+```
+Define the biggest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option
+### min
+```javascript
+$('your date selector').datepicker('min', date);
+```
+Define the smallest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option.
+### modal
+```javascript
+$('your date selector').datepicker('modal', bool);
+```
+Defines the opening mode (modal or not) of the calendar portion of the datepicker. bool can be true or false.
+### outputFormat
+```javascript
+$('your date selector').datepicker('outputFormat', format);
+```
+where format (type: string) contains the output format according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)
+### setDate
+```javascript
+$('your date selector').datepicker('setDate', date);
+```
+Returns the internal date object of the datepicker
+### show
+```javascript
+$('your date selector').datepicker('show');
+```
+show the calendar portion of the datepicker
+### theme
+```javascript
+$('your date selector').datepicker('theme', name);
+```
+where name (type: string) contains the name of your theme
+### weekDayFormat
+```javascript
+$('your date selector').datepicker('weekDayFormat', value);
+```
+where value (type: string) is one of this value : 'short' (first letter) or 'narrow' (first two letters)
 
 
 **[&uparrow; back to table of contents](#table-of-contents)**
