@@ -124,12 +124,14 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
 |min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
+|next                  |Link the target input of the datepicker to the input of another datepicker that represents the end date of a range|null|next: '#enddate' or next: $('#enddate')|
 |nextButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the next month button|Date.dp_locales.texts.nextButtonLabel (*)|nextButtonLabel: "Aller au mois suivant"|
 |nextMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the next year button|Date.dp_locales.texts.nextMonthButtonLabel (*)|nextMonthButtonLabel: "Aller à l'année suivante"|
 |nextYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the next years range button|Date.dp_locales.texts.nextYearButtonLabel (*)|nextYearButtonLabel: "Allez aux vingt années suivantes"|
 |onUpdate              |A function that is called when the input box has been updated by the datepicker|function (value) {}|function (value) { console.log("date updated : " + value); }
 |outputFormat          |date output format of the datepicker.  Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.short_format (*)|outputFormat: 'dd/MM/y'|
 |prevButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the previous month button|Date.dp_locales.texts.prevButtonLabel (*)|prevButtonLabel: "Aller au mois précédent"|
+|previous              |Link the target input of the datepicker to the input of another datepicker that represents the start date of a range|null|previous: '#startdate' or previous: $('#startdate')|
 |prevMonthButtonLabel  |Accessibility label : 'aria-labelledby' attribute for the previous year button|Date.dp_locales.texts.prevMonthButtonLabel (*)|prevMonthButtonLabel: "Aller à l'année précédente"|
 |prevYearButtonLabel   |Accessibility label : 'aria-labelledby' attribute for the previous years range button|Date.dp_locales.texts.prevYearButtonLabel (*)|prevYearButtonLabel: "Aller aux vingt années précédentes"|
 |startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
@@ -217,6 +219,11 @@ Returns the internal date object of the datepicker
 $('your date selector').datepicker('show');
 ```
 show the calendar portion of the datepicker
+### startview
+```javascript
+$('your date selector').datepicker('startview', view);
+```
+where view (type: string|int) is the value of new start view: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'
 ### theme
 ```javascript
 $('your date selector').datepicker('theme', name);

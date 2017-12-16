@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.9
+ * Accessible Datepicker v2.1.10
  * Copyright 2015-2017 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -282,18 +282,7 @@
 		this.$target = $(target); // textbox that will receive the selected date string and focus (if modal)
 		this.options = $.extend({}, Datepicker.DEFAULTS, options)
 		this.locales = Date.dp_locales;
-		switch (this.options.startView) {
-			case 1:
-			case 'months':
-				this.options.startView = 1;
-				break;
-			case 2:
-			case 'years':
-				this.options.startView = 2;
-				break;
-			default:
-				this.options.startView = 0;
-		}
+		this.startview(this.options.startView);
 		if (typeof this.options.inputFormat === 'string') {
 			this.options.inputFormat = [this.options.inputFormat];
 		}
@@ -323,6 +312,16 @@
 			this.options.max = this.parseDate(this.options.max);
 		} else if (this.$target.attr('max')) {
 			this.options.max = this.parseDate(this.$target.attr('max'));
+		}
+		if (typeof this.options.previous === 'string') {
+			this.options.previous = $(this.options.previous);
+		} else if (! (this.options.previous instanceof jQuery)) {
+			this.options.previous = null;
+		}
+		if (typeof this.options.next === 'string') {
+			this.options.next = $(this.options.next);
+		} else if (! (this.options.next instanceof jQuery)) {
+			this.options.next = null;
 		}
 		this.id = this.$target.attr('id') || 'datepicker-' + Math.floor(Math.random() * 100000);
 		var calendar = datepickerCalendar.join("");
@@ -436,7 +435,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.9'
+	Datepicker.VERSION  = '2.1.10'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -464,6 +463,8 @@
 		closeButtonTitle: Date.dp_locales.texts.closeButtonTitle,
 		closeButtonLabel: Date.dp_locales.texts.closeButtonLabel,
 		onUpdate: function (value) {},
+		previous: null,
+		next: null,
 		theme: 'default',
 		modal: false,
 		inline: false,
@@ -1148,6 +1149,12 @@
 		});
 		this.$grid.delegate('td', 'click', function(e) {
 			return self.handleGridClick(this, e);
+		});
+
+		// bind target handlers
+		this.$target.change(function(e) {
+			var date = self.parseDate($(this).val());
+			self.updateLinked(date);
 		});
 	} // end bindHandlers();
 
@@ -2084,16 +2091,16 @@
 	 */
 	Datepicker.prototype.selectGridCell = function(cellId) {
 		$('#' + cellId).addClass('focus').attr('aria-selected', 'true').attr('tabindex', 0).focus();
-	} // end focusCurrentDay()
+	} // end selectGridCell()
 
 	/**
-	 *	selectGridCell() is a member function to put focus on the current cell of the grid.
+	 *	unSelectGridCell() is a member function to put focus on the current cell of the grid.
 	 *
 	 *	@return N/A
 	 */
 	Datepicker.prototype.unSelectGridCell = function(cellId) {
 		$('#' + cellId).removeClass('focus').attr('aria-selected', 'false').attr('tabindex', -1);
-	} // end focusCurrentDay()
+	} // end unSelectGridCell()
 
 	/**
 	 *	update() is a member function to update the target textbox.
@@ -2112,6 +2119,29 @@
 			this.options.onUpdate(val);
 		}
 	} // end update()
+
+	/**
+	 *	updateLinked() is a member function to update the linked textbox.
+	 *
+	 *	@param	(date Date) the current value of this Datepicker date.
+	 *	@return N/A
+	 */
+	Datepicker.prototype.updateLinked = function(date) {
+		if (this.options.previous !== null && this.options.previous.val() !== '') {
+			var previousDate = this.options.previous.datepicker('getDate');
+			if (previousDate > date) {
+				var previousVal = this.formatDate(date, this.options.previous.datepicker('outputFormat'));
+				this.options.previous.val(previousVal);
+			}
+		}
+		if (this.options.next !== null && this.options.next.val() !== '') {
+			var nextDate = this.options.next.datepicker('getDate');
+			if (nextDate < date) {
+				var nextVal = this.formatDate(date, this.options.next.datepicker('outputFormat'));
+				this.options.next.val(nextVal);
+			}
+		}
+	} // end updateLinked()
 
 	/**
 	 *	hideObject() is a member function to hide an element of the datepicker.
@@ -3021,6 +3051,27 @@
 			}
 		});
 	} // end datesDisabled()
+
+	/**
+	 *	startview() is a public member function to format a date according the output format.
+	 *
+	 *	@param (value int|string) the new view
+	 *	@return  N/A
+	 */
+	Datepicker.prototype.startview = function(view) {
+		switch (view) {
+			case 1:
+			case 'months':
+				this.options.startView = 1;
+				break;
+			case 2:
+			case 'years':
+				this.options.startView = 2;
+				break;
+			default:
+				this.options.startView = 0;
+		}
+	} // end startview()
 
 	/**
 	 *	setLocales() is a public member function which allow change the locales.
