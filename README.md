@@ -73,7 +73,7 @@ This code displays the default calendar (in english with the default theme : no 
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
 ### AngularJS
-ab-datepicker can be used with this [AngularJS directive](https://github.com/dadoadk/ng-ab-datepicker) written by @dadoadk
+ab-datepicker can be used with this [AngularJS directive](https://github.com/dadoadk/ng-ab-datepicker) written by [@dadoadk](https://github.com/dadoadk)
 
 ### Advanced usage including Internationalization
 First, place your "locales" file before "datepicker.min.js"
