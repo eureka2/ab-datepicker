@@ -72,6 +72,9 @@ Add this code to the end of your document:
 This code displays the default calendar (in english with the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
+### AngularJS
+ab-datepicker can be used with this [AngularJS directive](https://github.com/dadoadk/ng-ab-datepicker) written by @dadoadk
+
 ### Advanced usage including Internationalization
 First, place your "locales" file before "datepicker.min.js"
 For example, if your language is French, add this line :
