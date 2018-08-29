@@ -251,7 +251,7 @@ a.datepicker-button.bootstrap:focus {
 div.datepicker-calendar.bootstrap {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
 	width: 80%;
-	min-width: 160px;
+	min-width: 200px;
 	font-size: .8em;
 	background-clip: padding-box;
 	background-color: #FFF;

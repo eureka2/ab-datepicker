@@ -223,7 +223,7 @@ show the calendar portion of the datepicker
 ```javascript
 $('your date selector').datepicker('startview', view);
 ```
-where view (type: string|int) is the value of new start view: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'
+where view (type: string|int) is the value of new start view: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years
 ### theme
 ```javascript
 $('your date selector').datepicker('theme', name);
