@@ -331,10 +331,9 @@
 		if (this.$target.parent('.input-group').length == 0) {
 			this.$target.wrap( '<div class="input-group"></div>' );
 		}
-		this.$label = this.$target.parents().find("label[for=" + this.id + "]");
 		this.$group = this.$target.parent('.input-group');
-		this.$target.attr('aria-autocomplete', 'none')
-		this.$target.css('min-width', '7em')
+		this.$target.attr('aria-autocomplete', 'none');
+		this.$target.css('min-width', '7em');
 		this.$target.addClass('form-control');
 
 		if (! this.$target.attr('placeholder')) {
@@ -2210,28 +2209,26 @@
 		});
 
 		// adjust position of the calendar
-		var groupOffsetTop = Math.max(0, Math.floor(this.$group.offset().top - this.$label.offset().top));
-		var groupOffsetLeft = Math.max(0, Math.floor(this.$group.offset().left - this.$label.offset().left));
-		var parentPaddingLeft = parseInt(this.$calendar.parent().css('padding-left'), 10);
+		var groupOffsetTop = Math.max(0, Math.floor(this.$group[0].offsetTop));
+		var groupOffsetLeft = Math.max(0, Math.floor(this.$group[0].offsetLeft + this.$target[0].offsetLeft));
 		var calendarHeight = this.$calendar.outerHeight();
-		var groupTop = this.$group.offset().top;
-		var groupLeft = this.$group.offset().left;
+		var groupAbsoluteTop = this.$group.offset().top;
 		var groupHeight = this.$group.outerHeight(true);
-		var roomBefore = Math.floor(groupTop - $(window).scrollTop());
-		var roomAfter = Math.floor($(window).height() - (groupTop + groupHeight - $(window).scrollTop()));
+		var roomBefore = Math.floor(groupAbsoluteTop - $(window).scrollTop());
+		var roomAfter = Math.floor($(window).height() - (groupAbsoluteTop + groupHeight - $(window).scrollTop()));
 		if (roomAfter < calendarHeight && roomAfter < roomBefore) {
 			// show calendar above group
 			this.$calendar.addClass('above');
 			this.$calendar.css({
 				top: (groupOffsetTop - calendarHeight) + 'px',
-				left: (groupOffsetLeft + parentPaddingLeft) + 'px'
+				left: groupOffsetLeft + 'px'
 			});
 		} else {
-			  // show calendar below group
+			// show calendar below group
 			this.$calendar.addClass('below');
 			this.$calendar.css({
-				top: (groupHeight + groupOffsetTop) + 'px',
-				left: (groupOffsetLeft + parentPaddingLeft) + 'px'
+				top: (groupOffsetTop + groupHeight) + 'px',
+				left: groupOffsetLeft + 'px'
 			});
 		}
 
