@@ -1,6 +1,6 @@
 /*!
- * Accessible Datepicker v2.1.10
- * Copyright 2015-2017 Eureka2, Jacques Archimède.
+ * Accessible Datepicker v2.1.11
+ * Copyright 2015-2019 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * Inspired by :
@@ -434,7 +434,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.10'
+	Datepicker.VERSION  = '2.1.11'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -891,7 +891,6 @@
 		return true;
 	} // end showDaysOfMonth()
 
-
 	/**
 	 *	showMonthsOfPrevYear() is a member function to show the months of the previous year
 	 *
@@ -938,7 +937,6 @@
 		this.selectGridCell($active.attr('id'));
 		return true;
 	} // end showMonthsOfYear()
-
 
 	/**
 	 *	showYearsOfPrevRange() is a member function to show the years of the previous range of twenty years
@@ -3114,8 +3112,11 @@
 
 	$.fn.datepicker = function (option, value) {
 		if (typeof option == 'string' && $(this).length == 1) {
-			var data = $(this).eq(0).data('ab.datepicker');
-			if (data) return data[option](value);
+			var $this = $(this);
+			setTimeout(function() {
+				var data = $this.eq(0).data('ab.datepicker');
+				if (data) return data[option](value);
+			}, 0);
 		} else {
 			return this.each(function () {
 				var $this   = $(this);
