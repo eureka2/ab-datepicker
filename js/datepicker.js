@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.11
+ * Accessible Datepicker v2.1.12
  * Copyright 2015-2019 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -434,7 +434,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.11'
+	Datepicker.VERSION  = '2.1.12'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -2093,7 +2093,7 @@
 	} // end selectGridCell()
 
 	/**
-	 *	unSelectGridCell() is a member function to put focus on the current cell of the grid.
+	 *	unSelectGridCell() is a member function to remove focus on the current cell of the grid.
 	 *
 	 *	@return N/A
 	 */
@@ -2323,35 +2323,6 @@
 			$overlay.fadeOut(500);
 		}
 	} // end greyOut()
-
-	/**
-	 *	absolutePosition() is a member function that compute the absolute position
-	 *	of some element within document.
-	 *
-	 *	@param (element obj) the element of the document
-	 *	@return an object containing the properties top and left.
-	 */
-	Datepicker.prototype.absolutePosition = function (element) {
-		var top = 0, left = 0;
-		if (element.getBoundingClientRect) {
-			var box = element.getBoundingClientRect();
-			var body = document.body;
-			var docElem = document.documentElement;
-			var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
-			var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
-			var clientTop = docElem.clientTop || body.clientTop || 0;
-			var clientLeft = docElem.clientLeft || body.clientLeft || 0;
-			top  = Math.round(box.top +  scrollTop - clientTop);
-			left = Math.round(box.left + scrollLeft - clientLeft);
-		} else {
-			while(element) {
-				top = top + parseInt(element.offsetTop, 10);
-				left = left + parseInt(element.offsetLeft, 10);
-				element = element.offsetParent;	
-			}
-		}
-		return {top: top, left: left};
-	} // end absolutePosition()
 
 	/**
 	 *	getDaysInMonth() is a member function to calculate the number of days in a given month
@@ -3112,11 +3083,16 @@
 
 	$.fn.datepicker = function (option, value) {
 		if (typeof option == 'string' && $(this).length == 1) {
-			var $this = $(this);
-			setTimeout(function() {
-				var data = $this.eq(0).data('ab.datepicker');
-				if (data) return data[option](value);
-			}, 0);
+			var data = $(this).eq(0).data('ab.datepicker');
+			if (data) {
+				return data[option](value);
+			} else {
+				var $this = $(this);
+				setTimeout(function() {
+					var data = $this.eq(0).data('ab.datepicker');
+					if (data) return data[option](value);
+				}, 0);
+			}
 		} else {
 			return this.each(function () {
 				var $this   = $(this);
