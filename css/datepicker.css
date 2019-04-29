@@ -24,6 +24,17 @@ div.datepicker-calendar div.datepicker-month-wrap {
 	text-align: center;
 	height: 30px;
 }
+div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap > div {
+	padding-top: 0;
+}
+div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap div.datepicker-month-prev,
+div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap div.datepicker-month-next {
+	padding-top: 2px;
+}
+div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap i.fa-caret-left,
+div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap i.fa-caret-right {
+	font-size: 1.3em;
+}
 div.datepicker-calendar div.datepicker-month-fast-prev.disabled,
 div.datepicker-calendar div.datepicker-month-fast-next.disabled ,
 div.datepicker-calendar div.datepicker-month-prev.disabled,
@@ -70,11 +81,24 @@ div.datepicker-calendar div.datepicker-month {
 	cursor: pointer;
 	padding-top: 1px;
 }
-div.datepicker-calendar div.datepicker-month:after {
+div.datepicker-calendar:not(.bootstrap4) div.datepicker-month:after {
 	font-family: 'Glyphicons Halflings';
 	font-size: 0.6em;
 	display: inline-block;
 	content: "\e252";
+}
+div.datepicker-calendar.bootstrap4 div.datepicker-month:after {
+	font-family: "Font Awesome 5 Free";
+	font-size: 0.7em;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	padding-left: 0.4em;
+	content: "\f078";
 }
 div.datepicker-calendar div.datepicker-month:hover,
 div.datepicker-calendar div.datepicker-month:focus {
@@ -250,7 +274,6 @@ a.datepicker-button.bootstrap:focus {
 }
 div.datepicker-calendar.bootstrap {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
-	width: 80%;
 	min-width: 200px;
 	font-size: .8em;
 	background-clip: padding-box;

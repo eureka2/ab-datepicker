@@ -69,7 +69,7 @@ Add this code to the end of your document:
     });
     </script>
 ```
-This code displays the default calendar (in english with the default theme : no colors)
+This code displays the default calendar (in english with the bootstrap 3 markup and the default theme : no colors)
 ![](https://eureka2.github.io/ab-datepicker/datepicker1.png) ![](https://eureka2.github.io/ab-datepicker/datepicker2.png)   ![](https://eureka2.github.io/ab-datepicker/datepicker3.png)
 
 ### AngularJS
@@ -91,6 +91,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 			inputFormat: 'd/M/y',
 			outputFormat: 'dd/MM/y',
 			titleFormat: 'EEEE d MMMM y',
+			markup: 'bootstrap4',
 			theme: 'blue',
 			modal: false
 		});
@@ -121,6 +122,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |isDateDisabled        |A function that is called for each date of the days calendar. Must return true if the date provided as argument must be disabled, false otherwise.|null|function (date) { return date < new Date(); }|
 |isMonthDisabled       |A function that is called for each date of the days calendar and each month of the months calendar. Must return true if the month provided as arguments (year and month number - 1 to 12) must be disabled, false otherwise.|null|function (year, month) { return year < 2000 || (year = 2000 && month < 7); }|
 |isYearDisabled        |A function that is called for each date of the days calendar, each month of the months calendar and each year of the year calendar. Must return true if the year provided as argument must be disabled, false otherwise.|null|function (year) { return year < 2000; }|
+|markup                |The html markup to use|bootstrap3|markup: 'bootstrap4' |
 |max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
 |min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
@@ -386,6 +388,6 @@ $('your date selector').datepicker({
 
 ## Copyright and license
 
-&copy; 2015-2017 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
+&copy; 2015-2019 Eureka2 - Jacques Archimède. Code released under the [MIT license](https://github.com/eureka2/ab-datepicker/blob/master/LICENSE).
 
 **[&uparrow; back to table of contents](#table-of-contents)**
