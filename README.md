@@ -52,6 +52,10 @@ Add the bootstrap and datepicker css to your page head
 <link rel="stylesheet" href="path/to/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="path/to/datepicker.css" type="text/css" />
 ```
+In case you use bootstrap4 markup (see the markup option), it is necessary to include font 'Font Awesome 5':
+```html
+<link rel="stylesheet" href="path/to/font-awesome5.min.css" type="text/css" />
+```
 
 Place the javascript files to the end of your document:
 ```html
