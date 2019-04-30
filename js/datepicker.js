@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.13
+ * Accessible Datepicker v2.1.14
  * Copyright 2015-2019 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -478,7 +478,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.13'
+	Datepicker.VERSION  = '2.1.14'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -2844,6 +2844,40 @@
 		}
 		return this.options.max;
 	} // end max()
+
+	/**
+	 *	next() is a public member function that allows you to define another input representing the end date
+	 *
+	 *	@param (value string|JQuery) the id or the JQuery object of the another input
+	 *	@return the linked datepicker representing the end date
+	 */
+	Datepicker.prototype.next = function(value) {
+		if (value != null) {
+			if (typeof value === 'string') {
+				this.options.next = $(value);
+			} else if (this.options.next instanceof jQuery) {
+				this.options.next = value;
+			}
+		}
+		return this.options.next;
+	} // end next()
+
+	/**
+	 *	previous() is a public member function that allows you to define another input representing the start date
+	 *
+	 *	@param (value string|JQuery) the id or the JQuery object of the another input
+	 *	@return the linked datepicker representing the start date
+	 */
+	Datepicker.prototype.previous = function(value) {
+		if (value != null) {
+			if (typeof value === 'string') {
+				this.options.previous = $(value);
+			} else if (this.options.previous instanceof jQuery) {
+				this.options.previous = value;
+			}
+		}
+		return this.options.previous;
+	} // end previous()
 
 	/**
 	 *	theme() is a public member function which allow change the datepicker theme.

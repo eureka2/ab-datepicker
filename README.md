@@ -205,6 +205,16 @@ Define the biggest date the user can enter. The value of "date" (type: string) m
 $('your date selector').datepicker('min', date);
 ```
 Define the smallest date the user can enter. The value of "date" (type: string) must conform to one of the formats defined with the "inputFormat" option.
+### next
+```javascript
+$('your date selector').datepicker('next', selector);
+```
+Define the date as the start date of a period. The value of "selector" (type: string or JQuery object) refers to the input that represents the end date of the period.
+### previous
+```javascript
+$('your date selector').datepicker('previous', selector);
+```
+Define the date as the end date of a period. The value of "selector" (type: string or JQuery object) refers to the input that represents the start date of the period.
 ### modal
 ```javascript
 $('your date selector').datepicker('modal', bool);
