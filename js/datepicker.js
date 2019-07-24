@@ -390,7 +390,12 @@
 		this.$button.addClass(this.options.theme);
 		this.$calendar = $(calendar);
 		this.$calendar.addClass(this.options.theme);
-		this.$target.after(this.$button);
+        if (this.options.buttonLeft) {
+            this.$target.before(this.$button);
+        }
+        else {
+            this.$target.after(this.$button);
+        }
 
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
 		if (this.$calendar.parent().css('position') === 'static') {
@@ -514,7 +519,8 @@
 		inline: false,
 		gainFocusOnConstruction: true,
 		min: null,
-		max: null
+		max: null,
+        buttonLeft: null
 	}
 
 	/**
