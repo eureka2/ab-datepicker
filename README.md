@@ -111,6 +111,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |Option                |Description                          |Default        |Example|
 |----------------------|-------------------------------------|---------------|-------|
 |buttonLabel           |Accessibility label : 'aria-labelledby' attribute for the calendar button|Date.dp_locales.texts.buttonLabel (*)|Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier|
+|buttonLeft            |Place the calendar button to the left of the text field|false|buttonLeft: true|
 |buttonTitle           |Title attribute for the calendar button|Date.dp_locales.texts.buttonTitle (*)|Sélectionner une date ...|
 |changeMonthButtonLabel|Accessibility label : title attribute for the calendar title when the current month is displayed|Date.dp_locales.texts.changeMonthButtonLabel (*)|changeMonthButtonLabel: "Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour changer le mois"|
 |changeRangeButtonLabel|Accessibility label : title attribute for the calendar title when the current years range is displayed|Date.dp_locales.texts.changeRangeButtonLabel (*)|changeRangeButtonLabel: "Cliquez ou appuyez sur la touche ou sur la barre Entrée pour afficher les vingt années suivantes"|

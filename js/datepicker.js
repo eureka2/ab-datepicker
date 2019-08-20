@@ -390,12 +390,11 @@
 		this.$button.addClass(this.options.theme);
 		this.$calendar = $(calendar);
 		this.$calendar.addClass(this.options.theme);
-        if (this.options.buttonLeft) {
-            this.$target.before(this.$button);
-        }
-        else {
-            this.$target.after(this.$button);
-        }
+		if (this.options.buttonLeft) {
+			this.$target.before(this.$button);
+		} else {
+			this.$target.after(this.$button);
+		}
 
 		// be sure parent of the calendar is positionned  to calculate the position of the calendar
 		if (this.$calendar.parent().css('position') === 'static') {
@@ -483,7 +482,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.14'
+	Datepicker.VERSION  = '2.1.15'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -497,6 +496,7 @@
 		inputFormat: [Date.dp_locales.short_format],
 		outputFormat: Date.dp_locales.short_format,
 		titleFormat: Date.dp_locales.full_format,
+		buttonLeft: false,
 		buttonTitle: Date.dp_locales.texts.buttonTitle,
 		buttonLabel: Date.dp_locales.texts.buttonLabel,
 		prevButtonLabel: Date.dp_locales.texts.prevButtonLabel,
@@ -519,8 +519,7 @@
 		inline: false,
 		gainFocusOnConstruction: true,
 		min: null,
-		max: null,
-        buttonLeft: null
+		max: null
 	}
 
 	/**
