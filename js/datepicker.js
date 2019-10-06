@@ -482,7 +482,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.15'
+	Datepicker.VERSION  = '2.1.16'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -907,10 +907,16 @@
 
 		// if offset was specified, set focus on the last day - specified offset
 		if (offset != null) {
-			var numDays = this.getDaysInMonth(this.year, this.month);
-			var day = 'cell' + (numDays - offset)  + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', day);
-			this.selectGridCell(day);
+			var $allCells = this.$grid.find('td');
+			offset = $allCells.length - offset;
+			while (offset >= 0 && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset--;
+			}
+			if (offset >= 0) {
+				var day = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', day);
+				this.selectGridCell(day);
+			}
 		}
 		return true;
 	} // end showDaysOfPrevMonth()
@@ -959,9 +965,16 @@
 
 		// if offset was specified, set focus on the last month - specified offset
 		if (offset != null) {
-			var month = 'cell' + (12 - offset)  + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', month);
-			this.selectGridCell(month);
+			var $allCells = this.$grid.find('td');
+			offset = $allCells.length - offset;
+			while (offset >= 0 && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset--;
+			}
+			if (offset >= 0) {
+				var month = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', month);
+				this.selectGridCell(month);
+			}
 		}
 		return true;
 	} // end showMonthsOfPrevYear()
@@ -1006,9 +1019,16 @@
 
 		// if offset was specified, set focus on the last month - specified offset
 		if (offset != null) {
-			var year = 'cell' + (20 - offset)  + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', year);
-			this.selectGridCell(year);
+			var $allCells = this.$grid.find('td');
+			offset = $allCells.length - offset;
+			while (offset >= 0 && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset--;
+			}
+			if (offset >= 0) {
+				var year = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', year);
+				this.selectGridCell(year);
+			}
 		}
 		return true;
 	} // end showYearsOfPrevRange()
@@ -1036,9 +1056,16 @@
 
 		// if offset was specified, set focus on the first day + specified offset
 		if (offset != null) {
-			var day = 'cell' + offset + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', day);
-			this.selectGridCell(day);
+			var $allCells = this.$grid.find('td');
+			offset--; // offset starts at 1 
+			while (offset < $allCells.length && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset++;
+			}
+			if (offset < $allCells.length) {
+				var day = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', day);
+				this.selectGridCell(day);
+			}
 		}
 		return true;
 	} // end showDaysOfNextMonth()
@@ -1060,11 +1087,18 @@
 		// populate the calendar grid
 		this.populateMonthsCalendar();
 
-		// if offset was specified, set focus on the first day + specified offset
+		// if offset was specified, set focus on the first month + specified offset
 		if (offset != null) {
-			var month = 'cell' + offset + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', month);
-			this.selectGridCell(month);
+			var $allCells = this.$grid.find('td');
+			offset--; // offset starts at 1 
+			while (offset < $allCells.length && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset++;
+			}
+			if (offset < $allCells.length) {
+				var month = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', month);
+				this.selectGridCell(month);
+			}
 		}
 		return true;
 	} // end showMonthsOfNextYear()
@@ -1088,9 +1122,16 @@
 
 		// if offset was specified, set focus on the first day + specified offset
 		if (offset != null) {
-			var year = 'cell' + offset + '-' + this.id;
-			this.$grid.attr('aria-activedescendant', year);
-			this.selectGridCell(year);
+			var $allCells = this.$grid.find('td');
+			offset--; // offset starts at 1 
+			while (offset < $allCells.length && ! $allCells.eq(offset).hasClass('selectable')) {
+				offset++;
+			}
+			if (offset < $allCells.length) {
+				var year = $allCells.eq(offset).attr('id');
+				this.$grid.attr('aria-activedescendant', year);
+				this.selectGridCell(year);
+			}
 		}
 		return true;
 	} // end showYearsOfNextRange()
@@ -1813,16 +1854,20 @@
 					if (e.ctrlKey || e.shiftKey) {
 						return true;
 					}
-					var cellIndex = $cells.index($curCell) - colCount;
+					var $allCells = this.$grid.find('td');
+					var cellIndex = $allCells.index($curCell) - colCount;
 					var $prevCell = null;
+					while (cellIndex >= 0 && ! $allCells.eq(cellIndex).hasClass('selectable')) {
+						cellIndex--;
+					}
 					if (cellIndex >= 0) {
-						$prevCell = $cells.eq(cellIndex);
+						$prevCell = $allCells.eq(cellIndex);
 						this.unSelectGridCell($curCell.attr('id'));
 						this.$grid.attr('aria-activedescendant', $prevCell.attr('id'));
 						this.selectGridCell($prevCell.attr('id'));
 					} else {
 						// move to appropriate day in previous month
-						cellIndex = colCount - 1 - $cells.index($curCell);
+						cellIndex = colCount - $allCells.index($curCell) % colCount;
 						switch (this.gridType) {
 							case 0: // days grid
 								this.showDaysOfPrevMonth(cellIndex);
@@ -1843,16 +1888,19 @@
 					if (e.ctrlKey || e.shiftKey) {
 						return true;
 					}
-					var cellIndex = $cells.index($curCell) + colCount;
-					var $nextCell = null;
-					if (cellIndex < $cells.length) {
-						$nextCell = $cells.eq(cellIndex);
+					var $allCells = this.$grid.find('td');
+					var cellIndex = $allCells.index($curCell) + colCount;
+					while (cellIndex < $allCells.length && ! $allCells.eq(cellIndex).hasClass('selectable')) {
+						cellIndex++;
+					}
+					if (cellIndex < $allCells.length) {
+						var $nextCell = $allCells.eq(cellIndex);
 						this.unSelectGridCell($curCell.attr('id'));
 						this.$grid.attr('aria-activedescendant', $nextCell.attr('id'));
 						this.selectGridCell($nextCell.attr('id'));
 					} else {
 						// move to appropriate day in next month
-						cellIndex = colCount + 1 - ($cells.length - $cells.index($curCell));
+						cellIndex = $allCells.index($curCell) % colCount + 1;
 						switch (this.gridType) {
 							case 0: // days grid
 								this.showDaysOfNextMonth(cellIndex);
@@ -3161,7 +3209,7 @@
 		} else {
 			this.$grid.removeClass('rtl');
 		}
-	} // end outputFormat()
+	} // end setLocales()
 
 	// DATEPICKER PLUGIN DEFINITION
 	// ==========================
