@@ -1,0 +1,26 @@
+{
+  "name": "ab-datepicker",
+  "version": "2.1.16",
+  "description": "An accessible and bootstrap compatible datepicker",
+  "main": "js/datepicker.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://eureka2@github.com/eureka2/ab-datepicker.git"
+  },
+  "keywords": [
+    "datepicker",
+    "accessible"
+  ],
+  "author": "Jacques Archimède",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eureka2/ab-datepicker/issues"
+  },
+  "homepage": "https://github.com/eureka2/ab-datepicker#readme"
+}
