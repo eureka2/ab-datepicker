@@ -241,11 +241,11 @@
 	var datepickerCalendar3 = [
 		'<div class="datepicker-calendar bootstrap3" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
 		'	<div class="datepicker-month-wrap">',
-		'		<div class="datepicker-month-fast-next pull-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-forward"></span></div>',
-		'		<div class="datepicker-month-next pull-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-triangle-right"></span></div>',
-		'		<div class="datepicker-month-fast-prev pull-left" role="button" aria-labelledby="datepicker-bn-fast-prev-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-backward"></span></div>',
-		'		<div class="datepicker-month-prev pull-left" role="button" aria-labelledby="datepicker-bn-prev-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-triangle-left"></span></div>',
-		'		<div id="datepicker-month-CALENDARID" class="datepicker-month" tabindex="0" role="heading" aria-live="assertive" aria-atomic="true" title="Click or press the Enter key or the spacebar to change the month">July 2015</div>',
+		'		<div class="datepicker-button datepicker-month-fast-next pull-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-forward"></span></div>',
+		'		<div class="datepicker-button datepicker-month-next pull-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-triangle-right"></span></div>',
+		'		<div class="datepicker-button datepicker-month-fast-prev pull-left" role="button" aria-labelledby="datepicker-bn-fast-prev-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-backward"></span></div>',
+		'		<div class="datepicker-button datepicker-month-prev pull-left" role="button" aria-labelledby="datepicker-bn-prev-label-CALENDARID" tabindex="0"><span class="glyphicon glyphicon-triangle-left"></span></div>',
+		'		<div id="datepicker-month-CALENDARID" class="datepicker-button datepicker-month" tabindex="0" role="heading" aria-live="assertive" aria-atomic="true" title="Click or press the Enter key or the spacebar to change the month">July 2015</div>',
 		'	</div>',
 		'	<table class="datepicker-grid" role="grid" aria-readonly="true" aria-activedescendant="datepicker-err-msg-CALENDARID" aria-labelledby="datepicker-month-CALENDARID" tabindex="0">',
 		'		<thead role="presentation">',
@@ -266,7 +266,7 @@
 		'		</tbody>',
 		'	</table>',
 		'	<div class="datepicker-close-wrap">',
-		'		<button class="datepicker-close" id="datepicker-close-CALENDARID" aria-labelledby="datepicker-bn-close-label-CALENDARID">Close</button>',
+		'		<button class="datepicker-button datepicker-close" id="datepicker-close-CALENDARID" aria-labelledby="datepicker-bn-close-label-CALENDARID">Close</button>',
 		'	</div>',
 		'	<div id="datepicker-bn-open-label-CALENDARID" class="datepicker-bn-open-label offscreen">Click or press the Enter key or the spacebar to open the calendar</div>',
 		'	<div id="datepicker-bn-prev-label-CALENDARID" class="datepicker-bn-prev-label offscreen">Go to previous month</div>',
@@ -285,11 +285,11 @@
 	var datepickerCalendar4 = [
 		'<div class="datepicker-calendar bootstrap4" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
 		'	<div class="datepicker-month-wrap">',
-		'		<div class="datepicker-month-fast-next float-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><i class="fas fa-forward"></i></div>',
-		'		<div class="datepicker-month-next float-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><i class="fas fa-caret-right"></i></div>',
-		'		<div class="datepicker-month-fast-prev float-left" role="button" aria-labelledby="datepicker-bn-fast-prev-label-CALENDARID" tabindex="0"><i class="fas fa-backward"></i></div>',
-		'		<div class="datepicker-month-prev float-left" role="button" aria-labelledby="datepicker-bn-prev-label-CALENDARID" tabindex="0"><i class="fas fa-caret-left"></i></div>',
-		'		<div id="datepicker-month-CALENDARID" class="datepicker-month" tabindex="0" role="heading" aria-live="assertive" aria-atomic="true" title="Click or press the Enter key or the spacebar to change the month">July 2015</div>',
+		'		<div class="datepicker-button datepicker-month-fast-next float-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><i class="fas fa-forward"></i></div>',
+		'		<div class="datepicker-button datepicker-month-next float-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><i class="fas fa-caret-right"></i></div>',
+		'		<div class="datepicker-button datepicker-month-fast-prev float-left" role="button" aria-labelledby="datepicker-bn-fast-prev-label-CALENDARID" tabindex="0"><i class="fas fa-backward"></i></div>',
+		'		<div class="datepicker-button datepicker-month-prev float-left" role="button" aria-labelledby="datepicker-bn-prev-label-CALENDARID" tabindex="0"><i class="fas fa-caret-left"></i></div>',
+		'		<div id="datepicker-month-CALENDARID" class="datepicker-button datepicker-month" tabindex="0" role="heading" aria-live="assertive" aria-atomic="true" title="Click or press the Enter key or the spacebar to change the month">July 2015</div>',
 		'	</div>',
 		'	<table class="datepicker-grid" role="grid" aria-readonly="true" aria-activedescendant="datepicker-err-msg-CALENDARID" aria-labelledby="datepicker-month-CALENDARID" tabindex="0">',
 		'		<thead role="presentation">',
@@ -310,7 +310,7 @@
 		'		</tbody>',
 		'	</table>',
 		'	<div class="datepicker-close-wrap">',
-		'		<button class="datepicker-close" id="datepicker-close-CALENDARID" aria-labelledby="datepicker-bn-close-label-CALENDARID">Close</button>',
+		'		<button class="datepicker-button datepicker-close" id="datepicker-close-CALENDARID" aria-labelledby="datepicker-bn-close-label-CALENDARID">Close</button>',
 		'	</div>',
 		'	<div id="datepicker-bn-open-label-CALENDARID" class="datepicker-bn-open-label offscreen">Click or press the Enter key or the spacebar to open the calendar</div>',
 		'	<div id="datepicker-bn-prev-label-CALENDARID" class="datepicker-bn-prev-label offscreen">Go to previous month</div>',
@@ -482,7 +482,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.16'
+	Datepicker.VERSION  = '2.1.17'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -2124,7 +2124,7 @@
 	 * @return (boolean) true
 	 */
 	Datepicker.prototype.handleTabOut = function(e) {
-		var fields = $('body').find('input:visible,textarea:visible,select:visible');
+		var fields = $('body').find(':input:visible:not([disabled], .datepicker-button), a[href]:visible:not([disabled], .datepicker-button)');
 		var index = fields.index( this.$target );
 		if ( index > -1 && index < fields.length ) {
 			if (e.shiftKey) {
