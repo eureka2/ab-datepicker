@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ab-datepicker Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="../css/datepicker.css" type="text/css" />
+    <style type="text/css">
+        body {
+            min-height: 200em;
+        }
+
+        caption { /* ADDED */
+            caption-side: top;
+        }
+
+        #lower-left {
+            position: fixed;
+            bottom: 1.25em;
+            left: 1.25em;
+            width: 28em;
+            -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            z-index: 10000;
+        }
+
+        #upper-right {
+            position: fixed;
+            top: .3em;
+            right: 1.25em;
+            width: 28em;
+            -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            z-index: 10000;
+        }
+
+        .position1,
+        .position2,
+        .position3 {
+            background-color: #fdfdfd;
+            border: 1px solid #373737;
+            -webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            -moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.43);
+            height: 20em;
+            position: relative;
+            width: 20em;
+        }
+
+        .position1 {
+            margin: 1em auto 10em auto;
+        }
+
+        .position2 {
+            left: 4em;
+            top: 4em;
+        }
+
+        .position3 {
+            left: -8em;
+            position: absolute;
+            top: 4em;
+        }
+
+        .position4 {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Datepickers</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav">
+            <li class="nav-item active"><a class="nav-link" href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">One more separated link</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control datepicker">
+            </div>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <main class="container">
+        <header class="page-header">
+            <h1>Demo <small>ab-datepicker</small></h1>
+        </header>
+
+        <form method="GET" action="#" class="card card-body bg-light">
+            <h2>Vertical Forms</h2>
+
+            <p>
+                <label class="col-form-label" for="date1">
+                    Date:
+                </label>
+                <input type="text" name="date1" id="date1" class="form-control datepicker">
+            </p>
+
+            <p>
+                <label class="col-form-label">
+                    Date:
+
+                    <input type="text" name="date2" id="date2" class="form-control datepicker">
+                </label>
+            </p>
+
+            <p>
+                <input type="text" name="date3" id="date3" class="form-control datepicker" aria-label="Date">
+            </p>
+
+            <hr>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="date4-label">Date:</span>
+                </div>
+                <input type="text" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
+            </div>
+
+            <hr>
+
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date5-label">Date:</span>
+                        </div>
+                        <input type="text" name="date5" id="date5" class="form-control datepicker" aria-labelledby="date5-label">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date6-label">Date:</span>
+                        </div>
+                        <input type="text" name="date6" id="date6" class="form-control datepicker" aria-labelledby="date6-label">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date7-label">Date:</span>
+                        </div>
+                        <input type="text" name="date7" id="date7" class="form-control datepicker" aria-labelledby="date7-label">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label class="col-form-label" for="date8">
+                        Date:
+                    </label>
+
+                    <input type="text" name="date8" id="date8" class="form-control datepicker">
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <label class="col-form-label">
+                            Date:
+
+                            <input type="text" name="date9" id="date9" class="form-control datepicker">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="date10" id="date10" class="form-control datepicker" aria-label="Date 10">
+                </div>
+            </div>
+
+            <div class="position1">
+                <div class="position2">
+                    <div class="position3">
+                        <div class="position4">
+                            <label class="col-form-label" for="date11">
+                                Date:
+                            </label>
+
+                            <input type="text" name="date11" id="date11" class="form-control datepicker">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form method="GET" action="#" class="card card-body bg-light">
+            <h2>Horizontal Forms</h2>
+
+            <div class="form-group row">
+                <label for="date12" class="col-form-label col-md-1">Date:</label>
+                <div class="col-md-11">
+                    <input type="text" name="date12" id="date12" class="form-control datepicker">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="date13" class="col-form-label col-md-1">Date:</label>
+                <div class="col-md-11 form-inline">
+                    <div class="input-group float-left">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date13-label">From:</span>
+                        </div>
+                        <input type="text" name="date13" id="date13" class="form-control datepicker">
+                    </div>
+                    <div class="input-group float-right">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date14-label">To:</span>
+                        </div>
+                        <input type="text" name="date14" id="date14" class="form-control datepicker" aria-labelledby="date14-label">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <span for="date15" class="col-form-label col-md-1">Date:</span>
+
+                <div class="col-md-2">
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date15-label">1:</span>
+                        </div>
+                        <input type="text" name="date15" id="date15" class="form-control datepicker" aria-labelledby="date15-label">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date16-label">2:</span>
+                        </div>
+                        <input type="text" name="date16" id="date16" class="form-control datepicker" aria-labelledby="date16-label">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date17-label">3:</span>
+                        </div>
+                        <input type="text" name="date17" id="date17" class="form-control datepicker" aria-labelledby="date17-label">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date18-label">4:</span>
+                        </div>
+                        <input type="text" name="date18" id="date18" class="form-control datepicker" aria-labelledby="date18-label">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="input-group flex-nowrap">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="date19-label">5:</span>
+                        </div>
+                        <input type="text" name="date19" id="date19" class="form-control datepicker" aria-labelledby="date19-label">
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <caption>Dates in Tables</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Begin</th>
+                        <th scope="col">Middle</th>
+                        <th scope="col">End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="date20" class="sr-only">Begin Date 1</label>
+                            <input type="text" name="date20" id="date20" class="form-control datepicker">
+                        </td>
+                        <td>
+                            <label for="date21" class="sr-only">Middle Date 1</label>
+                            <input type="text" name="date21" id="date21" class="form-control datepicker">
+                        </td>
+                        <td>
+                            <label for="date25" class="sr-only">End Date 1</label>
+                            <input type="text" name="date22" id="date22" class="form-control datepicker">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="date23" class="sr-only">Begin Date 2</label>
+                            <input type="text" name="date23" id="date23" class="form-control datepicker">
+                        </td>
+                        <td>
+                            <label for="date24" class="sr-only">Middle Date 2</label>
+                            <input type="text" name="date24" id="date24" class="form-control datepicker">
+                        </td>
+                        <td>
+                            <label for="date25" class="sr-only">End Date 2</label>
+                            <input type="text" name="date25" id="date25" class="form-control datepicker">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="lower-left">
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="lower-left-label">Positioned:</span>
+                    </div>
+                    <input type="text" name="date26" id="date26" class="form-control datepicker" aria-labelledby="lower-left-label">
+                </div>
+            </div>
+
+            <div id="upper-right">
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="upper-right-label">Positioned:</span>
+                    </div>
+                    <input type="text" name="date27" id="date27" class="form-control datepicker" aria-labelledby="upper-right-label">
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      const getNavigatorLanguage = () => (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+    </script>
+    <script src="../js/datepicker.js"></script>
+    <script>
+        (function($) {
+            $(function() {
+                const getNavigatorLanguage = () => (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+                $(".datepicker")
+                    .filter(function() {
+                        return !this.disabled && !this.readOnly;
+                    })
+                    .datepicker({ gainFocusOnConstruction: false, markup: 'bootstrap4' });
+               $('#date13').datepicker('next', '#date14');
+            });
+        })(this.jQuery);
+    </script>
+</body>
+</html>
