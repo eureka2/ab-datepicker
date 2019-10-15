@@ -1,5 +1,5 @@
 {
-  "name": "ab-datepicker",
+  "name": "@eureka2/ab-datepicker",
   "version": "2.1.17",
   "description": "An accessible and bootstrap compatible datepicker",
   "main": "js/datepicker.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://eureka2@github.com/eureka2/ab-datepicker.git"
+    "url": "git+https://github.com/eureka2/ab-datepicker.git"
   },
   "keywords": [
     "datepicker",
