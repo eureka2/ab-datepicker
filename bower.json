@@ -1,0 +1,21 @@
+{
+  "name": "@eureka2/ab-datepicker",
+  "description": "An accessible and bootstrap compatible datepicker",
+  "main": "js/datepicker.js",
+  "authors": [
+    "Jacques Archimède"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "datepicker",
+    "accessible"
+  ],
+  "homepage": "https://github.com/eureka2/ab-datepicker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
