@@ -1,6 +1,6 @@
 {
   "name": "@eureka2/ab-datepicker",
-  "version": "2.1.7",
+  "version": "2.1.18",
   "description": "An accessible and bootstrap compatible datepicker",
   "main": "js/datepicker.js",
   "directories": {

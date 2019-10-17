@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.14
+ * Accessible Datepicker v2.1.18
  * Copyright 2015-2019 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -482,7 +482,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.17'
+	Datepicker.VERSION  = '2.1.18'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
