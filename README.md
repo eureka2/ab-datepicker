@@ -51,6 +51,8 @@ Add the bootstrap and datepicker css to your page head
 ```html
 <link rel="stylesheet" href="path/to/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="path/to/datepicker.css" type="text/css" />
+or
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ab-datepicker@latest/css/datepicker.css" type="text/css" />
 ```
 In case you use bootstrap4 markup (see the markup option), it is necessary to include font 'Font Awesome 5':
 ```html
@@ -62,6 +64,9 @@ Place the javascript files to the end of your document:
 <script type="text/javascript" src="path/to/jquery.min.js"></script>
 <script type="text/javascript" src="path/to/bootstrap.min.js"></script>
 <script type="text/javascript" src="path/to/datepicker.min.js"></script>
+or
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ab-datepicker@latest"></script>
+
 ```
 
 ### Basic usage
@@ -110,6 +115,7 @@ and give some options to the datepicker. See [Configuration options](#configurat
 
 |Option                |Description                          |Default        |Example|
 |----------------------|-------------------------------------|---------------|-------|
+|allowSameDate         |In the case of linked dates (start date and end date), this option indicates whether the two dates can be the same. This option is ignored if none of the 'next' or 'previous' option is set.|true|allowSameDate: false|
 |buttonLabel           |Accessibility label : 'aria-labelledby' attribute for the calendar button|Date.dp_locales.texts.buttonLabel (*)|Cliquez ou appuyez sur la touche Entrée ou la barre d'espace pour ouvrir le calendrier|
 |buttonLeft            |Place the calendar button to the left of the text field|false|buttonLeft: true|
 |buttonTitle           |Title attribute for the calendar button|Date.dp_locales.texts.buttonTitle (*)|Sélectionner une date ...|

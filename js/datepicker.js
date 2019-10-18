@@ -1,5 +1,5 @@
 /*!
- * Accessible Datepicker v2.1.18
+ * Accessible Datepicker v2.1.19
  * Copyright 2015-2019 Eureka2, Jacques Archimède.
  * Based on the example of the Open AJAX Alliance Accessibility Tools Task Force : http://www.oaa-accessibility.org/examplep/datepicker1/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -482,7 +482,7 @@
 		});
 	}
 
-	Datepicker.VERSION  = '2.1.18'
+	Datepicker.VERSION  = '2.1.19'
 
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
@@ -513,6 +513,7 @@
 		onUpdate: function (value) {},
 		previous: null,
 		next: null,
+		allowSameDate: true,
 		markup: 'bootstrap3', // bootstrap3 or bootstrap4
 		theme: 'default',
 		modal: false,
@@ -2226,20 +2227,38 @@
 	Datepicker.prototype.updateLinked = function(date) {
 		if (this.options.previous !== null && this.options.previous.val() !== '') {
 			var previousDate = this.options.previous.datepicker('getDate');
-			if (previousDate > date) {
-				var previousVal = this.formatDate(date, this.options.previous.datepicker('outputFormat'));
-				this.options.previous.val(previousVal);
+			if (this.options.allowSameDate) {
+				if (previousDate > date) {
+					var previousVal = this.formatDate(date, this.options.previous.datepicker('outputFormat'));
+					this.options.previous.val(previousVal);
+				}
+			} else {
+				if (previousDate >= date) {
+					var previousVal = this.formatDate(new Date(date.getTime() - 60*60*24*1000), this.options.previous.datepicker('outputFormat'));
+					this.options.previous.val(previousVal);
+				}
 			}
 		}
 		if (this.options.next !== null && this.options.next.val() !== '') {
 			var nextDate = this.options.next.datepicker('getDate');
-			if (nextDate < date) {
-				var nextVal = this.formatDate(date, this.options.next.datepicker('outputFormat'));
-				this.options.next.val(nextVal);
+			if (this.options.allowSameDate) {
+				if (nextDate < date) {
+					var nextVal = this.formatDate(date, this.options.next.datepicker('outputFormat'));
+					this.options.next.val(nextVal);
+				}
+			} else {
+				if (nextDate <= date) {
+					var nextVal = this.formatDate(new Date(date.getTime() + 60*60*24*1000), this.options.next.datepicker('outputFormat'));
+					this.options.next.val(nextVal);
+				}
 			}
 		}
 		if (this.options.next !== null) {
-			this.options.next.datepicker('min', date);
+			if (this.options.allowSameDate) {
+				this.options.next.datepicker('min', date);
+			} else {
+				this.options.next.datepicker('min', new Date(date.getTime() + 60*60*24*1000));
+			}
 		}
 	} // end updateLinked()
 
