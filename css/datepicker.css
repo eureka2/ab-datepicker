@@ -81,13 +81,13 @@ div.datepicker-calendar div.datepicker-month {
 	cursor: pointer;
 	padding-top: 1px;
 }
-div.datepicker-calendar:not(.bootstrap4) div.datepicker-month:after {
+div.datepicker-calendar:not(.use-fa-icons) div.datepicker-month:after {
 	font-family: 'Glyphicons Halflings';
 	font-size: 0.6em;
 	display: inline-block;
 	content: "\e252";
 }
-div.datepicker-calendar.bootstrap4 div.datepicker-month:after {
+div.datepicker-calendar.use-fa-icons div.datepicker-month:after {
 	font-family: "Font Awesome 5 Free";
 	font-size: 0.7em;
 	-moz-osx-font-smoothing: grayscale;

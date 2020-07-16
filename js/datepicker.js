@@ -239,6 +239,7 @@
 		"backward": 'glyphicon glyphicon-backward',
 		"triangle-right": 'glyphicon glyphicon-triangle-right',
 		"triangle-left": 'glyphicon glyphicon-triangle-left',
+		"is-fa": "",
 	};
 
 	var FAICONS = {
@@ -247,15 +248,16 @@
 		"backward": 'fas fa-backward',
 		"triangle-right": 'fas fa-caret-right',
 		"triangle-left": 'fas fa-caret-left',
+		"is-fa": "use-fa-icons", // not really an icon, but a marker class
 	}
 
 	var datepickerButton3 = [
-		'<a class="datepicker-button bootstrap3 input-group-addon btn" role="button" aria-haspopup="true" tabindex="0" aria-labelledby="datepicker-bn-open-label-CALENDARID">',
+		'<a class="datepicker-button bootstrap3 {icon-is-fa} input-group-addon btn" role="button" aria-haspopup="true" tabindex="0" aria-labelledby="datepicker-bn-open-label-CALENDARID">',
 		'	<span class="{icon-calendar}" title="Select Date..."></span>',
 		'</a>'
 	];
 	var datepickerCalendar3 = [
-		'<div class="datepicker-calendar bootstrap3" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
+		'<div class="datepicker-calendar bootstrap3 {icon-is-fa}" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
 		'	<div class="datepicker-month-wrap">',
 		'		<div class="datepicker-button datepicker-month-fast-next pull-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><span class="{icon-forward}"></span></div>',
 		'		<div class="datepicker-button datepicker-month-next pull-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><span class="{icon-triangle-right}"></span></div>',
@@ -294,12 +296,12 @@
 	];
 
 	var datepickerButton4 = [
-		'<a class="datepicker-button bootstrap4 input-group-append" role="button" aria-haspopup="true" tabindex="0" aria-labelledby="datepicker-bn-open-label-CALENDARID">',
+		'<a class="datepicker-button bootstrap4 {icon-is-fa} input-group-append" role="button" aria-haspopup="true" tabindex="0" aria-labelledby="datepicker-bn-open-label-CALENDARID">',
 		'	<span class="input-group-text"><i class="{icon-calendar}" title="Select Date..."></i></span>',
 		'</a>'
 	];
 	var datepickerCalendar4 = [
-		'<div class="datepicker-calendar bootstrap4" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
+		'<div class="datepicker-calendar bootstrap4 {icon-is-fa}" id="datepicker-calendar-CALENDARID" aria-hidden="false">',
 		'	<div class="datepicker-month-wrap">',
 		'		<div class="datepicker-button datepicker-month-fast-next float-right" role="button" aria-labelledby="datepicker-bn-fast-next-label-CALENDARID" tabindex="0"><i class="{icon-forward}"></i></div>',
 		'		<div class="datepicker-button datepicker-month-next float-right" role="button" aria-labelledby="datepicker-bn-next-label-CALENDARID" tabindex="0"><i class="{icon-triangle-right}"></i></div>',
