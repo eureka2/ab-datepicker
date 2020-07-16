@@ -6,11 +6,11 @@
   "directories": {
     "test": "tests"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "minify-js": "terser -o js/datepicker.min.js js/datepicker.js --source-map url=datepicker.min.js.map",
+    "build": "npm run minify-js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"No automated tests, open test/*.html demos in browser\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/eureka2/ab-datepicker/issues"
   },
-  "homepage": "https://github.com/eureka2/ab-datepicker#readme"
+  "homepage": "https://github.com/eureka2/ab-datepicker#readme",
+  "devDependencies": {
+    "terser": "4.8.0"
+  }
 }
