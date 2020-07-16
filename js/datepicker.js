@@ -233,6 +233,7 @@
 }(function($, undefined){
 	'use strict';
 
+
 	var GLYPHICONS = {
 		"calendar": 'glyphicon glyphicon-calendar',
 		"forward": 'glyphicon glyphicon-forward',
@@ -250,6 +251,10 @@
 		"triangle-left": 'fas fa-caret-left',
 		"is-fa": "use-fa-icons", // not really an icon, but a marker class
 	}
+
+	const VIEW_DAYS = 0,
+	      VIEW_MONTHS = 1,
+	      VIEW_YEARS = 2;
 
 	var datepickerButton3 = [
 		'<a class="datepicker-button bootstrap3 {icon-is-fa} input-group-addon btn" role="button" aria-haspopup="true" tabindex="0" aria-labelledby="datepicker-bn-open-label-CALENDARID">',
@@ -520,7 +525,7 @@
 	Datepicker.DEFAULTS = {
 		firstDayOfWeek: Date.dp_locales.firstday_of_week, // Determines the first column of the calendar grid
 		weekDayFormat: 'short', // Display format of the weekday names - values are 'short' or 'narrow'
-		startView: 0, // Initial calendar - values are 0 or 'days', 1 or 'months', 2 or 'years'
+		startView: VIEW_DAYS, // Initial calendar - values are 0 or 'days', 1 or 'months', 2 or 'years'
 		daysOfWeekDisabled: [],
 		datesDisabled: [],
 		isDateDisabled: null,
@@ -613,12 +618,12 @@
 		this.date = this.dateObj.getDate();
 		// populate the calendar grid
 		switch (this.options.startView) {
-			case 1: // months
+			case VIEW_MONTHS: // months
 				this.populateMonthsCalendar();
 				// update the table's activedescdendant to point to the current month
 				this.$grid.attr('aria-activedescendant', this.$grid.find('.curMonth').attr('id'));
 				break;
-			case 2: // years
+			case VIEW_YEARS: // years
 				this.populateYearsCalendar();
 				// update the table's activedescdendant to point to the current year
 				this.$grid.attr('aria-activedescendant', this.$grid.find('.curYear').attr('id'));
@@ -776,7 +781,7 @@
 		var $tbody = this.$grid.find('tbody');
 		$tbody.empty();
 		$tbody.append(gridCells);
-		this.gridType = 0; // 0 = days grid, 1 = months grid, 2 = years Grid
+		this.gridType = VIEW_DAYS; // 0 = days grid, 1 = months grid, 2 = years Grid
 	} // end populateDaysCalendar()
 
 	/**
@@ -847,7 +852,7 @@
 		}
 		gridCells += '\t</tr>';
 		$tbody.append(gridCells);
-		this.gridType = 1; // 0 = days grid, 1 = months grid, 2 = years Grid
+		this.gridType = VIEW_MONTHS; // 0 = days grid, 1 = months grid, 2 = years Grid
 	} // end populateMonthsCalendar()
 
 	/**
@@ -916,7 +921,7 @@
 		}
 		gridCells += '\t</tr>';
 		$tbody.append(gridCells);
-		this.gridType = 2; // 0 = days grid, 1 = months grid, 2 = years Grid
+		this.gridType = VIEW_YEARS; // 0 = days grid, 1 = months grid, 2 = years Grid
 	} // end populateYearsCalendar()
 
 	/**
@@ -1312,7 +1317,7 @@
 	Datepicker.prototype.handlePrevClick = function(e) {
 		var active = this.$grid.attr('aria-activedescendant');
 		switch (this.gridType) {
-			case 0: // days grid
+			case VIEW_DAYS: // days grid
 				var ok;
 				if (e.ctrlKey) {
 					ok = this.showDaysOfPrevYear();
@@ -1329,7 +1334,7 @@
 					}
 				}
 				break;
-			case 1: // months grid
+			case VIEW_MONTHS: // months grid
 				if (this.showMonthsOfPrevYear()) {
 					if (this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
@@ -1340,7 +1345,7 @@
 					}
 				}
 				break;
-			case 2: // years grid
+			case VIEW_YEARS: // years grid
 				if (this.showYearsOfPrevRange()) {
 					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
 					this.selectGridCell('cell1' + '-' + this.id);
@@ -1374,7 +1379,7 @@
 	Datepicker.prototype.handleNextClick = function(e) {
 		var active = this.$grid.attr('aria-activedescendant');
 		switch (this.gridType) {
-			case 0: // days grid
+			case VIEW_DAYS: // days grid
 				var ok;
 				if (e.ctrlKey) {
 					ok = this.showDaysOfNextYear();
@@ -1391,7 +1396,7 @@
 					}
 				}
 				break;
-			case 1: // months grid
+			case VIEW_MONTHS: // months grid
 				if (this.showMonthsOfNextYear()) {
 					if (this.year != this.curYear) {
 						this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
@@ -1402,7 +1407,7 @@
 					}
 				}
 				break;
-			case 2: // years grid
+			case VIEW_YEARS: // years grid
 				if (this.showYearsOfNextRange()) {
 					this.$grid.attr('aria-activedescendant', 'cell1' + '-' + this.id);
 					this.selectGridCell('cell1' + '-' + this.id);
@@ -1516,7 +1521,7 @@
 						return true;
 					}
 					if (e.shiftKey) {
-						if (this.gridType == 0) {
+						if (this.gridType == VIEW_DAYS) {
 							this.$fastprev.focus();
 						} else {
 							this.$close.focus();
@@ -1534,17 +1539,17 @@
 						return true;
 					}
 					switch (this.gridType) {
-						case 0: // days grid
+						case VIEW_DAYS: // days grid
 							if (e.ctrlKey) {
 								this.showDaysOfPrevYear();
 							} else {
 								this.showDaysOfPrevMonth();
 							}
 							break;
-						case 1: // months grid
+						case VIEW_MONTHS: // months grid
 							this.showMonthsOfPrevYear();
 							break;
-						case 2: // years grid
+						case VIEW_YEARS: // years grid
 							this.showYearsOfPrevRange();
 							break;
 					}
@@ -1627,7 +1632,7 @@
 					if (e.shiftKey) {
 						this.$monthObj.focus();
 					} else {
-						if (this.gridType == 0) {
+						if (this.gridType == VIEW_DAYS) {
 							this.$fastnext.focus();
 						} else {
 							this.$grid.focus();
@@ -1640,17 +1645,17 @@
 			case this.keys.space:
 				{
 					switch (this.gridType) {
-						case 0: // days grid
+						case VIEW_DAYS: // days grid
 							if (e.ctrlKey) {
 								this.showDaysOfNextYear();
 							} else {
 								this.showDaysOfNextMonth();
 							}
 							break;
-						case 1: // months grid
+						case VIEW_MONTHS: // months grid
 							this.showMonthsOfNextYear();
 							break;
-						case 2: // years grid
+						case VIEW_YEARS: // years grid
 							this.showYearsOfNextRange();
 							break;
 					}
@@ -1731,7 +1736,7 @@
 					if (e.shiftKey) {
 						this.$grid.focus();
 					} else {
-						if (this.gridType == 0) {
+						if (this.gridType == VIEW_DAYS) {
 							this.$fastprev.focus();
 						} else {
 							this.$prev.focus();
@@ -1776,7 +1781,7 @@
 				{
 					if (this.options.modal == true) {
 						if (e.shiftKey) {
-							if (this.gridType == 0) {
+							if (this.gridType == VIEW_DAYS) {
 								this.$fastnext.focus();
 							} else {
 								this.$next.focus();
@@ -1802,16 +1807,16 @@
 						return true;
 					}
 					switch (this.gridType) {
-						case 0: // days grid
+						case VIEW_DAYS: // days grid
 							// update the target box
 							this.update();
 							// dismiss the dialog box
 							this.hide();
 							break;
-						case 1: // months grid
+						case VIEW_MONTHS: // months grid
 							this.showDaysOfMonth(parseInt($curCell.attr('data-value'), 10));
 							break;
-						case 2: // years grid
+						case VIEW_YEARS: // years grid
 							this.showMonthsOfYear(parseInt($curCell.attr('data-value'), 10));
 							break;
 					}
@@ -1841,13 +1846,13 @@
 							this.selectGridCell($prevCell.attr('id'));
 						} else {
 							switch (this.gridType) {
-								case 0: // days grid
+								case VIEW_DAYS: // days grid
 									this.showDaysOfPrevMonth(0);
 									break;
-								case 1: // months grid
+								case VIEW_MONTHS: // months grid
 									this.showMonthsOfPrevYear(0);
 									break;
-								case 2: // years grid
+								case VIEW_YEARS: // years grid
 									this.showYearsOfPrevRange(0);
 									break;
 							}
@@ -1867,14 +1872,14 @@
 							this.selectGridCell($nextCell.attr('id'));
 						} else {
 							switch (this.gridType) {
-								case 0: // days grid
+								case VIEW_DAYS: // days grid
 									// move to the next month
 									this.showDaysOfNextMonth(1);
 									break;
-								case 1: // months grid
+								case VIEW_MONTHS: // months grid
 									this.showMonthsOfNextYear(1);
 									break;
-								case 2: // years grid
+								case VIEW_YEARS: // years grid
 									this.showYearsOfNextRange(1);
 									break;
 							}
@@ -1903,13 +1908,13 @@
 						// move to appropriate day in previous month
 						cellIndex = colCount - $allCells.index($curCell) % colCount;
 						switch (this.gridType) {
-							case 0: // days grid
+							case VIEW_DAYS: // days grid
 								this.showDaysOfPrevMonth(cellIndex);
 								break;
-							case 1: // months grid
+							case VIEW_MONTHS: // months grid
 								this.showMonthsOfPrevYear(cellIndex);
 								break;
-							case 2: // years grid
+							case VIEW_YEARS: // years grid
 								this.showYearsOfPrevRange(cellIndex);
 								break;
 						}
@@ -1936,13 +1941,13 @@
 						// move to appropriate day in next month
 						cellIndex = $allCells.index($curCell) % colCount + 1;
 						switch (this.gridType) {
-							case 0: // days grid
+							case VIEW_DAYS: // days grid
 								this.showDaysOfNextMonth(cellIndex);
 								break;
-							case 1: // months grid
+							case VIEW_MONTHS: // months grid
 								this.showMonthsOfNextYear(cellIndex);
 								break;
-							case 2: // years grid
+							case VIEW_YEARS: // years grid
 								this.showYearsOfNextRange(cellIndex);
 								break;
 						}
@@ -1959,7 +1964,7 @@
 					e.preventDefault();
 					var ok = false;
 					switch (this.gridType) {
-						case 0: // days grid
+						case VIEW_DAYS: // days grid
 							if (e.altKey) {
 								e.stopImmediatePropagation();
 								ok = this.showDaysOfPrevYear();
@@ -1967,10 +1972,10 @@
 								ok = this.showDaysOfPrevMonth();
 							}
 							break;
-						case 1: // months grid
+						case VIEW_MONTHS: // months grid
 							ok = this.showMonthsOfPrevYear();
 							break;
-						case 2: // years grid
+						case VIEW_YEARS: // years grid
 							ok = this.showYearsOfPrevRange();
 							break;
 					}
@@ -1996,7 +2001,7 @@
 					e.preventDefault();
 					var ok = false;
 					switch (this.gridType) {
-						case 0: // days grid
+						case VIEW_DAYS: // days grid
 							if (e.altKey) {
 								e.stopImmediatePropagation();
 								ok = this.showDaysOfNextYear();
@@ -2004,10 +2009,10 @@
 								ok = this.showDaysOfNextMonth();
 							}
 							break;
-						case 1: // months grid
+						case VIEW_MONTHS: // months grid
 							ok = this.showMonthsOfNextYear();
 							break;
-						case 2: // years grid
+						case VIEW_YEARS: // years grid
 							ok = this.showYearsOfNextRange();
 							break;
 					}
@@ -2101,7 +2106,7 @@
 		}
 		this.$grid.find('.focus').removeClass('focus').attr('aria-selected', 'false').attr('tabindex', -1);
 		switch (this.gridType) {
-			case 0: // days grid
+			case VIEW_DAYS: // days grid
 				this.$grid.attr('aria-activedescendant', $cell.attr('id'));
 				this.selectGridCell($cell.attr('id'));
 				// update the target box
@@ -2109,10 +2114,10 @@
 				// dismiss the dialog box
 				this.hide();
 				break;
-			case 1: // months grid
+			case VIEW_MONTHS: // months grid
 				this.showDaysOfMonth(parseInt($cell.attr('data-value'), 10));
 				break;
-			case 2: // years grid
+			case VIEW_YEARS: // years grid
 				this.showMonthsOfYear(parseInt($cell.attr('data-value'), 10));
 				break;
 		}
@@ -2183,7 +2188,7 @@
 	 */
 	Datepicker.prototype.changeGrid = function(e) {
 		switch (this.gridType) {
-			case 0: // days grid
+			case VIEW_DAYS: // days grid
 				this.populateMonthsCalendar();
 				if (this.year != this.curYear) {
 					var $cells = this.$grid.find('td.selectable');
@@ -2193,7 +2198,7 @@
 				}
 				this.selectGridCell(this.$grid.attr('aria-activedescendant'));
 				break;
-			case 2: // years grid
+			case VIEW_YEARS: // years grid
 				if (e.shiftKey) {
 					// goto previous twenty years
 					this.year -= 20;
@@ -2201,7 +2206,7 @@
 					// goto next twenty years
 					this.year += 20;
 				}
-			case 1: // months grid
+			case VIEW_MONTHS: // months grid
 				this.populateYearsCalendar();
 				if (this.year != this.curYear) {
 					var $cells = this.$grid.find('td.selectable');
@@ -2397,13 +2402,13 @@
 	Datepicker.prototype.refresh = function() {
 		this.drawCalendarHeader();
 		switch	(this.gridType) {
-			case 0:
+			case VIEW_DAYS:
 				this.populateDaysCalendar();
 				break;
-			case 1:
+			case VIEW_MONTHS:
 				this.populateMonthsCalendar();
 				break;
-			case 2:
+			case VIEW_YEARS:
 				this.populateYearsCalendar();
 				break;
 		}
@@ -3215,11 +3220,11 @@
 	 */
 	Datepicker.prototype.startview = function(view) {
 		switch (view) {
-			case 1:
+			case VIEW_MONTHS:
 			case 'months':
 				this.options.startView = 1;
 				break;
-			case 2:
+			case VIEW_YEARS:
 			case 'years':
 				this.options.startView = 2;
 				break;
