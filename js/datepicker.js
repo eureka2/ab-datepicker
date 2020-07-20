@@ -252,7 +252,8 @@
 		"is-fa": "use-fa-icons", // not really an icon, but a marker class
 	}
 
-	const VIEW_DAYS = 0,
+	const VIEW_HOURS = -1,
+	      VIEW_DAYS = 0,
 	      VIEW_MONTHS = 1,
 	      VIEW_YEARS = 2;
 
