@@ -137,6 +137,9 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |markup                |The html markup to use|bootstrap3|markup: 'bootstrap4' |
 |max                   |The maximum/latest date that can be selected|null|max: '06/12/2016' |
 |min                   |The minimum/earliest date that can be selected|null|min: '08/11/2015' |
+|minHour               |The minimum hour that is included in the time panel.|0|minHour:9|
+|maxHour               |The maximum hour that is included in the time panel.|23|minHour:18|
+|minuteIncrements      |The size of minute steps to provide as options in the time picker. Choose 60 to only allow whole hours.|30|minuteIncrements:15|
 |modal                 |Indicates if the calendar must be opened in modal mode, that is it keeps the focus until the user selects a date or clicks the close button|false|modal: true|
 |next                  |Link the target input of the datepicker to the input of another datepicker that represents the end date of a range|null|next: '#enddate' or next: $('#enddate')|
 |nextButtonLabel       |Accessibility label : 'aria-labelledby' attribute for the next month button|Date.dp_locales.texts.nextButtonLabel (*)|nextButtonLabel: "Aller au mois suivant"|
@@ -151,6 +154,8 @@ and give some options to the datepicker. See [Configuration options](#configurat
 |startView             |set the start view mode. Accepts: 'days', 'months', 'years', 0 for days, 1 for months and 2 for years|0|startView: 'years'|
 |theme                 |name of the theme|default|theme: 'green'|
 |titleFormat           |Dates and times are formatted according to [CLDR Date Time patterns](http://cldr.unicode.org/translation/date-time)|Date.dp_locales.full_format (*)|titleFormat: 'EEEE d MMMM y'|
+|timeEnabled           |Set to true to add a time panel to the picker. You should include a time component in your input and output formats to make this useful.|false|timeEnabled: true|
+|timeOnly              |If true, the calendar part of the picker is greyed out. timeEnabled must also be true. Typically used to edit the time part of an existing datetime.|false|timeOnly: true|
 |weekDayFormat         |Display format of the weekday names<br>- values are 'short' (first letter) or 'narrow' (first two letters)|short|weekDayFormat: 'narrow'|
 
 (*) Default value from the locale file

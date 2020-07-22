@@ -6,88 +6,93 @@
 a.datepicker-button {
 	cursor: pointer;
 }
-div.datepicker-calendar {
+.datepicker-calendar {
 	margin: 0 10px 10px 0;
 	font-size: .9em;
 	padding: 2px;
 	position: absolute;
-	width: 261px;
+	/* width: 261px; */
 	border: 1px solid #ccc;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	z-index: 50;
 }
-div.datepicker-calendar div.datepicker-month-wrap {
+.datepicker-calendar .datepicker-month-wrap {
 	margin: 0;
 	padding-top: 1px;
 	text-align: center;
 	height: 30px;
 }
-div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap > div {
+.datepicker-calendar.bootstrap4 .datepicker-month-wrap > div {
 	padding-top: 0;
 }
-div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap div.datepicker-month-prev,
-div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap div.datepicker-month-next {
+.datepicker-calendar.bootstrap4 .datepicker-month-wrap .datepicker-month-prev,
+.datepicker-calendar.bootstrap4 .datepicker-month-wrap .datepicker-month-next {
 	padding-top: 2px;
 }
-div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap i.fa-caret-left,
-div.datepicker-calendar.bootstrap4 div.datepicker-month-wrap i.fa-caret-right {
+.datepicker-calendar.bootstrap4 .datepicker-month-wrap i.fa-caret-left,
+.datepicker-calendar.bootstrap4 .datepicker-month-wrap i.fa-caret-right {
 	font-size: 1.3em;
 }
-div.datepicker-calendar div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar div.datepicker-month-prev.disabled,
-div.datepicker-calendar div.datepicker-month-next.disabled {
+.datepicker-calendar .datepicker-month-fast-prev.disabled,
+.datepicker-calendar .datepicker-month-fast-next.disabled ,
+.datepicker-calendar .datepicker-month-prev.disabled,
+.datepicker-calendar .datepicker-month-next.disabled {
 	border: none;
 	cursor: default;
 }
-div.datepicker-calendar div.datepicker-month-fast-prev,
-div.datepicker-calendar div.datepicker-month-fast-next,
-div.datepicker-calendar div.datepicker-month-prev,
-div.datepicker-calendar div.datepicker-month-next {
+.datepicker-calendar .datepicker-month.disabled::after {
+	content: '' !important;
+}
+.datepicker-calendar .datepicker-month-fast-prev,
+.datepicker-calendar .datepicker-month-fast-next,
+.datepicker-calendar .datepicker-month-prev,
+.datepicker-calendar .datepicker-month-next {
 	cursor: pointer;
 	margin: 3px;
 	width: 24px;
 	height: 24px;
 	padding-top: 3px;
 }
-div.datepicker-calendar div.datepicker-month-fast-prev {
+.datepicker-calendar .datepicker-month-fast-prev {
 	padding-right: 2px;
 }
-div.datepicker-calendar div.datepicker-month-fast-next {
+.datepicker-calendar .datepicker-month-fast-next {
 	padding-left: 2px;
 }
-div.datepicker-calendar div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar div.datepicker-month-next.enabled:focus {
+.datepicker-calendar .datepicker-month-fast-prev.enabled:hover,
+.datepicker-calendar .datepicker-month-fast-prev.enabled:focus,
+.datepicker-calendar .datepicker-month-fast-next.enabled:hover,
+.datepicker-calendar .datepicker-month-fast-next.enabled:focus,
+.datepicker-calendar .datepicker-month-prev.enabled:hover,
+.datepicker-calendar .datepicker-month-prev.enabled:focus,
+.datepicker-calendar .datepicker-month-next.enabled:hover,
+.datepicker-calendar .datepicker-month-next.enabled:focus {
 	margin-top: 2px;
 	border: 1px solid #800;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
-div.datepicker-calendar div.datepicker-month {
+.datepicker-calendar .datepicker-month {
 	margin: 3px 56px 2px 56px;
 	height: 24px;
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.2em;
-	cursor: pointer;
 	padding-top: 1px;
 }
-div.datepicker-calendar:not(.use-fa-icons) div.datepicker-month:after {
+.datepicker-calendar .datepicker-month:not(.disabled) {
+	cursor: pointer;
+}
+.datepicker-calendar:not(.use-fa-icons) .datepicker-month:after {
 	font-family: 'Glyphicons Halflings';
 	font-size: 0.6em;
 	display: inline-block;
 	content: "\e252";
 }
-div.datepicker-calendar.use-fa-icons div.datepicker-month:after {
+.datepicker-calendar.use-fa-icons .datepicker-month:after {
 	font-family: "Font Awesome 5 Free";
 	font-size: 0.7em;
 	-moz-osx-font-smoothing: grayscale;
@@ -100,62 +105,79 @@ div.datepicker-calendar.use-fa-icons div.datepicker-month:after {
 	padding-left: 0.4em;
 	content: "\f078";
 }
-div.datepicker-calendar div.datepicker-month:hover,
-div.datepicker-calendar div.datepicker-month:focus {
+.datepicker-calendar .datepicker-month:not(.disabled):hover,
+.datepicker-calendar .datepicker-month:not(.disabled):focus {
 	padding-top: 0;
 	border: 1px solid #800;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 }
-div.datepicker-calendar table.datepicker-grid {
+
+.datepicker-calendar .datepicker-row {
+	display: flex;
+}
+.datepicker-calendar .datepicker-time-view {
+	height: 212px;
+	overflow-y: scroll;
+	font-size: 1.2em;
+	margin-left: 0.5em;
+	border-left: 1px solid #ccc;
+}
+
+.datepicker-calendar .datepicker-time-view li {
+	padding: 0.5em 0.7em;
+}
+
+.datepicker-calendar table.datepicker-grid {
 	width: 100%;
 	font-size: 1.2em;
 	text-align: center;
 }
-div.datepicker-calendar table.datepicker-grid.rtl {
+.datepicker-calendar table.datepicker-grid.rtl {
 	direction: rtl;
 }
-div.datepicker-calendar table.datepicker-grid:focus {
+.datepicker-calendar table.datepicker-grid:focus {
 	outline: none;
 }
-div.datepicker-calendar table.datepicker-weekdays {
-}
-div.datepicker-calendar table.datepicker-grid th,
-div.datepicker-calendar table.datepicker-grid td{
+.datepicker-calendar th,
+.datepicker-calendar td{
 	text-align: center;
 	padding: 0;
 }
-div.datepicker-calendar table.datepicker-grid th abbr{
+.datepicker-calendar th abbr{
 	border: none;
 }
-div.datepicker-calendar table.datepicker-grid td {
-	border: 1px solid #999;
+.datepicker-calendar .selectable {
 	cursor: pointer;
 }
-div.datepicker-calendar table.datepicker-grid td.unselectable {
+.datepicker-calendar td {
+	border: 1px solid #999;
+}
+.datepicker-calendar .unselectable {
 	cursor: default;
 }
-div.datepicker-calendar table.datepicker-grid th,
-div.datepicker-calendar table.datepicker-grid td.day {
+.datepicker-calendar th,
+.datepicker-calendar .day {
 	height: 30px;
 }
-div.datepicker-calendar table.datepicker-grid td.month {
+.datepicker-calendar .month {
 	height: 60px;
 }
-div.datepicker-calendar table.datepicker-grid td.year {
+.datepicker-calendar .year {
 	height: 45px;
 }
-div.datepicker-calendar table.datepicker-grid td.curDay,
-div.datepicker-calendar table.datepicker-grid td.curMonth,
-div.datepicker-calendar table.datepicker-grid td.curYear {
+.datepicker-calendar .curTime,
+.datepicker-calendar .curDay,
+.datepicker-calendar .curMonth,
+.datepicker-calendar .curYear {
 	border: 1px solid #999;
 }
-div.datepicker-calendar table.datepicker-grid td.empty {
+.datepicker-calendar .empty {
 	border: 1px solid #999;
 	cursor: default;
 }
-div.datepicker-calendar .offscreen {
+.datepicker-calendar .offscreen {
 	position: absolute;
 	left: -200em;
 	top: -100em;
@@ -173,7 +195,7 @@ div.datepicker-calendar .offscreen {
 	min-height: 100%;
 	z-index: 40;
 }
-div.datepicker-calendar button.datepicker-close {
+.datepicker-calendar button.datepicker-close {
 	height: 30px;
 	width: 100%;
 	font-weight: bold;
@@ -191,73 +213,71 @@ div.datepicker-calendar button.datepicker-close {
 /**************************** 
  * default theme colors
  ***************************/
-a.datepicker-button.default {
-}
 a.datepicker-button.default:hover,
 a.datepicker-button.default:focus {
 	background-color: #DDD;
 }
-div.datepicker-calendar.default {
+.datepicker-calendar.default {
 	background-color: #FFF;
 }
-div.datepicker-calendar.default div.datepicker-month-wrap {
-}
-div.datepicker-calendar.default div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar.default div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar.default div.datepicker-month-prev.disabled,
-div.datepicker-calendar.default div.datepicker-month-next.disabled {
+.datepicker-calendar.default .datepicker-month-fast-prev.disabled,
+.datepicker-calendar.default .datepicker-month-fast-next.disabled ,
+.datepicker-calendar.default .datepicker-month-prev.disabled,
+.datepicker-calendar.default .datepicker-month-next.disabled,
+.datepicker-calendar.default .datepicker-month.disabled {
 	color:  #999;
 }
-div.datepicker-calendar.default div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar.default div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar.default div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar.default div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar.default div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar.default div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar.default div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar.default div.datepicker-month-next.enabled:focus,
-div.datepicker-calendar.default div.datepicker-month:hover,
-div.datepicker-calendar.default div.datepicker-month:focus,
-div.datepicker-calendar.default button.datepicker-close:hover, 
-div.datepicker-calendar.default button.datepicker-close:focus {
+.datepicker-calendar.default .datepicker-month-fast-prev.enabled:hover,
+.datepicker-calendar.default .datepicker-month-fast-prev.enabled:focus,
+.datepicker-calendar.default .datepicker-month-fast-next.enabled:hover,
+.datepicker-calendar.default .datepicker-month-fast-next.enabled:focus,
+.datepicker-calendar.default .datepicker-month-prev.enabled:hover,
+.datepicker-calendar.default .datepicker-month-prev.enabled:focus,
+.datepicker-calendar.default .datepicker-month-next.enabled:hover,
+.datepicker-calendar.default .datepicker-month-next.enabled:focus,
+.datepicker-calendar.default .datepicker-month:not(.disabled):hover,
+.datepicker-calendar.default .datepicker-month:not(.disabled):focus,
+.datepicker-calendar.default button.datepicker-close:hover, 
+.datepicker-calendar.default button.datepicker-close:focus {
 	background-color: #EEE;
 	border-color:  #999;
 }
-div.datepicker-calendar.default table.datepicker-grid:focus {
+.datepicker-calendar.default table.datepicker-grid:focus {
 	outline: 1px dotted #999;
 }
-div.datepicker-calendar.default tr.datepicker-weekdays {
+.datepicker-calendar.default tr.datepicker-weekdays {
 	border-top:  1px solid #999;
 	border-bottom:  1px solid #999;
 }
-div.datepicker-calendar.default table.datepicker-grid th {
+.datepicker-calendar.default th {
 	background-color: #EEE;
 	border:  none;
 }
-div.datepicker-calendar.default table.datepicker-grid td {
+.datepicker-calendar.default td {
 	border:  none;
 	color: #000;
 }
-div.datepicker-calendar.default table.datepicker-grid td.unselectable {
+.datepicker-calendar.default .unselectable {
 	color: #999;
 }
-div.datepicker-calendar.default table.datepicker-grid td.curDay,
-div.datepicker-calendar.default table.datepicker-grid td.curMonth,
-div.datepicker-calendar.default table.datepicker-grid td.curYear {
+.datepicker-calendar.default .curTime,
+.datepicker-calendar.default .curDay,
+.datepicker-calendar.default .curMonth,
+.datepicker-calendar.default .curYear {
 	background-color: #FFF0C4;
 }
-div.datepicker-calendar.default table.datepicker-grid td.empty {
+.datepicker-calendar.default .empty {
 	border:  none;
 	color: #CCC;
 }
-div.datepicker-calendar.default table.datepicker-grid td.selectable:hover,
-div.datepicker-calendar.default table.datepicker-grid td.selectable.focus {
+.datepicker-calendar.default .selectable:hover,
+.datepicker-calendar.default .selectable.focus {
 	background-color: #DDD;
 }
-div.datepicker-calendar.default table.datepicker-grid td.empty:hover {
+.datepicker-calendar.default .empty:hover {
 	background-color: #F9F9F9;
 }
-div.datepicker-calendar.default button.datepicker-close {
+.datepicker-calendar.default button.datepicker-close {
 	background-color: #DDD;
 	border-color:  #999;
 	color: #000;
@@ -266,13 +286,11 @@ div.datepicker-calendar.default button.datepicker-close {
 /**************************** 
  * bootstrap theme colors
  ***************************/
-a.datepicker-button.bootstrap {
-}
 a.datepicker-button.bootstrap:hover,
 a.datepicker-button.bootstrap:focus {
 	background-color: #DDD;
 }
-div.datepicker-calendar.bootstrap {
+.datepicker-calendar.bootstrap {
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
 	min-width: 200px;
 	font-size: .8em;
@@ -281,13 +299,13 @@ div.datepicker-calendar.bootstrap {
 	border-radius: 4px;
 	line-height: 20px;
 }
-div.datepicker-calendar.bootstrap.below {
+.datepicker-calendar.bootstrap.below {
 	margin-top: 2px;
 }
-div.datepicker-calendar.bootstrap.above {
+.datepicker-calendar.bootstrap.above {
 	margin-top: -2px;
 }
-div.datepicker-calendar.bootstrap:before {
+.datepicker-calendar.bootstrap:before {
   content: '';
   display: inline-block;
   border-left: 7px solid transparent;
@@ -298,7 +316,7 @@ div.datepicker-calendar.bootstrap:before {
   position: absolute;
   left: 7px;
 }
-div.datepicker-calendar.bootstrap:after {
+.datepicker-calendar.bootstrap:after {
   content: '';
   display: inline-block;
   border-left: 6px solid transparent;
@@ -308,326 +326,81 @@ div.datepicker-calendar.bootstrap:after {
   position: absolute;
   left: 6px;
 }
-div.datepicker-calendar.bootstrap.below:before {
+.datepicker-calendar.bootstrap.below:before {
   top: -7px;
 }
-div.datepicker-calendar.bootstrap.below:after {
+.datepicker-calendar.bootstrap.below:after {
   top: -6px;
 }
-div.datepicker-calendar.bootstrap.above:before {
+.datepicker-calendar.bootstrap.above:before {
   bottom: -7px;
   border-bottom: 0;
   border-top: 7px solid #999;
 }
-div.datepicker-calendar.bootstrap.above:after {
+.datepicker-calendar.bootstrap.above:after {
   bottom: -6px;
   border-bottom: 0;
   border-top: 6px solid #ffffff;
 }
-div.datepicker-calendar.bootstrap div.datepicker-month-wrap {
-}
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar.bootstrap div.datepicker-month-prev.disabled,
-div.datepicker-calendar.bootstrap div.datepicker-month-next.disabled {
+.datepicker-calendar.bootstrap .datepicker-month-fast-prev.disabled,
+.datepicker-calendar.bootstrap .datepicker-month-fast-next.disabled ,
+.datepicker-calendar.bootstrap .datepicker-month-prev.disabled,
+.datepicker-calendar.bootstrap .datepicker-month-next.disabled
+.datepicker-calendar.bootstrap .datepicker-month.disabled {
 	color:  #999;
 }
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar.bootstrap div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar.bootstrap div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar.bootstrap div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar.bootstrap div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar.bootstrap div.datepicker-month-next.enabled:focus,
-div.datepicker-calendar.bootstrap div.datepicker-month:hover,
-div.datepicker-calendar.bootstrap div.datepicker-month:focus,
-div.datepicker-calendar.bootstrap button.datepicker-close:hover, 
-div.datepicker-calendar.bootstrap button.datepicker-close:focus {
+.datepicker-calendar.bootstrap .datepicker-month-fast-prev.enabled:hover,
+.datepicker-calendar.bootstrap .datepicker-month-fast-prev.enabled:focus,
+.datepicker-calendar.bootstrap .datepicker-month-fast-next.enabled:hover,
+.datepicker-calendar.bootstrap .datepicker-month-fast-next.enabled:focus,
+.datepicker-calendar.bootstrap .datepicker-month-prev.enabled:hover,
+.datepicker-calendar.bootstrap .datepicker-month-prev.enabled:focus,
+.datepicker-calendar.bootstrap .datepicker-month-next.enabled:hover,
+.datepicker-calendar.bootstrap .datepicker-month-next.enabled:focus,
+.datepicker-calendar.bootstrap .datepicker-month:not(.disabled):hover,
+.datepicker-calendar.bootstrap .datepicker-month:not(.disabled):focus,
+.datepicker-calendar.bootstrap button.datepicker-close:hover, 
+.datepicker-calendar.bootstrap button.datepicker-close:focus {
 	background-color: #EEE;
 	border-color:  #999;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid:focus {
+.datepicker-calendar.bootstrap table.datepicker-grid:focus {
 	outline: none;
 }
-div.datepicker-calendar.bootstrap tr.datepicker-weekdays {
+.datepicker-calendar.bootstrap tr.datepicker-weekdays {
 	border: none;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid th {
-}
-div.datepicker-calendar.bootstrap table.datepicker-grid th abbr{
+.datepicker-calendar.bootstrap th abbr{
 	text-decoration: none;
 	cursor: default;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td {
+.datepicker-calendar.bootstrap td,
+.datepicker-calendar.bootstrap li {
 	border:  none;
 	color: #000;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td.unselectable {
+.datepicker-calendar.bootstrap .unselectable {
 	color: #999;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td.curDay,
-div.datepicker-calendar.bootstrap table.datepicker-grid td.curMonth,
-div.datepicker-calendar.bootstrap table.datepicker-grid td.curYear {
+.datepicker-calendar.bootstrap .curTime,
+.datepicker-calendar.bootstrap .curDay,
+.datepicker-calendar.bootstrap .curMonth,
+.datepicker-calendar.bootstrap .curYear {
 	background-color: #FFF0C4;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td.empty {
+.datepicker-calendar.bootstrap .empty {
 	border:  none;
 	color: #CCC;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td.selectable:hover,
-div.datepicker-calendar.bootstrap table.datepicker-grid td.selectable.focus {
+.datepicker-calendar.bootstrap .selectable:hover,
+.datepicker-calendar.bootstrap .selectable.focus {
 	background-color: #DDD;
 }
-div.datepicker-calendar.bootstrap table.datepicker-grid td.empty:hover {
+.datepicker-calendar.bootstrap .empty:hover {
 	background-color: #F9F9F9;
 }
-div.datepicker-calendar.bootstrap button.datepicker-close {
+.datepicker-calendar.bootstrap button.datepicker-close {
 	background-color: #DDD;
 	border-color:  #999;
 	color: #000;
-}
-
-/**************************** 
- * maroon theme colors
- ***************************/
-a.datepicker-button.maroon {
-	color: #FFF;
-	background-color: #A63950;
-}
-a.datepicker-button.maroon:hover,
-a.datepicker-button.maroon:focus {
-	color: #FFF;
-	background-color: #802C3E;
-}
-div.datepicker-calendar.maroon {
-	background-color: #FFF;
-	border-color:  #CCC;
-}
-div.datepicker-calendar.maroon div.datepicker-month-wrap {
-	background-color: #522A3F;
-	color: #FFF;
-}
-div.datepicker-calendar.maroon div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar.maroon div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar.maroon div.datepicker-month-prev.disabled,
-div.datepicker-calendar.maroon div.datepicker-month-next.disabled {
-	color:  #999;
-}
-div.datepicker-calendar.maroon div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar.maroon div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar.maroon div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar.maroon div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar.maroon div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar.maroon div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar.maroon div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar.maroon div.datepicker-month-next.enabled:focus,
-div.datepicker-calendar.maroon div.datepicker-month:hover,
-div.datepicker-calendar.maroon div.datepicker-month:focus,
-div.datepicker-calendar.maroon button.datepicker-close:hover, 
-div.datepicker-calendar.maroon button.datepicker-close:focus {
-	background-color: #A63950;
-	border-color:  #800;
-}
-div.datepicker-calendar.maroon table.datepicker-grid:focus {
-	outline: 1px dotted #A63950;
-}
-div.datepicker-calendar.maroon tr.datepicker-weekdays {
-}
-div.datepicker-calendar.maroon table.datepicker-grid th {
-	background-color: #A63950;
-	color: #FFF;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td {
-	background-color: #EEE;
-	border-color:  #999;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td.unselectable {
-	color: #999;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td.curDay,
-div.datepicker-calendar.maroon table.datepicker-grid td.curMonth,
-div.datepicker-calendar.maroon table.datepicker-grid td.curYear {
-	background-color: #FFF0C4;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td.empty {
-	background-color: #F9F9F9;
-	color: #AAA;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td.selectable:hover,
-div.datepicker-calendar.maroon table.datepicker-grid td.selectable.focus {
-	background-color: #B55A6E;
-	color: #FFF;
-	border-color: #800;
-}
-div.datepicker-calendar.maroon table.datepicker-grid td.empty:hover {
-	background-color: #F9F9F9;
-	border-color:  #999;
-}
-div.datepicker-calendar.maroon button.datepicker-close {
-	background-color: #522A3F;
-	color: #FFF;
-	border-color:  #EEE;
-}
-
-/**************************** 
- * blue theme colors
- ***************************/
-a.datepicker-button.blue {
-	color: #FFF;
-	background-color: #063A5B;
-}
-a.datepicker-button.blue:hover,
-a.datepicker-button.blue:focus {
-	background-color: #262A33;
-}
-div.datepicker-calendar.blue {
-	background-color: #FFF;
-	border-color:  #CCC;
-}
-div.datepicker-calendar.blue div.datepicker-month-wrap {
-	background-color: #063A5B;
-	color: #FFF;
-}
-div.datepicker-calendar.blue div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar.blue div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar.blue div.datepicker-month-prev.disabled,
-div.datepicker-calendar.blue div.datepicker-month-next.disabled {
-	color:  #999;
-}
-div.datepicker-calendar.blue div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar.blue div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar.blue div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar.blue div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar.blue div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar.blue div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar.blue div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar.blue div.datepicker-month-next.enabled:focus,
-div.datepicker-calendar.blue div.datepicker-month:hover,
-div.datepicker-calendar.blue div.datepicker-month:focus,
-div.datepicker-calendar.blue button.datepicker-close:hover, 
-div.datepicker-calendar.blue button.datepicker-close:focus {
-	background-color: #0B6BA8;
-	border-color:  #3484B7;
-}
-div.datepicker-calendar.blue table.datepicker-grid:focus {
-	outline: 1px dotted #0B6BA8;
-}
-div.datepicker-calendar.blue tr.datepicker-weekdays {
-}
-div.datepicker-calendar.blue table.datepicker-grid th {
-	background-color: #0B6BA8;
-	color: #FFF;
-}
-div.datepicker-calendar.blue table.datepicker-grid td {
-	background-color: #EEE;
-	border-color:  #999;
-}
-div.datepicker-calendar.blue table.datepicker-grid td.unselectable {
-	color: #999;
-}
-div.datepicker-calendar.blue table.datepicker-grid td.curDay,
-div.datepicker-calendar.blue table.datepicker-grid td.curMonth,
-div.datepicker-calendar.blue table.datepicker-grid td.curYear {
-	background-color: #FFF0C4;
-}
-div.datepicker-calendar.blue table.datepicker-grid td.empty {
-	background-color: #F9F9F9;
-	color: #AAA;
-}
-div.datepicker-calendar.blue table.datepicker-grid td.selectable:hover,
-div.datepicker-calendar.blue table.datepicker-grid td.selectable.focus {
-	background-color: #0B6BA8;
-	color: #FFF;
-	border-color: #3484B7;
-}
-div.datepicker-calendar.blue table.datepicker-grid td.empty:hover {
-	background-color: #F9F9F9;
-	border-color:  #999;
-}
-div.datepicker-calendar.blue button.datepicker-close {
-	background-color: #063A5B;
-	color: #FFF;
-	border-color:  #EEE;
-}
-
-/**************************** 
- * green theme colors
- ***************************/
-a.datepicker-button.green {
-	color: #FFF;
-	background-color: #0C5E2F;
-}
-a.datepicker-button.green:hover,
-a.datepicker-button.green:focus {
-	background-color: #262A33;
-}
-div.datepicker-calendar.green {
-	background-color: #FFF;
-	border-color:  #CCC;
-}
-div.datepicker-calendar.green div.datepicker-month-wrap {
-	background-color: #0C5E2F;
-	color: #FFF;
-}
-div.datepicker-calendar.green div.datepicker-month-fast-prev.disabled,
-div.datepicker-calendar.green div.datepicker-month-fast-next.disabled ,
-div.datepicker-calendar.green div.datepicker-month-prev.disabled,
-div.datepicker-calendar.green div.datepicker-month-next.disabled {
-	color:  #999;
-}
-div.datepicker-calendar.green div.datepicker-month-fast-prev.enabled:hover,
-div.datepicker-calendar.green div.datepicker-month-fast-prev.enabled:focus,
-div.datepicker-calendar.green div.datepicker-month-fast-next.enabled:hover,
-div.datepicker-calendar.green div.datepicker-month-fast-next.enabled:focus,
-div.datepicker-calendar.green div.datepicker-month-prev.enabled:hover,
-div.datepicker-calendar.green div.datepicker-month-prev.enabled:focus,
-div.datepicker-calendar.green div.datepicker-month-next.enabled:hover,
-div.datepicker-calendar.green div.datepicker-month-next.enabled:focus,
-div.datepicker-calendar.green div.datepicker-month:hover,
-div.datepicker-calendar.green div.datepicker-month:focus,
-div.datepicker-calendar.green button.datepicker-close:hover, 
-div.datepicker-calendar.green button.datepicker-close:focus {
-	background-color: #0D803B;
-	border-color:  #36955C;
-}
-div.datepicker-calendar.green table.datepicker-grid:focus {
-	outline: 1px dotted #0D803B;
-}
-div.datepicker-calendar.green tr.datepicker-weekdays {
-}
-div.datepicker-calendar.green table.datepicker-grid th {
-	background-color: #0D803B;
-	color: #FFF;
-}
-div.datepicker-calendar.green table.datepicker-grid td {
-	background-color: #EEE;
-	border-color:  #999;
-}
-div.datepicker-calendar.green table.datepicker-grid td.unselectable {
-	color: #999;
-}
-div.datepicker-calendar.green table.datepicker-grid td.curDay,
-div.datepicker-calendar.green table.datepicker-grid td.curMonth,
-div.datepicker-calendar.green table.datepicker-grid td.curYear {
-	background-color: #FFF0C4;
-}
-div.datepicker-calendar.green table.datepicker-grid td.empty {
-	background-color: #F9F9F9;
-	color: #AAA;
-}
-div.datepicker-calendar.green table.datepicker-grid td.selectable:hover,
-div.datepicker-calendar.green table.datepicker-grid td.selectable.focus {
-	background-color: #0D803B;
-	color: #FFF;
-	border-color: #36955C;
-}
-div.datepicker-calendar.green table.datepicker-grid td.empty:hover {
-	background-color: #F9F9F9;
-	border-color:  #999;
-}
-div.datepicker-calendar.green button.datepicker-close {
-	background-color: #0C5E2F;
-	color: #FFF;
-	border-color:  #EEE;
 }

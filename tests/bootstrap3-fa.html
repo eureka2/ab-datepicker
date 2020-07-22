@@ -99,11 +99,6 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control datepicker">
-            </div>
-          </form>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
@@ -112,220 +107,60 @@
             <h1>Demo <small>Bootstrap 3, Font Awesome 5</small></h1>
         </header>
 
-        <form method="GET" action="#" class="well">
-            <h2>Vertical Forms</h2>
+        <div class="row">
 
-            <p>
+
+        <form method="GET" action="#" class="well col-md-4 col-sm-6">
+
+            <div class="form-group">
                 <label class="control-label" for="date1">
                     Date:
                 </label>
-                <input type="text" name="date1" id="date1" class="form-control datepicker">
-            </p>
+                <div class="input-group">
+                    <input type="text" name="date1" id="date1" class="form-control datepicker" >
+                </div>
+            </div>
 
-            <p>
-                <label class="control-label">
-                    Date:
-
-                    <input type="text" name="date2" id="date2" class="form-control datepicker">
+            <div class="form-group">
+                <label class="control-label" for="date2">
+                    Date with restricted times:
                 </label>
-            </p>
+                <div class="input-group">
+                   <input type="text" name="date2" id="date2" class="form-control datepicker" >
+                </div>
+            </div>
 
-            <p>
-                <input type="text" name="date3" id="date3" class="form-control datepicker" aria-label="Date">
-            </p>
-
-            <hr>
-
-            <div class="input-group">
-                <label class="input-group-addon" for="date4">
-                    Date:
+            <div class="form-group">
+                <label class="control-label" for="date3">
+                    Custom button:
                 </label>
-                <input type="text" name="date4" id="date4" class="form-control datepicker">
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="date5">
-                            Date:
-                        </label>
-                        <input type="text" name="date5" id="date5" class="form-control datepicker">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="date6">
-                            Date:
-                        </label>
-                        <input type="text" name="date6" id="date6" class="form-control datepicker">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <label class="input-group-addon" for="date7">
-                            Date:
-                        </label>
-                        <input type="text" name="date7" id="date7" class="form-control datepicker">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label class="control-label" for="date8">
-                        Date:
-                    </label>
-
-                    <input type="text" name="date8" id="date8" class="form-control datepicker">
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <label class="control-label">
-                            Date:
-
-                            <input type="text" name="date9" id="date9" class="form-control datepicker">
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" name="date10" id="date10" class="form-control datepicker" aria-label="Date 10">
+                <div class="input-group">
+                    <input type="hidden" data-button="date3-button" name="date3" id="date3" class="datepicker">
+                    <a href="#" id="date3-button" class="btn btn-default">
+                        CUSTOM BUTTON
+                    </a>
                 </div>
             </div>
 
-            <div class="position1">
-                <div class="position2">
-                    <div class="position3">
-                        <div class="position4">
-                            <label class="control-label" for="date11">
-                                Date:
-                            </label>
-
-                            <input type="text" name="date11" id="date11" class="form-control datepicker">
-                        </div>
-                    </div>
+            <div class="form-group">
+                <label class="control-label" for="date4">
+                    Time only
+                </label>
+                <div class="input-group">
+                    <input type="text" name="date4" id="date4" class="form-control datepicker" >
                 </div>
             </div>
+
         </form>
 
-        <form method="GET" action="#" class="well form-horizontal">
-            <h2>Horizontal Forms</h2>
+        <div class="col-md-4 col-sm-6">
+            <fieldset>
+                <legend>Last chosen date</legend>
+                <div id="last-chosen-date"></div>
+            </fieldset>
+        </div>
 
-            <div class="form-group">
-                <label for="date12" class="control-label col-md-2">Date:</label>
-                <div class="col-md-10">
-                    <input type="text" name="date12" id="date12" class="form-control datepicker">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="date13" class="control-label col-md-2">Date:</label>
-                <div class="col-md-10 form-inline">
-                    <div class="input-group pull-left">
-                        <span class="input-group-addon">From:</span>
-                        <input type="text" name="date13" id="date13" class="form-control datepicker">
-                    </div>
-                    <div class="input-group pull-right">
-                        <label class="input-group-addon" for="date14">To:</label>
-                        <input type="text" name="date14" id="date14" class="form-control datepicker">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <span for="date15" class="control-label col-md-2">Date:</span>
-
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <label class="control-label input-group-addon" for="date15">1:</label>
-                        <input type="text" name="date15" id="date15" class="form-control datepicker">
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <label class="control-label input-group-addon" for="date16">2:</label>
-                        <input type="text" name="date16" id="date16" class="form-control datepicker">
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <label class="control-label input-group-addon" for="date17">3:</label>
-                        <input type="text" name="date17" id="date17" class="form-control datepicker">
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <label class="control-label input-group-addon" for="date18">4:</label>
-                        <input type="text" name="date18" id="date18" class="form-control datepicker">
-                    </div>
-                </div>
-
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <label class="control-label input-group-addon" for="date19">5:</label>
-                        <input type="text" name="date19" id="date19" class="form-control datepicker">
-                    </div>
-                </div>
-            </div>
-
-            <table class="table">
-                <caption>Dates in Tables</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Begin</th>
-                        <th scope="col">Middle</th>
-                        <th scope="col">End</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="date20" class="sr-only">Begin Date 1</label>
-                            <input type="text" name="date20" id="date20" class="form-control datepicker">
-                        </td>
-                        <td>
-                            <label for="date21" class="sr-only">Middle Date 1</label>
-                            <input type="text" name="date21" id="date21" class="form-control datepicker">
-                        </td>
-                        <td>
-                            <label for="date25" class="sr-only">End Date 1</label>
-                            <input type="text" name="date22" id="date22" class="form-control datepicker">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="date23" class="sr-only">Begin Date 2</label>
-                            <input type="text" name="date23" id="date23" class="form-control datepicker">
-                        </td>
-                        <td>
-                            <label for="date24" class="sr-only">Middle Date 2</label>
-                            <input type="text" name="date24" id="date24" class="form-control datepicker">
-                        </td>
-                        <td>
-                            <label for="date25" class="sr-only">End Date 2</label>
-                            <input type="text" name="date25" id="date25" class="form-control datepicker">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div id="lower-left">
-                <div class="input-group">
-                    <label for="date26" class="control-label input-group-addon">Positioned:</label>
-                    <input type="text" name="date26" id="date26" class="form-control datepicker">
-                </div>
-            </div>
-
-            <div id="upper-right">
-                <div class="input-group">
-                    <label for="date27" class="control-label input-group-addon">Positioned:</label>
-                    <input type="text" name="date27" id="date27" class="form-control datepicker">
-                </div>
-            </div>
-        </form>
+        </div>
     </main>
 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -338,16 +173,47 @@
         (function($) {
             $(function() {
                 const getNavigatorLanguage = () => (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
-                $(".datepicker")
-                    .filter(function() {
-                        return !this.disabled && !this.readOnly;
-                    })
+                const updateValue = (v) => $('#last-chosen-date').html(v);
+                $("#date1, #date3")
                     .datepicker({ 
                         gainFocusOnConstruction: false,
                         fontAwesome: true,
                         theme: 'bootstrap',
+                        loggingEnabled: true,
+                        inputFormat: 'dd/MM/yyyy',
+                        outputFormat: 'dd/MM/yyyy',
+                        onUpdate: updateValue,
                     });
-               $('#date13').datepicker('next', '#date14');
+                $("#date2")
+                    .datepicker({ 
+                        gainFocusOnConstruction: false,
+                        fontAwesome: true,
+                        theme: 'bootstrap',
+                        loggingEnabled: true,
+                        timeEnabled: true,
+                        minuteIncrements: 30,
+                        inputFormat: 'dd/MM/yyyy HH:mm',
+                        outputFormat: 'dd/MM/yyyy HH:mm',
+                        minHour: 9,
+                        maxHour: 18,
+                        onUpdate: updateValue,
+                    });
+
+                $("#date4")
+                    .datepicker({ 
+                        gainFocusOnConstruction: false,
+                        fontAwesome: true,
+                        theme: 'bootstrap',
+                        loggingEnabled: true,
+                        timeEnabled: true,
+                        minuteIncrements: 30,
+                        inputFormat: 'dd/MM/yyyy HH:mm',
+                        outputFormat: 'dd/MM/yyyy HH:mm',
+                        minHour: 9,
+                        maxHour: 18,
+                        timeOnly: true,
+                        onUpdate: updateValue,
+                    });
             });
         })(this.jQuery);
     </script>
